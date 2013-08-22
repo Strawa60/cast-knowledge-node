@@ -41,7 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autor.cs" />
+    <Compile Include="BooksSearchSearchCriteria.cs" />
+    <Compile Include="BooksSearchSearchResult.cs" />
     <Compile Include="Gatunek.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="Ksiazka.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KsiegarniaCDA.Presentation.Interfaces;
+using KsiegarniaCDA.DAL.DataManagers;
+using KsiegarniaCDA.DTO;
 
 namespace KsiegarniaCDA.Presentation.Presenters
 {
@@ -12,6 +14,7 @@ namespace KsiegarniaCDA.Presentation.Presenters
         #region Fields
 
         private IBooksSearchView _view;
+        private BooksSearchDataManager _booksSearchDataManager = null;
 
         #endregion
 
@@ -21,6 +24,7 @@ namespace KsiegarniaCDA.Presentation.Presenters
         public BooksSearchPresenter(IBooksSearchView view)
         {
             _view = view;
+            _booksSearchDataManager = new BooksSearchDataManager();
         }
 
         #endregion
@@ -30,12 +34,24 @@ namespace KsiegarniaCDA.Presentation.Presenters
 
         public void InitPage()
         {
+            var autorzy = _booksSearchDataManager.AutorzyComboPobierz();
+            autorzy = (new Item[] { new Item() { Value = string.Empty, Text = string.Empty } }).Concat(autorzy.OrderBy(a => a.Text));
+            _view.LoadComboAutorzy(autorzy);
 
+            var gatunki = _booksSearchDataManager.GatunkiComboPobierz();
+            gatunki = (new Item[] { new Item() { Value = string.Empty, Text = string.Empty } }).Concat(gatunki.OrderBy(g => g.Text));
+            _view.LoadComboGatunki(gatunki);
         }
 
         public void Search()
         {
+            
+                BooksSearchSearchCriteria searchCriteria = _view.GetSearchCriteria();
 
+                IEnumerable<BooksSearchSearchResult> searchResults = _booksSearchDataManager.SearchBooks(searchCriteria);
+
+                _view.ShowSearchResults(searchResults);
+            
         }
 
         #endregion

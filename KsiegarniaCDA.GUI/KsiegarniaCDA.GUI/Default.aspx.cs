@@ -11,7 +11,7 @@ namespace KsiegarniaCDA.GUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("/WebForms/BookSearchForm.aspx");
+            Response.Redirect("/WebForms/BooksSearchForm.aspx");
         }
     }
 }
