@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsiegarniaCDA.DTO", "Ksiega
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsiegarniaCDA.DB", "KsiegarniaCDA.DB\KsiegarniaCDA.DB.csproj", "{3BC8093C-D46E-459F-B308-392113B03257}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsiegarniaCDA.WCFService", "KsiegarniaCDA.WCFService\KsiegarniaCDA.WCFService.csproj", "{11FB1F2B-9702-4EE7-BA8E-7717488BF49D}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -41,6 +43,10 @@ Global
 		{3BC8093C-D46E-459F-B308-392113B03257}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BC8093C-D46E-459F-B308-392113B03257}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BC8093C-D46E-459F-B308-392113B03257}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11FB1F2B-9702-4EE7-BA8E-7717488BF49D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11FB1F2B-9702-4EE7-BA8E-7717488BF49D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11FB1F2B-9702-4EE7-BA8E-7717488BF49D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11FB1F2B-9702-4EE7-BA8E-7717488BF49D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
