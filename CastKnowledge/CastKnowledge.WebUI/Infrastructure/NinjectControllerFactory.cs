@@ -1,10 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Ninject;
 using System.Web.Routing;
+using CastKnowledge.Domain.Entities;
+using CastKnowledge.Domain.Entities.ContractorModel;
+using CastKnowledge.Domain.Abstract;
+using System.Collections.Generic;
+using Moq;
+using System.Linq;
+
 
 namespace CastKnowledge.WebUI.Infrastructure
 {
@@ -39,7 +43,27 @@ namespace CastKnowledge.WebUI.Infrastructure
             */
 
             //ninjectKernel.Bind<IProductRepository>().To<EFProductRepository>();
+            List<Resource> companyResources = new List<Resource>
+            { 
+                new Resource { resourceName="betony"},
+                new Resource { resourceName="betony zaprawy"},
+            };
+            List<Material> companyMaterials = new List<Material>
+                {
+                    new Material { materialName="stal", materialSymbol="Fe"}
+                };
+                
 
+            Mock<IDatabaseQueryResult> mock = new Mock<IDatabaseQueryResult>();
+            mock.Setup(m => m.DatabaseQueryResults).Returns(new List<DatabaseQueryResult> 
+            {
+                new DatabaseQueryResult { QueryResult = new Contractor("Manthis","Strawolsky","betony","dostawca","27-400","Ostrowiec","Rosochy",null,null,"swietokrzyskie",null,null,companyResources,companyMaterials) },
+                new DatabaseQueryResult { QueryResult = new Contractor("Manthis","Strawolsky","betony","dostawca","27-400","Ostrowiec","Rosochy",null,null,"swietokrzyskie",null,null,companyResources,companyMaterials) },
+                new DatabaseQueryResult { QueryResult = new Contractor("Manthis","Strawolsky","betony","dostawca","27-400","Ostrowiec","Rosochy",null,null,"swietokrzyskie",null,null,companyResources,companyMaterials) }
+
+            }.AsQueryable());
+
+            ninjectKernel.Bind<IDatabaseQueryResult>().ToConstant(mock.Object);
 
         }
 
