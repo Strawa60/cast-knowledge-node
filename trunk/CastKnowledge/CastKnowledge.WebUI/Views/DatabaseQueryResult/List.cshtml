@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CastKnowledge.Domain.Entities.DatabaseQueryResult>
+
+@{
+    ViewBag.Title = "Dostawcy";
+}
+
+@foreach (var p in Model)
+{
+    <div class="contractor">
+        <h3>@p.QueryResult.name</h3>
+        @p.QueryResult.ContractorContact.city
+        @p.QueryResult.ContractorContact.street
+        @p.QueryResult.ContractorContact.postcode
+        @p.QueryResult.ContractorContact.province
+        @p.QueryResult.ContractorContact.telephone
+        @p.QueryResult.ContractorContact.fax
+        @p.QueryResult.ContractorContact.email
+        @p.QueryResult.ContractorContact.webAdress
+        @p.QueryResult.ceo
+        @p.QueryResult.companytype
+        
+        @foreach (var q in p.QueryResult.resources)
+        {
+            @q.resourceName   
+        }
+        @foreach (var q in p.QueryResult.materials)
+        {
+            @q.materialName
+            @q.materialSymbol
+        }
+    </div>
+    
+}
