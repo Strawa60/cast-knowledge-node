@@ -6,28 +6,20 @@
 
 @foreach (var p in Model)
 {
+    
     <div class="contractor">
-        <h3>@p.QueryResult.name</h3>
-        @p.QueryResult.ContractorContact.city
-        @p.QueryResult.ContractorContact.street
-        @p.QueryResult.ContractorContact.postcode
-        @p.QueryResult.ContractorContact.province
-        @p.QueryResult.ContractorContact.telephone
-        @p.QueryResult.ContractorContact.fax
-        @p.QueryResult.ContractorContact.email
-        @p.QueryResult.ContractorContact.webAdress
-        @p.QueryResult.ceo
-        @p.QueryResult.companytype
+        <h3>@p.QueryResult_Contractor.name</h3>
+       @p.QueryResult_Contractor.city
+        @p.QueryResult_Contractor.companyType
+
         
-        @foreach (var q in p.QueryResult.resources)
+        @foreach (var q in p.QueryResult_Contractor.resources)
         {
             @q.resourceName   
         }
-        @foreach (var q in p.QueryResult.materials)
-        {
-            @q.materialName
-            @q.materialSymbol
-        }
+
+
+
     </div>
     
 }
