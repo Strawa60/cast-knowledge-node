@@ -42,17 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IDatabaseQueryResult.cs" />
-    <Compile Include="Abstract\IResultType.cs" />
-    <Compile Include="Entities\ContractorModel\Contact.cs" />
     <Compile Include="Entities\ContractorModel\Contractor.cs" />
-    <Compile Include="Entities\ContractorModel\Material.cs" />
+    <Compile Include="Entities\Components\Material.cs" />
     <Compile Include="Entities\DatabaseQueryResult.cs" />
-    <Compile Include="Entities\ContractorModel\Resource.cs" />
+    <Compile Include="Entities\Components\Resource.cs" />
+    <Compile Include="Entities\FoundryModel\Foundry.cs" />
+    <Compile Include="Entities\PublicationModel\Publication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\Patetns\" />
-    <Folder Include="Entities\Publications\" />
+    <Folder Include="Entities\PatetnsModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

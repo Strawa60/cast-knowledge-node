@@ -5,6 +5,7 @@ using System.Web.Routing;
 using CastKnowledge.Domain.Entities;
 using CastKnowledge.Domain.Entities.ContractorModel;
 using CastKnowledge.Domain.Abstract;
+using CastKnowledge.Domain.Entities.Components;
 using System.Collections.Generic;
 using Moq;
 using System.Linq;
@@ -29,42 +30,29 @@ namespace CastKnowledge.WebUI.Infrastructure
 
         private void AddBindings()
         {
-            //dodatkowe powiązania
-            /*
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.Products).Returns(new List<Product> 
-            {
-                new Product { Name = "Piłka nożna", Price = 25},
-                new Product { Name = "Deska Surfingowa", Price = 179},
-                new Product { Name = "buty do biegania", Price= 95}
-            }.AsQueryable());
 
-            ninjectKernel.Bind<IProductRepository>().ToConstant(mock.Object);
-            */
-
-            //ninjectKernel.Bind<IProductRepository>().To<EFProductRepository>();
             List<Resource> companyResources = new List<Resource>
             { 
                 new Resource { resourceName="betony"},
                 new Resource { resourceName="betony zaprawy"},
             };
-            List<Material> companyMaterials = new List<Material>
-                {
-                    new Material { materialName="stal", materialSymbol="Fe"}
-                };
-                
+
+            List<Resource> companyResources2 = new List<Resource>
+            { 
+                new Resource { resourceName="asdasdd"},
+                new Resource { resourceName="asdsad"},
+            };
 
             Mock<IDatabaseQueryResult> mock = new Mock<IDatabaseQueryResult>();
             mock.Setup(m => m.DatabaseQueryResults).Returns(new List<DatabaseQueryResult> 
             {
-                new DatabaseQueryResult { QueryResult = new Contractor("Manthis","Strawolsky","betony","dostawca","27-400","Ostrowiec","Rosochy",null,null,"swietokrzyskie",null,null,companyResources,companyMaterials) },
-                new DatabaseQueryResult { QueryResult = new Contractor("Manthis","Strawolsky","betony","dostawca","27-400","Ostrowiec","Rosochy",null,null,"swietokrzyskie",null,null,companyResources,companyMaterials) },
-                new DatabaseQueryResult { QueryResult = new Contractor("Manthis","Strawolsky","betony","dostawca","27-400","Ostrowiec","Rosochy",null,null,"swietokrzyskie",null,null,companyResources,companyMaterials) }
-
+                new DatabaseQueryResult { QueryResult_Contractor = new Contractor("Manthis","Ostrowiec","27-400","Rosochy","Swietokrzyskie","123312323","3343244","www.ww.pl","sda@as.pl","Strawczynski","dostawca",companyResources)},
+                new DatabaseQueryResult { QueryResult_Contractor = new Contractor("Manthis","Ostrowiec","27-400","Rosochy","Swietokrzyskie","123312323","3343244","www.ww.pl","sda@as.pl","Strawczynski","dostawca",companyResources2)}
             }.AsQueryable());
 
             ninjectKernel.Bind<IDatabaseQueryResult>().ToConstant(mock.Object);
 
+            
         }
 
     }

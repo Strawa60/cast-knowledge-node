@@ -1,5 +1,5 @@
 ﻿
-namespace CastKnowledge.Domain.Entities.ContractorModel
+namespace CastKnowledge.Domain.Entities.Components
 {
     public class Material
     {
