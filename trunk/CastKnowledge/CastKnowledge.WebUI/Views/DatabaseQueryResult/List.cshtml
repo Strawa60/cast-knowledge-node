@@ -8,18 +8,30 @@
 {
     
     <div class="contractor">
+     @if (@p.QueryResult_Contractor != null)
+     {
         <h3>@p.QueryResult_Contractor.name</h3>
-       @p.QueryResult_Contractor.city
-        @p.QueryResult_Contractor.companyType
 
-        
-        @foreach (var q in p.QueryResult_Contractor.resources)
+        foreach (var q in @p.QueryResult_Contractor.resources)
         {
-            @q.resourceName   
+            @q.resourceName <br />
         }
-
-
+     }
 
     </div>
     
+    <div class="foundry">
+        @if (@p.QueryResult_Foundy != null)
+        {
+
+            <h3>@p.QueryResult_Foundy.name</h3>
+            
+            foreach (var q in @p.QueryResult_Foundy.materials)
+            {
+                @q.materialName <br />
+                @q.materialSymbol<br />
+            }
+
+        }
+    </div>
 }

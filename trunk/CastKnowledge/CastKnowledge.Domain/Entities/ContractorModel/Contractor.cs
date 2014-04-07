@@ -28,24 +28,6 @@ namespace CastKnowledge.Domain.Entities.ContractorModel
 
         public Contractor(){}
 
-        //public Contractor(string _name, string _ceo, string _searchTerm, string  _companyType, 
-        //    string _postcode, string _city, string _street, string _telephone, string _fax, 
-        //    string _province, string _webAddress, System.Net.Mail.MailAddress _email, 
-        //    List<Resource> _resources, List<Material> _materials)
-        //{
-        //    resources = _resources;
-        //    materials = _materials;
-
-        //    name = _name;
-        //    ceo = _ceo;
-        //    searchTerm = _searchTerm;
-        //    companytype = _companyType;
-        //    //ContractorContact = new Contact(_postcode, _city, _street,  _telephone,  _fax, _province, _webAddress, _email);
-
-            
-
-        //}
-
         public Contractor(string _name, string _city, string _postcode, string _street, string _province,
             string _telephone, string _fax, string _webAddres, string _email,
             string _ceo, string _companyType, List<Resource> _resources)
@@ -66,13 +48,12 @@ namespace CastKnowledge.Domain.Entities.ContractorModel
             CopyList(resources, _resources);
         }
 
-        private List<Resource> CopyList(List<Resource> resourceList, List<Resource> copyList)
+        private void CopyList(List<Resource> resourceList, List<Resource> copyList)
         {
             foreach (var q in copyList)
             {
                 resourceList.Add(new Resource { resourceName= q.resourceName});
             }
-            return resourceList;
         }
     }
 }
