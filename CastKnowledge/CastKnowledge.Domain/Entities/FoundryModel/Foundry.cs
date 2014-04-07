@@ -24,15 +24,15 @@ namespace CastKnowledge.Domain.Entities.FoundryModel
         public string ceo { get; set; }
         public string companyType { get; set; }
 
-        public List<Resource> resources;
-
+        public List<Material> materials;
+        public List<CastTechnology> technologies;
 
 
         public Foundry(){}
 
         public Foundry(string _name, string _city, string _postcode, string _street, string _province,
             string _telephone, string _fax, string _webAddres, string _email,
-            string _ceo, string _companyType, List<Resource> _resources)
+            string _ceo, string _companyType, List<Material> _materials, List<CastTechnology> _technologies)
         {
             name = _name;
             city = _city;
@@ -45,18 +45,29 @@ namespace CastKnowledge.Domain.Entities.FoundryModel
             email = _email;
             ceo = _ceo;
             companyType = _companyType;
-            resources= new List<Resource>();
 
-            CopyList(resources, _resources);
+            materials = new List<Material>();
+            technologies = new List<CastTechnology>();
+
+            CopyMaterialList(materials, _materials);
+            CopyTechnologyList(technologies, _technologies);
+            
         }
 
-        private List<Resource> CopyList(List<Resource> resourceList, List<Resource> copyList)
+        private void CopyMaterialList(List<Material> materialList, List<Material> copyList)
         {
             foreach (var q in copyList)
             {
-                resourceList.Add(new Resource { resourceName= q.resourceName});
+                materialList.Add(new Material { materialName = q.materialName, materialSymbol = q.materialSymbol });
             }
-            return resourceList;
+        }
+
+        private void CopyTechnologyList(List<CastTechnology> technologiesList, List<CastTechnology> copyList)
+        {
+            foreach (var q in copyList)
+            {
+                technologiesList.Add(new CastTechnology { technologyName = q.technologyName });
+            }
         }
     }
 }
