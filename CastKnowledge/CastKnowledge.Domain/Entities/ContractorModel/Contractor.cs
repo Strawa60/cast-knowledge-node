@@ -2,6 +2,7 @@
 using CastKnowledge.Domain.Abstract;
 using System.Collections.Generic;
 using CastKnowledge.Domain.Entities.Components;
+using CastKnowledge.Domain.Entities.Shared;
 
 namespace CastKnowledge.Domain.Entities.ContractorModel
 {
@@ -22,7 +23,8 @@ namespace CastKnowledge.Domain.Entities.ContractorModel
         public string ceo { get; set; }
         public string companyType { get; set; }
 
-        public List<Resource> resources;
+        public string resources { get; set; }
+        public List<KeyWords> descriptors;
 
 
 
@@ -30,7 +32,7 @@ namespace CastKnowledge.Domain.Entities.ContractorModel
 
         public Contractor(string _name, string _city, string _postcode, string _street, string _province,
             string _telephone, string _fax, string _webAddres, string _email,
-            string _ceo, string _companyType, List<Resource> _resources)
+            string _ceo, string _companyType, string _resources)
         {
             name = _name;
             city = _city;
@@ -43,16 +45,38 @@ namespace CastKnowledge.Domain.Entities.ContractorModel
             email = _email;
             ceo = _ceo;
             companyType = _companyType;
-            resources= new List<Resource>();
+            resources = _resources;
 
-            CopyList(resources, _resources);
         }
 
-        private void CopyList(List<Resource> resourceList, List<Resource> copyList)
+        public Contractor(string _name, string _city, string _postcode, string _street, string _province,
+    string _telephone, string _fax, string _webAddres, string _email,
+    string _ceo, string _companyType, string _resources, List<KeyWords> _descriptors)
+        {
+            name = _name;
+            city = _city;
+            postcode = _postcode;
+            street = _street;
+            province = _province;
+            telephone = _telephone;
+            fax = _fax;
+            webAddress = _webAddres;
+            email = _email;
+            ceo = _ceo;
+            companyType = _companyType;
+            resources = _resources;
+
+            descriptors = new List<KeyWords>();
+
+            CopyList(descriptors, _descriptors);
+        }
+
+
+        private void CopyList(List<KeyWords> descriptorsList, List<KeyWords> copyList)
         {
             foreach (var q in copyList)
             {
-                resourceList.Add(new Resource { resourceName= q.resourceName});
+                descriptorsList.Add(new KeyWords{ deskryptor= q.deskryptor });
             }
         }
     }

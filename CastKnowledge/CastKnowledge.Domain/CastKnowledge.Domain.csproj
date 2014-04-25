@@ -51,6 +51,7 @@
     <Compile Include="Entities\FoundryModel\Foundry.cs" />
     <Compile Include="Entities\PatetnsModel\Patent.cs" />
     <Compile Include="Entities\PublicationModel\Publication.cs" />
+    <Compile Include="Entities\Shared\KeyWords.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

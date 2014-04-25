@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CastKnowledge.Domain.Entities.Components;
+using CastKnowledge.Domain.Entities.Shared;
+
 
 namespace CastKnowledge.Domain.Entities.FoundryModel
 {
@@ -26,6 +28,7 @@ namespace CastKnowledge.Domain.Entities.FoundryModel
 
         public List<Material> materials;
         public List<CastTechnology> technologies;
+        public List<KeyWords> descriptors;
 
 
         public Foundry(){}
@@ -53,6 +56,31 @@ namespace CastKnowledge.Domain.Entities.FoundryModel
             CopyTechnologyList(technologies, _technologies);
             
         }
+        public Foundry(string _name, string _city, string _postcode, string _street, string _province,
+    string _telephone, string _fax, string _webAddres, string _email,
+    string _ceo, string _companyType, List<Material> _materials, List<CastTechnology> _technologies, List<KeyWords> _descriptors)
+        {
+            name = _name;
+            city = _city;
+            postcode = _postcode;
+            street = _street;
+            province = _province;
+            telephone = _telephone;
+            fax = _fax;
+            webAddress = _webAddres;
+            email = _email;
+            ceo = _ceo;
+            companyType = _companyType;
+
+            materials = new List<Material>();
+            technologies = new List<CastTechnology>();
+            descriptors = new List<KeyWords>();
+
+            CopyMaterialList(materials, _materials);
+            CopyTechnologyList(technologies, _technologies);
+            CopyList(descriptors, _descriptors);
+
+        }
 
         private void CopyMaterialList(List<Material> materialList, List<Material> copyList)
         {
@@ -67,6 +95,14 @@ namespace CastKnowledge.Domain.Entities.FoundryModel
             foreach (var q in copyList)
             {
                 technologiesList.Add(new CastTechnology { technologyName = q.technologyName });
+            }
+        }
+
+        private void CopyList(List<KeyWords> descriptorsList, List<KeyWords> copyList)
+        {
+            foreach (var q in copyList)
+            {
+                descriptorsList.Add(new KeyWords { deskryptor = q.deskryptor });
             }
         }
     }
