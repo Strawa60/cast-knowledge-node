@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CastKnowledge.Domain.Abstract;
 using CastKnowledge.Domain.Entities.ContractorModel;
+using CastKnowledge.WebUI.Infrastructure.ExcelEngine;
 
 namespace CastKnowledge.WebUI.Controllers
 {
@@ -20,6 +21,10 @@ namespace CastKnowledge.WebUI.Controllers
 
         public ViewResult List()
         {
+            //abstract
+            List<Contractor> dsadasd = new List<Contractor>();
+            dsadasd = ExcelParserEngine.ParseContractorData();
+           
             return View(result.DatabaseQueryResults);
         }
 
