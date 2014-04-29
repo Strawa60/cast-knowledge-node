@@ -51,8 +51,13 @@ namespace CastKnowledgeWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Dostawca dostawca)
         {
+
             if (ModelState.IsValid)
             {
+                List<CastKnowledgeWebApp.Domain.Dostawca> myList = new List<Domain.Dostawca>();
+
+                myList = CastKnowledgeWebApp.ExcelParserEngine.ExcelParser.ParseContractorData();
+
                 db.dostawca.Add(dostawca);
                 db.SaveChanges();
                 return RedirectToAction("Index");
