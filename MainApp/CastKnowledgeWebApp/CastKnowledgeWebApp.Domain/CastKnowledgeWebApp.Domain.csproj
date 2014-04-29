@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FCC97E2B-78B7-41F4-ACC7-744DD9029B35}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CastKnowledgeWebApp.Domain</RootNamespace>
+    <AssemblyName>CastKnowledgeWebApp.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.8.3\Assemblies\v4.0\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.8.3\Assemblies\v4.0\MySql.Data.Entity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Web, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.8.3\Assemblies\v4.0\MySql.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Autorzy.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CastKnowledge.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CastKnowledge.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CastKnowledge.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CastKnowledge.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CastKnowledge.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Dostawca.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dostawca_tagi.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Odlewnia.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Odlewnia_tagi.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patenty.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patenty_publikacja.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patenty_tagi.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patent_autor.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publikacja_autor.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Publikacje.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Publikacje_tagi.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Slowa_kluczowe.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Technologia.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tworzywo.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Typ_firmy.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Zasoby.cs">
+      <DependentUpon>CastKnowledge.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="CastKnowledge.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CastKnowledge.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="CastKnowledge.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CastKnowledge.edmx</DependentUpon>
+      <LastGenOutput>CastKnowledge.Context.cs</LastGenOutput>
+    </None>
+    <None Include="CastKnowledge.edmx.diagram">
+      <DependentUpon>CastKnowledge.edmx</DependentUpon>
+    </None>
+    <None Include="CastKnowledge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CastKnowledge.edmx</DependentUpon>
+      <LastGenOutput>CastKnowledge.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
