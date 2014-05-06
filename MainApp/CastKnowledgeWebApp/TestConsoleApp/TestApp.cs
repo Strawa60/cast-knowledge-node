@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace TestConsoleApp
 {
-    class Program
+    class TestApp
     {
         static void Main(string[] args)
         {
-            List<CastKnowledgeWebApp.Domain.Dostawca> myList = new List<CastKnowledgeWebApp.Domain.Dostawca>();
 
-            myList = CastKnowledgeWebApp.ExcelParserEngine.ExcelParser.ParseContractorData();
 
             
 

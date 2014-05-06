@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Excel = Microsoft.Office.Interop.Excel;
 using CastKnowledgeWebApp.Domain;
+using CastKnowledgeWebApp.Domain.MultiTableDependency;
 
 namespace CastKnowledgeWebApp.ExcelParserEngine
 {
@@ -16,7 +17,7 @@ namespace CastKnowledgeWebApp.ExcelParserEngine
         private static Excel.Worksheet MySheet = null;
         private static int lastRow = 0;
 
-        private static List<Dostawca> contractorList = new List<Dostawca>();
+        private static List<PariDataTemplate<Dostawca, List<string>>> contractorList = new List<PariDataTemplate<Dostawca, List<string>>>();
 
         private static void InitializeExcel()
         {
@@ -34,7 +35,7 @@ namespace CastKnowledgeWebApp.ExcelParserEngine
             }
         }
 
-        public static List<Dostawca> ParseContractorData()
+        public static List<PariDataTemplate<Dostawca, List<string>>> ParseContractorData()
         {
             InitializeExcel();
             contractorList.Clear();
@@ -57,19 +58,22 @@ namespace CastKnowledgeWebApp.ExcelParserEngine
 
         }
 
-        private static List<Dostawca> ReadContractorData_MaterialyOgniotrwale()
+        private static List<PariDataTemplate<Dostawca, List<string>>> ReadContractorData_MaterialyOgniotrwale()
         {
-            List<Dostawca> MO_ContractorList = new List<Dostawca>();
+            List<PariDataTemplate<Dostawca, List<string>>> MO_ContractorList = new List<PariDataTemplate<Dostawca, List<string>>>();
+
             for (int index = 2; index <= lastRow; index++)
             {
                 System.Array MyValues = (System.Array)MySheet.get_Range("A" + index.ToString(), "L" + index.ToString()).Cells.Value;
 
                 List<string> MO_KeyWords = SeparateKeyWords(MyValues.GetValue(1, 12).ToString());
+
                 Dostawca ContracorData = new Dostawca();
                 ContracorData.Typ_firmy = new Typ_firmy { nazwa = "Materiały Ogniotrwałe" };
-                //ContracorData.Typ_firmy.nazwa = "Materiały Ogniotrwałe";
 
-                MO_ContractorList.Add(ValidateData(MyValues, ContracorData));
+                //MO_ContractorList.Add(ValidateData(MyValues, ContracorData));
+                MO_ContractorList.Add(new PariDataTemplate<Dostawca, List<string>>(ValidateData(MyValues, ContracorData), MO_KeyWords));
+
             }
 
             MyApp.Quit();

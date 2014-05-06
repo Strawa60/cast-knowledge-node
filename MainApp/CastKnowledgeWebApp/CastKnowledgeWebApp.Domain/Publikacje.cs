@@ -11,7 +11,6 @@ namespace CastKnowledgeWebApp.Domain
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Publikacje
     {
@@ -21,8 +20,7 @@ namespace CastKnowledgeWebApp.Domain
             this.Publikacja_autor = new HashSet<Publikacja_autor>();
             this.Publikacje_tagi = new HashSet<Publikacje_tagi>();
         }
-
-        [Key]
+    
         public int id_publikacji { get; set; }
         public string rok_publikacji { get; set; }
         public string tytul_polski { get; set; }

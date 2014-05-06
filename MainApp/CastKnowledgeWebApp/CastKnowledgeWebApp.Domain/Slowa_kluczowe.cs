@@ -11,7 +11,6 @@ namespace CastKnowledgeWebApp.Domain
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Slowa_kluczowe
     {
@@ -22,8 +21,7 @@ namespace CastKnowledgeWebApp.Domain
             this.Patenty_tagi = new HashSet<Patenty_tagi>();
             this.Publikacje_tagi = new HashSet<Publikacje_tagi>();
         }
-
-        [Key]
+    
         public int id_deskryptora { get; set; }
         public string nazwa { get; set; }
     

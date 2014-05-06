@@ -11,7 +11,6 @@ namespace CastKnowledgeWebApp.Domain
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Dostawca
     {
@@ -20,15 +19,14 @@ namespace CastKnowledgeWebApp.Domain
             this.Dostawca_tagi = new HashSet<Dostawca_tagi>();
             this.Zasoby = new HashSet<Zasoby>();
         }
-
-        [Key]
+    
         public int id_firmy { get; set; }
         public string nazwa { get; set; }
         public string miejscowosc { get; set; }
         public string kod_pocztowy { get; set; }
         public string ulica { get; set; }
-        public string wojewodztwo { get; set; }
         public string telefon { get; set; }
+        public string wojewodztwo { get; set; }
         public string fax { get; set; }
         public string www { get; set; }
         public string e_mail { get; set; }

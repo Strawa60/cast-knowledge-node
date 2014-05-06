@@ -85,6 +85,7 @@
     <Compile Include="Dostawca_tagi.cs">
       <DependentUpon>CastKnowledge.tt</DependentUpon>
     </Compile>
+    <Compile Include="MultiTableDependency\PariDataTemplate.cs" />
     <Compile Include="Odlewnia.cs">
       <DependentUpon>CastKnowledge.tt</DependentUpon>
     </Compile>

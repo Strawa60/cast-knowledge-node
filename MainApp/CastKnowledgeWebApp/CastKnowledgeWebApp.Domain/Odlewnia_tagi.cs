@@ -11,11 +11,9 @@ namespace CastKnowledgeWebApp.Domain
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Odlewnia_tagi
     {
-        [Key]
         public int id { get; set; }
         public Nullable<int> id_odlewni { get; set; }
         public Nullable<int> id_deskryptora { get; set; }

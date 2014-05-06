@@ -11,7 +11,6 @@ namespace CastKnowledgeWebApp.Domain
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Typ_firmy
     {
@@ -19,8 +18,7 @@ namespace CastKnowledgeWebApp.Domain
         {
             this.Dostawca = new HashSet<Dostawca>();
         }
-
-        [Key]
+    
         public int id_term { get; set; }
         public string nazwa { get; set; }
     

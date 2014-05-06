@@ -12,9 +12,6 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.id_firmy)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.nazwa)
         </th>
         <th>
@@ -89,9 +86,9 @@
             @Html.DisplayFor(modelItem => item.Typ_firmy.nazwa)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Edit", "Edit", new {  id=item.id_firmy  }) |
             @Html.ActionLink("Details", "Details", new {  id=item.id_firmy  }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Delete", "Delete", new {  id=item.id_firmy  })
         </td>
     </tr>
 }

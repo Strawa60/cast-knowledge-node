@@ -11,11 +11,9 @@ namespace CastKnowledgeWebApp.Domain
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Zasoby
     {
-        [Key]
         public int id_zasobu { get; set; }
         public string nazwa_zasobu { get; set; }
         public Nullable<int> id_firmy { get; set; }

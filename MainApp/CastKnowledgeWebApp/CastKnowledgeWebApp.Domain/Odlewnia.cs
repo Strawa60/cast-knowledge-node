@@ -11,7 +11,6 @@ namespace CastKnowledgeWebApp.Domain
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Odlewnia
     {
@@ -21,8 +20,7 @@ namespace CastKnowledgeWebApp.Domain
             this.Odlewnia_tagi = new HashSet<Odlewnia_tagi>();
             this.Tworzywo = new HashSet<Tworzywo>();
         }
-
-        [Key]
+    
         public int id_odlewni { get; set; }
         public string nazwa { get; set; }
         public string miejscowosc { get; set; }

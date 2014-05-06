@@ -11,7 +11,6 @@ namespace CastKnowledgeWebApp.Domain
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Autorzy
     {
@@ -20,8 +19,7 @@ namespace CastKnowledgeWebApp.Domain
             this.Patent_autor = new HashSet<Patent_autor>();
             this.Publikacja_autor = new HashSet<Publikacja_autor>();
         }
-
-        [Key]
+    
         public int id_autora { get; set; }
         public string imie { get; set; }
         public string nazwisko { get; set; }

@@ -11,7 +11,6 @@ namespace CastKnowledgeWebApp.Domain
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Patenty
     {
@@ -21,8 +20,7 @@ namespace CastKnowledgeWebApp.Domain
             this.Patenty_publikacja = new HashSet<Patenty_publikacja>();
             this.Patenty_tagi = new HashSet<Patenty_tagi>();
         }
-
-        [Key]
+    
         public int numer_wynalazku { get; set; }
         public string data_rozpoczecia { get; set; }
         public string data_zakonczenia { get; set; }
