@@ -40,7 +40,5 @@ namespace CastKnowledgeWebApp.Domain
         public DbSet<Slowa_kluczowe> slowa_kluczowe { get; set; }
         public DbSet<Technologia> technologia { get; set; }
         public DbSet<Tworzywo> tworzywo { get; set; }
-        public DbSet<Typ_firmy> typ_firmy { get; set; }
-        public DbSet<Zasoby> zasoby { get; set; }
     }
 }

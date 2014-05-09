@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CastKnowledgeModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CastKnowledgeModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CastKnowledgeModelStoreContainer">
           <EntitySet Name="autorzy" EntityType="CastKnowledgeModel.Store.autorzy" store:Type="Tables" Schema="castknowledge" />
           <EntitySet Name="dostawca" EntityType="CastKnowledgeModel.Store.dostawca" store:Type="Tables" Schema="castknowledge" />
@@ -21,8 +21,6 @@
           <EntitySet Name="slowa_kluczowe" EntityType="CastKnowledgeModel.Store.slowa_kluczowe" store:Type="Tables" Schema="castknowledge" />
           <EntitySet Name="technologia" EntityType="CastKnowledgeModel.Store.technologia" store:Type="Tables" Schema="castknowledge" />
           <EntitySet Name="tworzywo" EntityType="CastKnowledgeModel.Store.tworzywo" store:Type="Tables" Schema="castknowledge" />
-          <EntitySet Name="typ_firmy" EntityType="CastKnowledgeModel.Store.typ_firmy" store:Type="Tables" Schema="castknowledge" />
-          <EntitySet Name="zasoby" EntityType="CastKnowledgeModel.Store.zasoby" store:Type="Tables" Schema="castknowledge" />
           <AssociationSet Name="dostawca_tagi_ibfk_1" Association="CastKnowledgeModel.Store.dostawca_tagi_ibfk_1">
             <End Role="dostawca" EntitySet="dostawca" />
             <End Role="dostawca_tagi" EntitySet="dostawca_tagi" />
@@ -83,17 +81,9 @@
             <End Role="slowa_kluczowe" EntitySet="slowa_kluczowe" />
             <End Role="publikacje_tagi" EntitySet="publikacje_tagi" />
           </AssociationSet>
-          <AssociationSet Name="termin_wyszukiwania" Association="CastKnowledgeModel.Store.termin_wyszukiwania">
-            <End Role="typ_firmy" EntitySet="typ_firmy" />
-            <End Role="dostawca" EntitySet="dostawca" />
-          </AssociationSet>
           <AssociationSet Name="używa_tworzywa" Association="CastKnowledgeModel.Store.używa_tworzywa">
             <End Role="odlewnia" EntitySet="odlewnia" />
             <End Role="tworzywo" EntitySet="tworzywo" />
-          </AssociationSet>
-          <AssociationSet Name="zaopatruje_w_zasoby" Association="CastKnowledgeModel.Store.zaopatruje_w_zasoby">
-            <End Role="dostawca" EntitySet="dostawca" />
-            <End Role="zasoby" EntitySet="zasoby" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="autorzy">
@@ -121,7 +111,8 @@
           <Property Name="www" Type="char" MaxLength="100" />
           <Property Name="e_mail" Type="char" MaxLength="100" />
           <Property Name="prezes" Type="char" MaxLength="100" />
-          <Property Name="id_term" Type="int" />
+          <Property Name="zasoby" Type="text" />
+          <Property Name="typ_firmy" Type="char" MaxLength="100" />
         </EntityType>
         <EntityType Name="dostawca_tagi">
           <Key>
@@ -243,21 +234,6 @@
           <Property Name="id_tworzywo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="nazwa_tworzywa" Type="char" MaxLength="20" />
           <Property Name="id_odlewni" Type="int" />
-        </EntityType>
-        <EntityType Name="typ_firmy">
-          <Key>
-            <PropertyRef Name="id_term" />
-          </Key>
-          <Property Name="id_term" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa" Type="char" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="zasoby">
-          <Key>
-            <PropertyRef Name="id_zasobu" />
-          </Key>
-          <Property Name="id_zasobu" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa_zasobu" Type="text" />
-          <Property Name="id_firmy" Type="int" />
         </EntityType>
         <Association Name="dostawca_tagi_ibfk_1">
           <End Role="dostawca" Type="CastKnowledgeModel.Store.dostawca" Multiplicity="0..1" />
@@ -439,18 +415,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="termin_wyszukiwania">
-          <End Role="typ_firmy" Type="CastKnowledgeModel.Store.typ_firmy" Multiplicity="0..1" />
-          <End Role="dostawca" Type="CastKnowledgeModel.Store.dostawca" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="typ_firmy">
-              <PropertyRef Name="id_term" />
-            </Principal>
-            <Dependent Role="dostawca">
-              <PropertyRef Name="id_term" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="używa_tworzywa">
           <End Role="odlewnia" Type="CastKnowledgeModel.Store.odlewnia" Multiplicity="0..1" />
           <End Role="tworzywo" Type="CastKnowledgeModel.Store.tworzywo" Multiplicity="*" />
@@ -463,20 +427,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="zaopatruje_w_zasoby">
-          <End Role="dostawca" Type="CastKnowledgeModel.Store.dostawca" Multiplicity="0..1" />
-          <End Role="zasoby" Type="CastKnowledgeModel.Store.zasoby" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="dostawca">
-              <PropertyRef Name="id_firmy" />
-            </Principal>
-            <Dependent Role="zasoby">
-              <PropertyRef Name="id_firmy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CastKnowledgeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -496,8 +447,6 @@
           <EntitySet Name="slowa_kluczowe" EntityType="CastKnowledgeModel.Slowa_kluczowe" />
           <EntitySet Name="technologia" EntityType="CastKnowledgeModel.Technologia" />
           <EntitySet Name="tworzywo" EntityType="CastKnowledgeModel.Tworzywo" />
-          <EntitySet Name="typ_firmy" EntityType="CastKnowledgeModel.Typ_firmy" />
-          <EntitySet Name="zasoby" EntityType="CastKnowledgeModel.Zasoby" />
           <AssociationSet Name="patent_posiada_autorow" Association="CastKnowledgeModel.patent_posiada_autorow">
             <End Role="autorzy" EntitySet="autorzy" />
             <End Role="patent_autor" EntitySet="patent_autor" />
@@ -509,14 +458,6 @@
           <AssociationSet Name="dostawca_tagi_ibfk_1" Association="CastKnowledgeModel.dostawca_tagi_ibfk_1">
             <End Role="dostawca" EntitySet="dostawca" />
             <End Role="dostawca_tagi" EntitySet="dostawca_tagi" />
-          </AssociationSet>
-          <AssociationSet Name="termin_wyszukiwania" Association="CastKnowledgeModel.termin_wyszukiwania">
-            <End Role="typ_firmy" EntitySet="typ_firmy" />
-            <End Role="dostawca" EntitySet="dostawca" />
-          </AssociationSet>
-          <AssociationSet Name="zaopatruje_w_zasoby" Association="CastKnowledgeModel.zaopatruje_w_zasoby">
-            <End Role="dostawca" EntitySet="dostawca" />
-            <End Role="zasoby" EntitySet="zasoby" />
           </AssociationSet>
           <AssociationSet Name="dostawca_tagi_ibfk_2" Association="CastKnowledgeModel.dostawca_tagi_ibfk_2">
             <End Role="slowa_kluczowe" EntitySet="slowa_kluczowe" />
@@ -598,10 +539,9 @@
           <Property Name="www" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="e_mail" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="prezes" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="id_term" Type="Int32" />
           <NavigationProperty Name="Dostawca_tagi" Relationship="CastKnowledgeModel.dostawca_tagi_ibfk_1" FromRole="dostawca" ToRole="dostawca_tagi" />
-          <NavigationProperty Name="Typ_firmy" Relationship="CastKnowledgeModel.termin_wyszukiwania" FromRole="dostawca" ToRole="typ_firmy" />
-          <NavigationProperty Name="Zasoby" Relationship="CastKnowledgeModel.zaopatruje_w_zasoby" FromRole="dostawca" ToRole="zasoby" />
+          <Property Type="String" Name="zasoby" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="typ_firmy" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Dostawca_tagi">
           <Key>
@@ -753,23 +693,6 @@
           <Property Name="id_odlewni" Type="Int32" />
           <NavigationProperty Name="Odlewnia" Relationship="CastKnowledgeModel.używa_tworzywa" FromRole="tworzywo" ToRole="odlewnia" />
         </EntityType>
-        <EntityType Name="Typ_firmy">
-          <Key>
-            <PropertyRef Name="id_term" />
-          </Key>
-          <Property Name="id_term" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Dostawca" Relationship="CastKnowledgeModel.termin_wyszukiwania" FromRole="typ_firmy" ToRole="dostawca" />
-        </EntityType>
-        <EntityType Name="Zasoby">
-          <Key>
-            <PropertyRef Name="id_zasobu" />
-          </Key>
-          <Property Name="id_zasobu" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="nazwa_zasobu" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="id_firmy" Type="Int32" />
-          <NavigationProperty Name="Dostawca" Relationship="CastKnowledgeModel.zaopatruje_w_zasoby" FromRole="zasoby" ToRole="dostawca" />
-        </EntityType>
         <Association Name="patent_posiada_autorow">
           <End Role="autorzy" Type="CastKnowledgeModel.Autorzy" Multiplicity="0..1" />
           <End Role="patent_autor" Type="CastKnowledgeModel.Patent_autor" Multiplicity="*" />
@@ -802,30 +725,6 @@
               <PropertyRef Name="id_firmy" />
             </Principal>
             <Dependent Role="dostawca_tagi">
-              <PropertyRef Name="id_firmy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="termin_wyszukiwania">
-          <End Role="typ_firmy" Type="CastKnowledgeModel.Typ_firmy" Multiplicity="0..1" />
-          <End Role="dostawca" Type="CastKnowledgeModel.Dostawca" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="typ_firmy">
-              <PropertyRef Name="id_term" />
-            </Principal>
-            <Dependent Role="dostawca">
-              <PropertyRef Name="id_term" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="zaopatruje_w_zasoby">
-          <End Role="dostawca" Type="CastKnowledgeModel.Dostawca" Multiplicity="0..1" />
-          <End Role="zasoby" Type="CastKnowledgeModel.Zasoby" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="dostawca">
-              <PropertyRef Name="id_firmy" />
-            </Principal>
-            <Dependent Role="zasoby">
               <PropertyRef Name="id_firmy" />
             </Dependent>
           </ReferentialConstraint>
@@ -1006,6 +905,8 @@
           <EntitySetMapping Name="dostawca">
             <EntityTypeMapping TypeName="CastKnowledgeModel.Dostawca">
               <MappingFragment StoreEntitySet="dostawca">
+                <ScalarProperty Name="typ_firmy" ColumnName="typ_firmy" />
+                <ScalarProperty Name="zasoby" ColumnName="zasoby" />
                 <ScalarProperty Name="id_firmy" ColumnName="id_firmy" />
                 <ScalarProperty Name="nazwa" ColumnName="nazwa" />
                 <ScalarProperty Name="miejscowosc" ColumnName="miejscowosc" />
@@ -1017,7 +918,6 @@
                 <ScalarProperty Name="www" ColumnName="www" />
                 <ScalarProperty Name="e_mail" ColumnName="e_mail" />
                 <ScalarProperty Name="prezes" ColumnName="prezes" />
-                <ScalarProperty Name="id_term" ColumnName="id_term" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1155,24 +1055,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="typ_firmy">
-            <EntityTypeMapping TypeName="CastKnowledgeModel.Typ_firmy">
-              <MappingFragment StoreEntitySet="typ_firmy">
-                <ScalarProperty Name="id_term" ColumnName="id_term" />
-                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="zasoby">
-            <EntityTypeMapping TypeName="CastKnowledgeModel.Zasoby">
-              <MappingFragment StoreEntitySet="zasoby">
-                <ScalarProperty Name="id_zasobu" ColumnName="id_zasobu" />
-                <ScalarProperty Name="nazwa_zasobu" ColumnName="nazwa_zasobu" />
-                <ScalarProperty Name="id_firmy" ColumnName="id_firmy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

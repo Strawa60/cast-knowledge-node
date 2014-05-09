@@ -85,7 +85,7 @@
     <Compile Include="Dostawca_tagi.cs">
       <DependentUpon>CastKnowledge.tt</DependentUpon>
     </Compile>
-    <Compile Include="MultiTableDependency\PariDataTemplate.cs" />
+    <Compile Include="MultiTableDependency\PairDataTemplate.cs" />
     <Compile Include="Odlewnia.cs">
       <DependentUpon>CastKnowledge.tt</DependentUpon>
     </Compile>
@@ -121,12 +121,6 @@
       <DependentUpon>CastKnowledge.tt</DependentUpon>
     </Compile>
     <Compile Include="Tworzywo.cs">
-      <DependentUpon>CastKnowledge.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Typ_firmy.cs">
-      <DependentUpon>CastKnowledge.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Zasoby.cs">
       <DependentUpon>CastKnowledge.tt</DependentUpon>
     </Compile>
   </ItemGroup>

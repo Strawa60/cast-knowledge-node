@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace CastKnowledgeWebApp.Domain.MultiTableDependency
 {
-    public class PariDataTemplate<T1,T2>
+    public class PairDataTemplate<T1,T2>
     {
-        public T1 typeOne { get; set; }
-        public T2 typeTwo { get; set; }
+        public T1 t1 { get; set; }
+        public T2 t2 { get; set; }
 
-        public PariDataTemplate(T1 a, T2 b)
+        public PairDataTemplate(T1 a, T2 b)
         {
-            typeOne = a;
-            typeTwo = b;
+            t1 = a;
+            t2 = b;
         }
 
 
