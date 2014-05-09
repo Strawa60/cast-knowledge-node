@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CastKnowledgeWebApp.Domain.Dostawca>
+﻿@model CastKnowledgeWebApp.Models.DostawcaWrapper
 
 @{
     ViewBag.Title = "Index";
@@ -12,42 +12,48 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nazwa)
+            Id firmy
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.miejscowosc)
+            Nazwa
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.kod_pocztowy)
+            Miejscowość
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ulica)
+            Kod pocztowy
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.wojewodztwo)
+            Ulica
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.telefon)
+            Województwo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fax)
+            Telefon
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.www)
+            Fax
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.e_mail)
+            Strona WWW
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.prezes)
+            E-mail
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Typ_firmy.nazwa)
+            Prezes
+        </th>
+        <th>
+            Zasoby
+        </th>
+        <th>
+            Typ firmy
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.contractors) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.id_firmy)
@@ -83,7 +89,10 @@
             @Html.DisplayFor(modelItem => item.prezes)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Typ_firmy.nazwa)
+            @Html.DisplayFor(modelItem => item.zasoby)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typ_firmy)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new {  id=item.id_firmy  }) |
@@ -94,3 +103,8 @@
 }
 
 </table>
+
+<div class="pager">
+    @Html.PageLinks(Model.pagingInfo, x => Url.Action("Index", new {page = x}))
+
+</div>

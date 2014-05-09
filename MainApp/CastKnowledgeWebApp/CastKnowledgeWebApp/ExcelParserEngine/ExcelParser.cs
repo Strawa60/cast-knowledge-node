@@ -8,111 +8,54 @@ using CastKnowledgeWebApp.Domain.MultiTableDependency;
 
 namespace CastKnowledgeWebApp.ExcelParserEngine
 {
-    public class ExcelParser
+    public static class ExcelParser
     {
-        private static string Excel_PATH = @"D:/Dostawcy materiały ogniotrwałe"; // tempolary excel readpath
+        private static string excel_PATH = @"D:/Dostawcy materiały ogniotrwałe"; // tempolary excel readpath
 
-        private static Excel.Workbook MyBook = null;
-        private static Excel.Application MyApp = null;
-        private static Excel.Worksheet MySheet = null;
+        private static Excel.Application myApp = null;
+        private static Excel.Workbook myBook = null;
+        private static Excel.Worksheet mySheet = null;
         private static int lastRow = 0;
 
-        private static List<PariDataTemplate<Dostawca, List<string>>> contractorList = new List<PariDataTemplate<Dostawca, List<string>>>();
+        private static List<PairDataTemplate<Dostawca, List<string>>> contractorList = new List<PairDataTemplate<Dostawca, List<string>>>();
+
 
         private static void InitializeExcel()
         {
             try
             {
-                MyApp = new Excel.Application();
-                MyApp.Visible = false;
-                MyBook = MyApp.Workbooks.Open(Excel_PATH);
-                MySheet = (Excel.Worksheet)MyBook.Sheets[1]; // Explict cast is not required here
-                lastRow = MySheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
+                myApp = new Excel.Application();
+                myApp.Visible = false;
+                myBook = myApp.Workbooks.Open(excel_PATH);
+                mySheet = (Excel.Worksheet)myBook.Sheets[1]; // Explict cast is not required here
+                lastRow = mySheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
+
             }
             catch (System.IO.IOException)
             {
                 // this file can't be read, do nothing... just skip the file
+                myBook.Close();
+                myApp.Quit();
             }
         }
 
-        public static List<PariDataTemplate<Dostawca, List<string>>> ParseContractorData()
+        private static void CloseExcel()
         {
-            InitializeExcel();
-            contractorList.Clear();
 
-            switch (MySheet.Name)
-            {
-                case "Materiały Ogniotrwałe":
-                    {
-                        contractorList = ReadContractorData_MaterialyOgniotrwale();
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
-
-            }
-
-            return contractorList;
-
+            myBook.Close(false);
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(mySheet);
+            mySheet = null;
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(myBook);
+            myBook = null;
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(myApp);
+            myApp = null;
         }
 
-        private static List<PariDataTemplate<Dostawca, List<string>>> ReadContractorData_MaterialyOgniotrwale()
-        {
-            List<PariDataTemplate<Dostawca, List<string>>> MO_ContractorList = new List<PariDataTemplate<Dostawca, List<string>>>();
-
-            for (int index = 2; index <= lastRow; index++)
-            {
-                System.Array MyValues = (System.Array)MySheet.get_Range("A" + index.ToString(), "L" + index.ToString()).Cells.Value;
-
-                List<string> MO_KeyWords = SeparateKeyWords(MyValues.GetValue(1, 12).ToString());
-
-                Dostawca ContracorData = new Dostawca();
-                ContracorData.Typ_firmy = new Typ_firmy { nazwa = "Materiały Ogniotrwałe" };
-
-                //MO_ContractorList.Add(ValidateData(MyValues, ContracorData));
-                MO_ContractorList.Add(new PariDataTemplate<Dostawca, List<string>>(ValidateData(MyValues, ContracorData), MO_KeyWords));
-
-            }
-
-            MyApp.Quit();
-            return MO_ContractorList;
-        }
-
-        private static Dostawca ValidateData(System.Array MyValues, Dostawca ValidateContracorData)
-        {
-            if (MyValues.GetValue(1, 1) != null)
-                ValidateContracorData.nazwa = MyValues.GetValue(1, 1).ToString();
-            if (MyValues.GetValue(1, 2) != null)
-                ValidateContracorData.miejscowosc = MyValues.GetValue(1, 2).ToString();
-            if (MyValues.GetValue(1, 3) != null)
-                ValidateContracorData.kod_pocztowy = MyValues.GetValue(1, 3).ToString();
-            if (MyValues.GetValue(1, 4) != null)
-                ValidateContracorData.ulica = MyValues.GetValue(1, 4).ToString();
-            if (MyValues.GetValue(1, 5) != null)
-                ValidateContracorData.wojewodztwo = MyValues.GetValue(1, 5).ToString();
-            if (MyValues.GetValue(1, 6) != null)
-                ValidateContracorData.telefon = MyValues.GetValue(1, 6).ToString();
-            if (MyValues.GetValue(1, 7) != null)
-                ValidateContracorData.fax = MyValues.GetValue(1, 7).ToString();
-            if (MyValues.GetValue(1, 8) != null)
-                ValidateContracorData.www = MyValues.GetValue(1, 8).ToString();
-            if (MyValues.GetValue(1, 9) != null)
-                ValidateContracorData.e_mail = MyValues.GetValue(1, 9).ToString();
-            if (MyValues.GetValue(1, 10) != null)
-                ValidateContracorData.prezes = MyValues.GetValue(1, 10).ToString();
-            if (MyValues.GetValue(1, 11) != null)
-                ValidateContracorData.Zasoby.Add(new Zasoby { nazwa_zasobu = MyValues.GetValue(1, 11).ToString() });
-
-            return ValidateContracorData;
-        }
-
-        private static List<string> SeparateKeyWords(string KeyWordsLine)
+        private static List<string> SeparateKeyWords(string keyWordsLine)
         {
             List<string> tempolaryList = new List<string>();
 
-            string[] temp = KeyWordsLine.Split(';');
+            string[] temp = keyWordsLine.Split(';');
 
             for (int i = 0; i < temp.Length - 1; i++)
             {
@@ -133,5 +76,83 @@ namespace CastKnowledgeWebApp.ExcelParserEngine
 
             return tempolaryList;
         }
+
+        public static List<PairDataTemplate<Dostawca, List<string>>> ParseContractorData()
+        {
+            try
+            {
+                InitializeExcel();
+                contractorList.Clear();
+
+                switch (mySheet.Name)
+                {
+                    case "Materiały Ogniotrwałe":
+                        {
+                            contractorList = ReadContractorData_MaterialyOgniotrwale();
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+            }
+            finally
+            {
+
+                CloseExcel();
+            }
+            return contractorList;
+
+        }
+
+        private static List<PairDataTemplate<Dostawca, List<string>>> ReadContractorData_MaterialyOgniotrwale()
+        {
+            //posiada dostawce i liste slow kluczowych
+            List<PairDataTemplate<Dostawca, List<string>>> moContractorList = new List<PairDataTemplate<Dostawca, List<string>>>();
+
+            for (int index = 2; index <= lastRow; index++)
+            {
+                System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "L" + index.ToString()).Cells.Value;
+
+                List<string> moKeyWords = SeparateKeyWords(myValues.GetValue(1, 12).ToString());
+
+                Dostawca ContracorData = new Dostawca();
+                ContracorData.typ_firmy = "Materiały Ogniotrwałe";
+                moContractorList.Add(new PairDataTemplate<Dostawca, List<string>>(ValidateContractorData(myValues, ContracorData), moKeyWords));
+
+            }
+            return moContractorList;
+        }
+
+        private static Dostawca ValidateContractorData(System.Array myValues, Dostawca validateContracorData)
+        {
+            if (myValues.GetValue(1, 1) != null)
+                validateContracorData.nazwa = myValues.GetValue(1, 1).ToString();
+            if (myValues.GetValue(1, 2) != null)
+                validateContracorData.miejscowosc = myValues.GetValue(1, 2).ToString();
+            if (myValues.GetValue(1, 3) != null)
+                validateContracorData.kod_pocztowy = myValues.GetValue(1, 3).ToString();
+            if (myValues.GetValue(1, 4) != null)
+                validateContracorData.ulica = myValues.GetValue(1, 4).ToString();
+            if (myValues.GetValue(1, 5) != null)
+                validateContracorData.wojewodztwo = myValues.GetValue(1, 5).ToString();
+            if (myValues.GetValue(1, 6) != null)
+                validateContracorData.telefon = myValues.GetValue(1, 6).ToString();
+            if (myValues.GetValue(1, 7) != null)
+                validateContracorData.fax = myValues.GetValue(1, 7).ToString();
+            if (myValues.GetValue(1, 8) != null)
+                validateContracorData.www = myValues.GetValue(1, 8).ToString();
+            if (myValues.GetValue(1, 9) != null)
+                validateContracorData.e_mail = myValues.GetValue(1, 9).ToString();
+            if (myValues.GetValue(1, 10) != null)
+                validateContracorData.prezes = myValues.GetValue(1, 10).ToString();
+            if (myValues.GetValue(1, 11) != null)
+                validateContracorData.zasoby = myValues.GetValue(1, 11).ToString();
+            //validateContracorData.typ_firmy = "Materiały Ogniotrwałe";
+            return validateContracorData;
+        }
+
+
     }
 }

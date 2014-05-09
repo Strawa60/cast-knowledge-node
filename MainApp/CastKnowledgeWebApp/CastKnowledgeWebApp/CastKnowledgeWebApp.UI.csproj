@@ -133,9 +133,13 @@
     <Compile Include="Controllers\ExcelDataInsertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="ExcelParserEngine\ExcelParser.cs" />
+    <Compile Include="ExcelParserEngine\InsertDataToDB.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HtmlHelpers\PagingHelpers.cs" />
+    <Compile Include="Models\DostawcaWrapper.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,17 +226,17 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\ExcelDataInsert\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\ExcelDataInsert\Done.cshtml" />
     <Content Include="Views\Dostawca\Index.cshtml" />
     <Content Include="Views\Dostawca\Details.cshtml" />
     <Content Include="Views\Dostawca\Create.cshtml" />
     <Content Include="Views\Dostawca\Edit.cshtml" />
     <Content Include="Views\Dostawca\Delete.cshtml" />
-    <Content Include="Views\ExcelDataInsert\Index.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -13,6 +13,13 @@
     <fieldset>
         <legend>Dostawca</legend>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.id_firmy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.id_firmy)
+            @Html.ValidationMessageFor(model => model.id_firmy)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.nazwa)
@@ -95,11 +102,19 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.id_term, "Typ_firmy")
+            @Html.LabelFor(model => model.zasoby)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("id_term", String.Empty)
-            @Html.ValidationMessageFor(model => model.id_term)
+            @Html.EditorFor(model => model.zasoby)
+            @Html.ValidationMessageFor(model => model.zasoby)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.typ_firmy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.typ_firmy)
+            @Html.ValidationMessageFor(model => model.typ_firmy)
         </div>
 
         <p>

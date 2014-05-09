@@ -6,20 +6,35 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CastKnowledgeWebApp.Domain;
+using CastKnowledgeWebApp.Models;
 
 namespace CastKnowledgeWebApp.Controllers
 {
     public class DostawcaController : Controller
     {
         private CastKnowledgeEntities db = new CastKnowledgeEntities();
-
+        public int pageSize = 4;
         //
         // GET: /Dostawca/
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            var dostawca = db.dostawca.Include(d => d.Typ_firmy);
-            return View(dostawca.ToList());
+            List<Dostawca> contractorList = new List<Dostawca>();
+            contractorList = db.dostawca.ToList();
+
+            DostawcaWrapper viewModel = new DostawcaWrapper
+            {
+                contractors = contractorList.OrderBy(p => p.id_firmy).Skip((page - 1) * pageSize).Take(pageSize),
+                pagingInfo = new PagingInfo
+                {
+                    currentPage = page,
+                    itemsPerPage = pageSize,
+                    totalItems = contractorList.Count()
+                }
+            };
+
+
+            return View(viewModel);
         }
 
         //
@@ -40,7 +55,6 @@ namespace CastKnowledgeWebApp.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.id_term = new SelectList(db.typ_firmy, "id_term", "nazwa");
             return View();
         }
 
@@ -51,7 +65,6 @@ namespace CastKnowledgeWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Dostawca dostawca)
         {
-
             if (ModelState.IsValid)
             {
                 db.dostawca.Add(dostawca);
@@ -59,7 +72,6 @@ namespace CastKnowledgeWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_term = new SelectList(db.typ_firmy, "id_term", "nazwa", dostawca.id_term);
             return View(dostawca);
         }
 
@@ -73,7 +85,6 @@ namespace CastKnowledgeWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.id_term = new SelectList(db.typ_firmy, "id_term", "nazwa", dostawca.id_term);
             return View(dostawca);
         }
 
@@ -90,7 +101,6 @@ namespace CastKnowledgeWebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_term = new SelectList(db.typ_firmy, "id_term", "nazwa", dostawca.id_term);
             return View(dostawca);
         }
 
