@@ -10,5 +10,6 @@ namespace CastKnowledgeWebApp.Models
     {
         public IEnumerable<Dostawca> contractors { get; set; }
         public PagingInfo pagingInfo { get; set; }
+
     }
 }

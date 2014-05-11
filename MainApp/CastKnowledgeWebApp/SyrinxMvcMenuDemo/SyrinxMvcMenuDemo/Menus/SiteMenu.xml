@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menu id="defaultMainMenu" >
+  <MenuItem text="Home" navigateUrl="~/Home/Index" />
+  <MenuItem text="Dostawcy" navigateUrl="~/Dostawca/Index" />
+  <MenuItem text="Odlewnie" navigateUrl="~/Dostawca/Index" />
+  <MenuItem text="Publikacje" navigateUrl="~/Dostawca/Index" />
+  <MenuItem text="Patenty" navigateUrl="~/Dostawca/Index" />
+  <!--<MenuItem text="Contact" navigateUrl="~/Home/Contact" />-->
+</Menu>
+

@@ -52,10 +52,6 @@
       <Project>{fcc97e2b-78b7-41f4-acc7-744dd9029b35}</Project>
       <Name>CastKnowledgeWebApp.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CastKnowledgeWebApp\CastKnowledgeWebApp.UI.csproj">
-      <Project>{caa7e6de-ec1c-4161-9aaa-2c703452b789}</Project>
-      <Name>CastKnowledgeWebApp.UI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

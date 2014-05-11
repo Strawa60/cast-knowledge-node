@@ -1,0 +1,132 @@
+﻿@model CastKnowledgeWebApp.Domain.Dostawca
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Dostawca</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.id_firmy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.id_firmy)
+            @Html.ValidationMessageFor(model => model.id_firmy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nazwa)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nazwa)
+            @Html.ValidationMessageFor(model => model.nazwa)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.miejscowosc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.miejscowosc)
+            @Html.ValidationMessageFor(model => model.miejscowosc)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.kod_pocztowy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.kod_pocztowy)
+            @Html.ValidationMessageFor(model => model.kod_pocztowy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ulica)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ulica)
+            @Html.ValidationMessageFor(model => model.ulica)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.wojewodztwo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.wojewodztwo)
+            @Html.ValidationMessageFor(model => model.wojewodztwo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.telefon)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.telefon)
+            @Html.ValidationMessageFor(model => model.telefon)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fax)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fax)
+            @Html.ValidationMessageFor(model => model.fax)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.www)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.www)
+            @Html.ValidationMessageFor(model => model.www)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.e_mail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.e_mail)
+            @Html.ValidationMessageFor(model => model.e_mail)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.prezes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.prezes)
+            @Html.ValidationMessageFor(model => model.prezes)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.zasoby)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.zasoby)
+            @Html.ValidationMessageFor(model => model.zasoby)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.typ_firmy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.typ_firmy)
+            @Html.ValidationMessageFor(model => model.typ_firmy)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
