@@ -1,108 +1,25 @@
 ﻿@model CastKnowledgeWebApp.Models.DostawcaWrapper
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Dostawcy";
 }
-
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            Id firmy
-        </th>
-        <th>
-            Nazwa
-        </th>
-        <th>
-            Miejscowość
-        </th>
-        <th>
-            Kod pocztowy
-        </th>
-        <th>
-            Ulica
-        </th>
-        <th>
-            Województwo
-        </th>
-        <th>
-            Telefon
-        </th>
-        <th>
-            Fax
-        </th>
-        <th>
-            Strona WWW
-        </th>
-        <th>
-            E-mail
-        </th>
-        <th>
-            Prezes
-        </th>
-        <th>
-            Zasoby
-        </th>
-        <th>
-            Typ firmy
-        </th>
-        <th></th>
-    </tr>
+
 
 @foreach (var item in Model.contractors) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_firmy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nazwa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.miejscowosc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.kod_pocztowy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ulica)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.wojewodztwo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fax)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.www)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.e_mail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prezes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.zasoby)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.typ_firmy)
-        </td>
-        <td>
+        @Html.Partial("DostawcaList", item)
             @Html.ActionLink("Edit", "Edit", new {  id=item.id_firmy  }) |
             @Html.ActionLink("Details", "Details", new {  id=item.id_firmy  }) |
             @Html.ActionLink("Delete", "Delete", new {  id=item.id_firmy  })
-        </td>
+
     </tr>
 }
 
-</table>
+@*</table>*@
 
 <div class="pager">
     @Html.PageLinks(Model.pagingInfo, x => Url.Action("Index", new {page = x}))

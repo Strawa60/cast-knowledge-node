@@ -1,0 +1,20 @@
+﻿@model CastKnowledgeWebApp.Domain.Dostawca
+
+<div class="item">
+    <h3>@Model.id_firmy @Model.nazwa</h3>
+    @if(Model.prezes!=null)
+    {
+    <h4>prezes: @Model.prezes</h4><br>
+    }
+    Dane tele-adresowe:<br>
+    @Model.ulica<br>
+    @Model.kod_pocztowy<br>
+    @Model.miejscowosc<br>
+    @Model.wojewodztwo<br>
+    @Model.telefon<br>
+    @Model.fax<br>
+    @Model.e_mail<br>
+    @Model.www<br>
+
+
+</div>

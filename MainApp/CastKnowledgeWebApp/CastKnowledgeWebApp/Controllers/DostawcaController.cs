@@ -124,6 +124,15 @@ namespace CastKnowledgeWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
+            var result = db.Set<Dostawca_tagi>().Where(x => x.id_firmy == id).ToList();
+
+            foreach (var item in result)
+            {
+                db.dostawca_tagi.Remove(item);
+                //db.SaveChanges();
+            }
+
             Dostawca dostawca = db.dostawca.Find(id);
             db.dostawca.Remove(dostawca);
             db.SaveChanges();
