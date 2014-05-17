@@ -4,9 +4,13 @@
     padding: 0;
 }
 
+.textboxstyle {
+width: 200px;
+}
+
 body {
     background-color: #fff;
-    border-top: solid 10px #000;
+    border-top: solid 10px #01649D;
     color: #333;
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
@@ -14,6 +18,18 @@ body {
     padding: 0;
     /*border-bottom: 1px dotted Black;*/
 }
+
+DIV.item { border-top: 1px solid #01649D; padding-top: .3em; margin-bottom: .7em; }
+
+.searchText {
+  bbackground:#FFFFFF url('http://www.cssportal.com/form-elements/images/search.png') no-repeat 4px 4px;
+  padding:4px 4px 4px 22px;
+  border:1px solid #CCCCCC;
+  width:230px;
+  height:18px;
+  float: right;
+}
+
 
 a {
     color: #333;
@@ -150,11 +166,11 @@ footer {
     display: block;
     font-size: .85em;
     margin: 0 0 10px;
-    text-align: right;
+    text-align: center;
 }
 
     #login a {
-        background-color: #d3dce0;
+        background-color: #fff;
         margin-left: 10px;
         margin-right: 3px;
         padding: 2px 3px;
@@ -208,6 +224,13 @@ ul#menu {
 
 /* page elements
 ----------------------------------------------------------*/
+DIV.pager { text-align:right; border-top: 2px solid #01649D;
+    padding: .5em 0 0 0; margin-top: 1em; }
+DIV.pager A { font-size: 1.1em; color: #666; text-decoration: none;
+      padding: 0 .4em 0 .4em; }
+DIV.pager A:hover { background-color: Silver; }
+DIV.pager A.selected { background-color: #353535; color: White; }
+
 /* featured */
 .featured {
     background-color: #fff;
@@ -432,7 +455,7 @@ input, textarea {
     font-size: 1.2em;
     margin: 5px 0 6px 0;
     padding: 5px;
-    width: 300px;
+    width: 500px;
 }
 
 textarea {
@@ -453,8 +476,8 @@ textarea {
     input[type="submit"],
     input[type="button"],
     button {
-        background-color: #d3dce0;
-        border: 1px solid #787878;
+        background-color: #fff;
+        /*border: 1px solid #787878;*/
         cursor: pointer;
         font-size: 1.2em;
         font-weight: 600;

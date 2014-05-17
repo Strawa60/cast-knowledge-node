@@ -1,0 +1,64 @@
+﻿@model CastKnowledgeWebApp.Domain.Publikacje
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Publikacje</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.id_publikacji)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.id_publikacji)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.rok_publikacji)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.rok_publikacji)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tytul_polski)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tytul_polski)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tytul_zagraniczny)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tytul_zagraniczny)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.streszczenie_pol)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.streszczenie_pol)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.streszczenie_ang)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.streszczenie_ang)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.zrodlo_publikacji)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.zrodlo_publikacji)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

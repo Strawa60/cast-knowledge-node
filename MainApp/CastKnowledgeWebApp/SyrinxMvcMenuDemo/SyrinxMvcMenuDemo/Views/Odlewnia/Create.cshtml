@@ -1,4 +1,4 @@
-﻿@model CastKnowledgeWebApp.Domain.Dostawca
+﻿@model CastKnowledgeWebApp.Domain.Odlewnia
 
 @{
     ViewBag.Title = "Create";
@@ -11,7 +11,15 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Dostawca</legend>
+        <legend>Odlewnia</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.id_odlewni)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.id_odlewni)
+            @Html.ValidationMessageFor(model => model.id_odlewni)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.nazwa)
@@ -46,14 +54,6 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.wojewodztwo)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.wojewodztwo)
-            @Html.ValidationMessageFor(model => model.wojewodztwo)
-        </div>
-
-        <div class="editor-label">
             @Html.LabelFor(model => model.telefon)
         </div>
         <div class="editor-field">
@@ -83,30 +83,6 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.e_mail)
             @Html.ValidationMessageFor(model => model.e_mail)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.prezes)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.prezes)
-            @Html.ValidationMessageFor(model => model.prezes)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.zasoby)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.zasoby)
-            @Html.ValidationMessageFor(model => model.zasoby)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.typ_firmy)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.typ_firmy)
-            @Html.ValidationMessageFor(model => model.typ_firmy)
         </div>
 
         <p>

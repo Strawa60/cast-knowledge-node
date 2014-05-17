@@ -1,0 +1,82 @@
+﻿@model CastKnowledgeWebApp.Domain.Odlewnia
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Odlewnia</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.id_odlewni)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.id_odlewni)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nazwa)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nazwa)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.miejscowosc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.miejscowosc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.kod_pocztowy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.kod_pocztowy)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ulica)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ulica)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.telefon)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.telefon)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fax)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fax)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.www)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.www)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.e_mail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.e_mail)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

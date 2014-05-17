@@ -3,6 +3,18 @@
 @{
     ViewBag.Title = "Dostawcy";
 }
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+            </hgroup>
+            <p>
+                Baza firm zaopatrujących odlewnie w materiały
+            </p>
+        </div>
+    </section>
+}
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -10,19 +22,15 @@
 
 
 @foreach (var item in Model.contractors) {
-    <tr>
+    <p>
         @Html.Partial("DostawcaPartial", item)
             @Html.ActionLink("Edit", "Edit", new {  id=item.id_firmy  }) |
             @Html.ActionLink("Details", "Details", new {  id=item.id_firmy  }) |
             @Html.ActionLink("Delete", "Delete", new {  id=item.id_firmy  })
-
-    </tr>
+    </p>
 }
 
-@*</table>*@
+<div class="pager">
 
-@*<div class="pager">
-    @Html.PageLinks(Model.pagingInfo, x => Url.Action("Index", new {page = x}))
-    
-
-</div>*@
+    @Html.PageLinks(Model.pagingInfo, x=> Url.Action("Index", new {page = x}))
+</div>

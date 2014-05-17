@@ -178,6 +178,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DostawcaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OdlewniaController.cs" />
+    <Compile Include="Controllers\PatentyController.cs" />
+    <Compile Include="Controllers\PublikacjeController.cs" />
     <Compile Include="ExcelParserEngine\ExcelParser.cs" />
     <Compile Include="ExcelParserEngine\InsertDataToDB.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -191,8 +194,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\icon-search.png" />
     <Content Include="Content\logo.jpg" />
     <Content Include="Content\logo_iod_main.jpg" />
+    <Content Include="Images\find.png" />
+    <Content Include="Images\search.png" />
     <Content Include="Content\SyrinxMenu.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -250,6 +256,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Menus\defaultMainMenu.xml">
       <SubType>Designer</SubType>
@@ -302,12 +309,31 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Shared\DostawcaPartial.cshtml" />
+    <Content Include="Views\Dostawca\DostawcaPartial.cshtml" />
+    <Content Include="Views\Shared\ConnectionErrorPartial.cshtml" />
+    <Content Include="Views\Shared\SearchPartial.cshtml" />
+    <Content Include="Views\Shared\_Search.cshtml" />
     <Content Include="Views\Dostawca\Index.cshtml" />
     <Content Include="Views\Dostawca\Details.cshtml" />
-    <Content Include="Views\Dostawca\Create.cshtml" />
     <Content Include="Views\Dostawca\Edit.cshtml" />
     <Content Include="Views\Dostawca\Delete.cshtml" />
+    <Content Include="Views\Odlewnia\Index.cshtml" />
+    <Content Include="Views\Odlewnia\Details.cshtml" />
+    <Content Include="Views\Odlewnia\Create.cshtml" />
+    <Content Include="Views\Odlewnia\Edit.cshtml" />
+    <Content Include="Views\Odlewnia\Delete.cshtml" />
+    <Content Include="Views\Publikacje\Index.cshtml" />
+    <Content Include="Views\Publikacje\Details.cshtml" />
+    <Content Include="Views\Publikacje\Create.cshtml" />
+    <Content Include="Views\Publikacje\Edit.cshtml" />
+    <Content Include="Views\Publikacje\Delete.cshtml" />
+    <Content Include="Views\Patenty\Index.cshtml" />
+    <Content Include="Views\Patenty\Details.cshtml" />
+    <Content Include="Views\Patenty\Create.cshtml" />
+    <Content Include="Views\Patenty\Edit.cshtml" />
+    <Content Include="Views\Patenty\Delete.cshtml" />
+    <Content Include="Views\Odlewnia\OdlewniaListPartial.cshtml" />
+    <Content Include="Views\Dostawca\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<CastKnowledgeWebApp.Domain.Patenty>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.numer_wynalazku)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data_rozpoczecia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data_zakonczenia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data_zgloszenia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.symbol_patentowy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tytul_polski)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tytul_angielski)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.opis_polski)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.opis_angielski)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.osrodek_opracowujacy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.url)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.numer_wynalazku)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_rozpoczecia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_zakonczenia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_zgloszenia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.symbol_patentowy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tytul_polski)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tytul_angielski)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.opis_polski)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.opis_angielski)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.osrodek_opracowujacy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.url)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

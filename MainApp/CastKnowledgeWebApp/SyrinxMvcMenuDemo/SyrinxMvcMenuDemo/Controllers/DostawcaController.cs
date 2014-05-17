@@ -19,22 +19,29 @@ namespace SyrinxMvc.Controllers
 
         public ActionResult Index(int page = 1)
         {
-            List<Dostawca> contractorList = new List<Dostawca>();
-            contractorList = db.dostawca.ToList();
-
-            DostawcaWrapper viewModel = new DostawcaWrapper
+            try
             {
-                contractors = contractorList.OrderBy(p => p.id_firmy).Skip((page - 1) * pageSize).Take(pageSize),
-                pagingInfo = new PagingInfo
+                List<Dostawca> contractorList = new List<Dostawca>();
+                contractorList = db.dostawca.ToList();
+
+                DostawcaWrapper viewModel = new DostawcaWrapper
                 {
-                    currentPage = page,
-                    itemsPerPage = pageSize,
-                    totalItems = contractorList.Count()
-                }
-            };
+                    contractors = contractorList.OrderBy(p => p.id_firmy).Skip((page - 1) * pageSize).Take(pageSize),
+                    pagingInfo = new PagingInfo
+                    {
+                        currentPage = page,
+                        itemsPerPage = pageSize,
+                        totalItems = contractorList.Count()
+                    }
+                };
 
-
-            return View(viewModel);
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                //return View("ConnectionErrorPartial");
+                return View("Error");
+            }
         }
 
         //
