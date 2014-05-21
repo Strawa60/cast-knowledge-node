@@ -48,6 +48,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\CastKnowledge\SyrinxMenu\SyrinxMenu.csproj">
+      <Project>{e2d7d889-97ba-4a9a-be1d-4e6d985ae71d}</Project>
+      <Name>SyrinxMenu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CastKnowledge\SyrinxMvcMenuDemo\SyrinxMvcMenuDemo\SyrinxMvc.csproj">
+      <Project>{f5fdff00-feac-4f68-b959-b6b67217b481}</Project>
+      <Name>SyrinxMvc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CastKnowledgeWebApp.Domain\CastKnowledgeWebApp.Domain.csproj">
       <Project>{fcc97e2b-78b7-41f4-acc7-744dd9029b35}</Project>
       <Name>CastKnowledgeWebApp.Domain</Name>
