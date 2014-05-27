@@ -1,0 +1,63 @@
+﻿@model SyrinxMvc.Models.DostawcaWrapper
+
+@{
+    ViewBag.Title = "Dostawcy";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+            </hgroup>
+            <p>
+                Baza firm zaopatrujących odlewnie w materiały
+            </p>
+        </div>
+    </section>
+}
+
+<p>
+    @Html.ActionLink("+ Dodaj", "Create")
+</p>
+@Html.ActionLink("Some text","Import","Import", new {id=1}, null)
+
+<p>@Html.ActionLink("+ Dodaj z xls", "Import","Import",new { _viewName = "Dostawca"},null)</p>
+@*<p>
+@Html.ActionLink(
+    linkText: "+ Dodaj z xls",
+    actionName: "Import",
+    controllerName: "Import",
+    routeValues: new {
+        viewName = "dsds"
+    },
+    htmlAttributes: null
+)
+    </p>*@
+
+
+@foreach (var item in Model.contractors) {
+    <p>
+            @Html.Partial("DostawcaPartial", item)
+            <p>Tagi: 
+            @for(int i=0;i<Model.keyWords.Count;i++)
+            {
+                if(item.id_firmy == Model.keyWords[i].t1)
+                {
+                    foreach(var q in Model.keyWords[i].t2)
+                    {
+                     @q <text>|</text>   
+                    }
+                }
+            }
+                </p>
+        <br />
+        <br />
+            @Html.ActionLink("Edit", "Edit", new {  id=item.id_firmy  }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.id_firmy  }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.id_firmy  })
+    </p>
+}
+
+<div class="pager">
+    @Html.PageLinks(Model.pagingInfo, x=> Url.Action("Index", new {page = x}))
+</div>

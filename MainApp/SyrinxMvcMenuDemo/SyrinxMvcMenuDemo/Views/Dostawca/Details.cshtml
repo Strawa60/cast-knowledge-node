@@ -1,0 +1,106 @@
+﻿@model CastKnowledgeWebApp.Domain.Dostawca
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Dostawca</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.id_firmy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.id_firmy)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nazwa)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nazwa)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.miejscowosc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.miejscowosc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.kod_pocztowy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.kod_pocztowy)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ulica)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ulica)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.wojewodztwo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.wojewodztwo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.telefon)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.telefon)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fax)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fax)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.www)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.www)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.e_mail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.e_mail)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.prezes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.prezes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.zasoby)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.zasoby)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.typ_firmy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.typ_firmy)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
