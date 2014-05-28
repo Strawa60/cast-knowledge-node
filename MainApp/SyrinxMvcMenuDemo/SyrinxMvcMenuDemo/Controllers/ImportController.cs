@@ -18,7 +18,6 @@ namespace SyrinxMvc.Controllers
 
         public ActionResult Import(string _viewName)
         {
-            //_viewName is string ? viewName = (string)_viewName : viewName = null;
             viewName = _viewName;
             return View();
         }
@@ -42,7 +41,7 @@ namespace SyrinxMvc.Controllers
                         }
                         Request.Files["file"].SaveAs(fileLocation);
 
-                        ExcelParserEngine.InsertDataToDB.InsertContractorDataFromExcel(fileLocation);
+                        DbSaveData.InsertDataToDB.InsertContractorDataFromExcel(fileLocation);
                         System.IO.File.Delete(fileLocation);
                     }
                 }

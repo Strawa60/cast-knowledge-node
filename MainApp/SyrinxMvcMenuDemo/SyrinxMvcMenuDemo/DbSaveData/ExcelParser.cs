@@ -6,7 +6,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using CastKnowledgeWebApp.Domain;
 using CastKnowledgeWebApp.Domain.MultiTableDependency;
 
-namespace SyrinxMvc.ExcelParserEngine
+namespace SyrinxMvc.DbSaveData
 {
     public static class ExcelParser
     {
@@ -51,32 +51,6 @@ namespace SyrinxMvc.ExcelParserEngine
             myApp = null;
         }
 
-        private static List<string> SeparateKeyWords(string keyWordsLine)
-        {
-            List<string> tempolaryList = new List<string>();
-
-            string[] temp = keyWordsLine.Split(';');
-
-            for (int i = 0; i < temp.Length - 1; i++)
-            {
-                if (temp[i][0] == ' ')
-                {
-                    temp[i] = temp[i].Remove(0, 1);
-                }
-            }
-
-
-            foreach (string q in temp)
-            {
-                if (q != "")
-                {
-                    tempolaryList.Add(q);
-                }
-            }
-
-            return tempolaryList;
-        }
-
         public static List<PairDataTemplate<Dostawca, List<string>>> ParseContractorData(string file)
         {
             try
@@ -105,7 +79,7 @@ namespace SyrinxMvc.ExcelParserEngine
                 Dostawca ContracorData = new Dostawca();
 
                 System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "L" + index.ToString()).Cells.Value;
-                List<string> moKeyWords = SeparateKeyWords(myValues.GetValue(1, 12).ToString());
+                List<string> moKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 12).ToString());
 
                 switch (dataType)
                 {

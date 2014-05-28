@@ -1,4 +1,4 @@
-﻿@model CastKnowledgeWebApp.Domain.Dostawca
+﻿@model SyrinxMvc.Models.DostawcaCreateWrapper
 
 @{
     ViewBag.Title = "Edit";
@@ -13,118 +13,126 @@
     <fieldset>
         <legend>Dostawca</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.id_firmy)
+         <div class="editor-label">
+            @Html.Label("Id firmy")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.id_firmy)
-            @Html.ValidationMessageFor(model => model.id_firmy)
+@*            @Html.EditorFor(model => model.contractors.id_firmy, new { @readonly="readonly" })*@
+            @Html.EditorFor(model => model.contractors.id_firmy, new { disabled="disabled", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.contractors.id_firmy)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Nazwa")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.contractors.nazwa)
+            @Html.ValidationMessageFor(model => model.contractors.nazwa)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.nazwa)
+            @Html.Label("Miejscowość")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.nazwa)
-            @Html.ValidationMessageFor(model => model.nazwa)
+            @Html.EditorFor(model => model.contractors.miejscowosc)
+            @Html.ValidationMessageFor(model => model.contractors.miejscowosc)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.miejscowosc)
+            @Html.Label("Kod pocztowy")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.miejscowosc)
-            @Html.ValidationMessageFor(model => model.miejscowosc)
+            @Html.EditorFor(model => model.contractors.kod_pocztowy)
+            @Html.ValidationMessageFor(model => model.contractors.kod_pocztowy)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.kod_pocztowy)
+            @Html.Label("Ulica")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.kod_pocztowy)
-            @Html.ValidationMessageFor(model => model.kod_pocztowy)
+            @Html.EditorFor(model => model.contractors.ulica)
+            @Html.ValidationMessageFor(model => model.contractors.ulica)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ulica)
+            @Html.Label("Województwo")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ulica)
-            @Html.ValidationMessageFor(model => model.ulica)
+            @Html.EditorFor(model => model.contractors.wojewodztwo)
+            @Html.ValidationMessageFor(model => model.contractors.wojewodztwo)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.wojewodztwo)
+            @Html.Label("Telefon")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.wojewodztwo)
-            @Html.ValidationMessageFor(model => model.wojewodztwo)
+            @Html.EditorFor(model => model.contractors.telefon)
+            @Html.ValidationMessageFor(model => model.contractors.telefon)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.telefon)
+            @Html.Label("Fax")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.telefon)
-            @Html.ValidationMessageFor(model => model.telefon)
+            @Html.EditorFor(model => model.contractors.fax)
+            @Html.ValidationMessageFor(model => model.contractors.fax)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.fax)
+            @Html.Label("Adres www")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.fax)
-            @Html.ValidationMessageFor(model => model.fax)
+            @Html.EditorFor(model => model.contractors.www)
+            @Html.ValidationMessageFor(model => model.contractors.www)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.www)
+            @Html.Label("Adres e-mail")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.www)
-            @Html.ValidationMessageFor(model => model.www)
+            @Html.EditorFor(model => model.contractors.e_mail)
+            @Html.ValidationMessageFor(model => model.contractors.e_mail)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.e_mail)
+            @Html.Label("Prezes firmy")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.e_mail)
-            @Html.ValidationMessageFor(model => model.e_mail)
+            @Html.EditorFor(model => model.contractors.prezes)
+            @Html.ValidationMessageFor(model => model.contractors.prezes)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.prezes)
+            @Html.Label("Zasoby")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.prezes)
-            @Html.ValidationMessageFor(model => model.prezes)
+            @Html.TextAreaFor(model => model.contractors.zasoby)
+            @Html.ValidationMessageFor(model => model.contractors.zasoby)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.zasoby)
+            @Html.Label("Typ firmy")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.zasoby)
-            @Html.ValidationMessageFor(model => model.zasoby)
+            @Html.EditorFor(model => model.contractors.typ_firmy)
+            @Html.ValidationMessageFor(model => model.contractors.typ_firmy)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.typ_firmy)
+            @Html.Label("Tagi (separator ';')")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.typ_firmy)
-            @Html.ValidationMessageFor(model => model.typ_firmy)
+            @Html.TextAreaFor(model => model.keyWords)
+            @Html.ValidationMessageFor(model => model.keyWords)
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Edytuj" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Cofnij do listy", "Index")
 </div>
 
 @section Scripts {

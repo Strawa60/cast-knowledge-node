@@ -7,7 +7,7 @@ using CastKnowledgeWebApp.Domain.MultiTableDependency;
 
 namespace SyrinxMvc.Models
 {
-    public class DostawcaWrapper
+    public class DostawcaListWrapper
     {
         public IEnumerable<Dostawca> contractors { get; set; }
         public PagingInfo pagingInfo { get; set; }

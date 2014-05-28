@@ -1,14 +1,24 @@
 ﻿@model IEnumerable<CastKnowledgeWebApp.Domain.Odlewnia>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Odlewnie";
 }
 
-<h2>Index</h2>
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <p>
+                Baza odlewni.
+            </p>
+        </div>
+    </section>
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<p>@Html.ActionLink("+ Dodaj", "Create")</p>
+<p>@Html.ActionLink("+ Dodaj z xls", "Import","Import",new { _viewName = "Odlewnia"},null)</p>
 
 @foreach (var item in Model) {
     <tr>
@@ -46,5 +56,3 @@
         </td>
     </tr>
 }
-
-</table>

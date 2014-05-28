@@ -1,51 +1,25 @@
 ﻿@model IEnumerable<CastKnowledgeWebApp.Domain.Patenty>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Patenty";
 }
 
-<h2>Index</h2>
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <p>
+                Baza patentów i wynalazków.
+            </p>
+        </div>
+    </section>
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.numer_wynalazku)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.data_rozpoczecia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.data_zakonczenia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.data_zgloszenia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.symbol_patentowy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tytul_polski)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tytul_angielski)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.opis_polski)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.opis_angielski)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.osrodek_opracowujacy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.url)
-        </th>
-        <th></th>
-    </tr>
+
+<p>@Html.ActionLink("+ Dodaj", "Create")</p>
+<p>@Html.ActionLink("+ Dodaj z xls", "Import","Import",new { _viewName = "Patenty"},null)</p>
 
 @foreach (var item in Model) {
     <tr>
@@ -89,5 +63,3 @@
         </td>
     </tr>
 }
-
-</table>

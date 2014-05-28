@@ -1,39 +1,24 @@
 ﻿@model IEnumerable<CastKnowledgeWebApp.Domain.Publikacje>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Publikacje";
 }
 
-<h2>Index</h2>
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <p>
+                Baza publikacji i artykułów.
+            </p>
+        </div>
+    </section>
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id_publikacji)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rok_publikacji)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tytul_polski)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tytul_zagraniczny)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.streszczenie_pol)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.streszczenie_ang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.zrodlo_publikacji)
-        </th>
-        <th></th>
-    </tr>
+<p>@Html.ActionLink("+ Dodaj", "Create")</p>
+<p>@Html.ActionLink("+ Dodaj z xls", "Import","Import",new { _viewName = "Publikacje"},null)</p>
 
 @foreach (var item in Model) {
     <tr>
@@ -65,5 +50,3 @@
         </td>
     </tr>
 }
-
-</table>

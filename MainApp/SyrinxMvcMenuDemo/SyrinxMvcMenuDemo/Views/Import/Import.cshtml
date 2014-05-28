@@ -2,10 +2,12 @@
     ViewBag.Title = "Open .XLS";
 }
 <h3>Pobierz formularze</h3>
-<a href="~/Content/Dostawcy%20materiały%20ogniotrwałe.xlsx">Dostawcy materiały ogniotrwałe.xlsx</a>
-<a href="~/Content/Dostawcy%20materiały%20wsadowe.xlsx">Dostawcy materiały wsadowe.xlsx</a>
-<a href="~/Content/Dostawcy%20odlewnictwo.xlsx">Dostawcy odlewnictwo.xlsx</a>
-<a href="~/Content/Dostawcy%20Inne.xlsx">Dostawcy Inne.xlsx</a>
+<a href="~/Content/.Xls/Dostawcy%20materiały%20ogniotrwałe.xlsx">Dostawcy materiały ogniotrwałe.xlsx</a>
+<a href="~/Content/.Xls/Dostawcy%20materiały%20wsadowe.xlsx">Dostawcy materiały wsadowe.xlsx</a>
+<a href="~/Content/.Xls/Dostawcy%20odlewnictwo.xlsx">Dostawcy odlewnictwo.xlsx</a>
+<a href="~/Content/.Xls/Dostawcy%20Inne.xlsx">Dostawcy Inne.xlsx</a>
+
+
 <h2>Dodaj dane z Excela</h2>
 @using (Html.BeginForm("Import","Import", FormMethod.Post, new { enctype = "multipart/form-data" }))
 { 

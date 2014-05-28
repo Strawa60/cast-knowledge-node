@@ -6,7 +6,7 @@ using CastKnowledgeWebApp.Domain;
 using CastKnowledgeWebApp.Domain.MultiTableDependency;
 using System.Collections;
 
-namespace SyrinxMvc.ExcelParserEngine
+namespace SyrinxMvc.DbSaveData
 {
     public class InsertDataToDB
     {
@@ -15,7 +15,7 @@ namespace SyrinxMvc.ExcelParserEngine
         public static void InsertContractorDataFromExcel(string file)
         {
             List<PairDataTemplate<Dostawca, List<string>>> dataFromExcel = new List<PairDataTemplate<Dostawca, List<string>>>();
-            dataFromExcel = SyrinxMvc.ExcelParserEngine.ExcelParser.ParseContractorData(file);
+            dataFromExcel = SyrinxMvc.DbSaveData.ExcelParser.ParseContractorData(file);
             List<PairDataTemplate<int, int>> contractorKeyWordDependency = new List<PairDataTemplate<int, int>>();
 
             Slowa_kluczowe keyWord = new Slowa_kluczowe();
@@ -75,5 +75,70 @@ namespace SyrinxMvc.ExcelParserEngine
             
 
         }
+
+        public static void InsertContractorDataFromForm(SyrinxMvc.Models.DostawcaCreateWrapper contractorDataFromForm)
+        {
+
+            List<PairDataTemplate<int, int>> contractorKeyWordDependency = new List<PairDataTemplate<int, int>>();
+            List<string> keyWords = new List<string>();
+            Slowa_kluczowe keyWord = new Slowa_kluczowe();
+            int one = 0, two = 0;
+
+
+
+            try
+            {
+                db.dostawca.Add(contractorDataFromForm.contractors);
+                db.SaveChanges();
+                one = contractorDataFromForm.contractors.id_firmy;
+            }
+            catch (Exception e)
+            {
+                e.Message.ToString();
+            }
+
+            keyWords = Helpers.Contener.SeparateKeyWords(contractorDataFromForm.keyWords);
+
+            for (int j = 0; j < keyWords.Count; j++)
+            {
+                try
+                {
+                    keyWord.nazwa = keyWords[j];
+
+                    db.slowa_kluczowe.Add(keyWord);
+                    db.SaveChanges();
+                    two = keyWord.id_deskryptora;
+
+                    contractorKeyWordDependency.Add(new PairDataTemplate<int, int>(one, two));
+                }
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                }
+
+            }
+
+            Dostawca_tagi tags = new Dostawca_tagi();
+
+            foreach (var q in contractorKeyWordDependency)
+            {
+
+                tags.id_firmy = q.t1;
+                tags.id_deskryptora = q.t2;
+
+                try
+                {
+                    db.dostawca_tagi.Add(tags);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                }
+            }
+
+
+        }
+
     }
 }
