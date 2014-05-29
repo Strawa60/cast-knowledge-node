@@ -76,7 +76,7 @@ namespace SyrinxMvc.DbSaveData
 
         }
 
-        public static void InsertContractorDataFromForm(SyrinxMvc.Models.DostawcaCreateWrapper contractorDataFromForm)
+        public static void InsertContractorDataFromForm(SyrinxMvc.Models.DostawcaWrapper contractorDataFromForm)
         {
 
             List<PairDataTemplate<int, int>> contractorKeyWordDependency = new List<PairDataTemplate<int, int>>();

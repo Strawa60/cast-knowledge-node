@@ -9,28 +9,35 @@ namespace SyrinxMvc.Helpers
     {
         public static List<string> SeparateKeyWords(string keyWordsLine)
         {
-            List<string> tempolaryList = new List<string>();
-
-            string[] temp = keyWordsLine.Split(';');
-
-            for (int i = 0; i < temp.Length - 1; i++)
+            if (keyWordsLine != null)
             {
-                if (temp[i][0] == ' ')
+                List<string> tempolaryList = new List<string>();
+
+                string[] temp = keyWordsLine.Split(';');
+
+                for (int i = 0; i < temp.Length - 1; i++)
                 {
-                    temp[i] = temp[i].Remove(0, 1);
+                    if (temp[i][0] == ' ')
+                    {
+                        temp[i] = temp[i].Remove(0, 1);
+                    }
                 }
+
+
+                foreach (string q in temp)
+                {
+                    if (q != "")
+                    {
+                        tempolaryList.Add(q);
+                    }
+                }
+
+                return tempolaryList;
             }
-
-
-            foreach (string q in temp)
+            else
             {
-                if (q != "")
-                {
-                    tempolaryList.Add(q);
-                }
+                return null;
             }
-
-            return tempolaryList;
         }
 
         //public static List<string> SeparateKeyWords(string keyWordsLine)

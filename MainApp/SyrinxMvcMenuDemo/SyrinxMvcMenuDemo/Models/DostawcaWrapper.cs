@@ -6,7 +6,7 @@ using CastKnowledgeWebApp.Domain;
 
 namespace SyrinxMvc.Models
 {
-    public class DostawcaCreateWrapper
+    public class DostawcaWrapper
     {
         public Dostawca contractors { get; set; }
         public string keyWords { get; set; }

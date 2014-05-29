@@ -191,7 +191,7 @@
     <Compile Include="Helpers\Contener.cs" />
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\DostawcaCreateWrapper.cs" />
+    <Compile Include="Models\DostawcaWrapper.cs" />
     <Compile Include="Models\DostawcaListWrapper.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

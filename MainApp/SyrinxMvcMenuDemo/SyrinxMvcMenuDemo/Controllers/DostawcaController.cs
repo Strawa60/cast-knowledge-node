@@ -30,8 +30,7 @@ namespace SyrinxMvc.Controllers
             contractorTags.Clear();
 
             try
-            {
-                
+            { 
                 contractorList = db.dostawca.ToList();
                 tags = db.dostawca_tagi.ToList();
                 
@@ -66,12 +65,10 @@ namespace SyrinxMvc.Controllers
             {
                 return View("Error");
             }
-
         }
 
         //
         // GET: /Dostawca/Details/5
-
         public ActionResult Details(int id = 0)
         {
             Dostawca dostawca = db.dostawca.Find(id);
@@ -84,7 +81,6 @@ namespace SyrinxMvc.Controllers
 
         //
         // GET: /Dostawca/Create
-
         public ActionResult Create()
         {
             return View();
@@ -92,10 +88,9 @@ namespace SyrinxMvc.Controllers
 
         //
         // POST: /Dostawca/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]//property= dostawca create wrapper
-        public ActionResult Create(DostawcaCreateWrapper dcw)
+        public ActionResult Create(DostawcaWrapper dcw)
         {
             if (ModelState.IsValid)
             {
@@ -108,12 +103,10 @@ namespace SyrinxMvc.Controllers
 
         //
         // GET: /Dostawca/Edit/5
-        
-
         public ActionResult Edit(int id = 0)
         {
             Dostawca dostawca = db.dostawca.Find(id);
-            DostawcaCreateWrapper dcw = new DostawcaCreateWrapper();
+            DostawcaWrapper dcw = new DostawcaWrapper();
             //List<Dostawca_tagi> 
             List<Dostawca_tagi> keywordsEdit = new List<Dostawca_tagi>();
 
@@ -137,12 +130,7 @@ namespace SyrinxMvc.Controllers
             {
                 return HttpNotFound();
             }
-
-
             return View(dcw);
-
-
-
         }
 
         //
@@ -150,10 +138,9 @@ namespace SyrinxMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(DostawcaCreateWrapper dcw)
+        public ActionResult Edit(DostawcaWrapper dcw)
         {
             Dostawca dostawca = dcw.contractors;
-            int param;
 
             List<Dostawca_tagi> temp = new List<Dostawca_tagi>();
             temp = db.dostawca_tagi.ToList();
@@ -162,7 +149,7 @@ namespace SyrinxMvc.Controllers
             List<Slowa_kluczowe> doDodania = new List<Slowa_kluczowe>();
             List<Slowa_kluczowe> doUsuniecia = new List<Slowa_kluczowe>();
 
-/////////////////przygotowanie listy tagow do edycji
+            /////////////////przygotowanie listy tagow do edycji
             for (int i = 0; i < temp.Count; i++)
             {
                 if (dostawca.id_firmy == temp[i].id_firmy)
@@ -202,15 +189,21 @@ namespace SyrinxMvc.Controllers
                 }
             }
 
-//////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////
             Slowa_kluczowe tempolary = new Slowa_kluczowe();
             int id = 0;
-            
 
             if (ModelState.IsValid)
             {
-                db.Entry(dostawca).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.Entry(dostawca).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return View("Error");
+                }
 
                 if (doUsuniecia.Count > 0)
                 {
@@ -226,16 +219,23 @@ namespace SyrinxMvc.Controllers
                         db.slowa_kluczowe.Remove(q);
                     }
                     db.SaveChanges();
-                }                
+                }
                 if (doDodania.Count > 0)
                 {
-                    foreach (var q in doDodania)
+                    try
                     {
-                        db.slowa_kluczowe.Add(q);
-                        id = q.id_deskryptora;
-                        db.dostawca_tagi.Add(new Dostawca_tagi { id_firmy = dostawca.id_firmy, id_deskryptora = id });
+                        foreach (var q in doDodania)
+                        {
+                            db.slowa_kluczowe.Add(q);
+                            id = q.id_deskryptora;
+                            db.dostawca_tagi.Add(new Dostawca_tagi { id_firmy = dostawca.id_firmy, id_deskryptora = id });
+                        }
+                        db.SaveChanges();
                     }
-                    db.SaveChanges();
+                    catch (Exception)
+                    {
+                        return View("Error");
+                    }
                 }
 
                 return RedirectToAction("Index");
@@ -263,13 +263,12 @@ namespace SyrinxMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-
             var result = db.Set<Dostawca_tagi>().Where(x => x.id_firmy == id).ToList();
 
             foreach (var item in result)
             {
+                db.slowa_kluczowe.Remove(item.Slowa_kluczowe);
                 db.dostawca_tagi.Remove(item);
-                //db.SaveChanges();
             }
 
             Dostawca dostawca = db.dostawca.Find(id);
