@@ -1,0 +1,124 @@
+﻿@model CastKnowledgeWebApp.Domain.Patenty
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Patenty</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.id_patentu)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.id_patentu)
+            @Html.ValidationMessageFor(model => model.id_patentu)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.numer_wynalazku)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.numer_wynalazku)
+            @Html.ValidationMessageFor(model => model.numer_wynalazku)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.data_rozpoczecia)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.data_rozpoczecia)
+            @Html.ValidationMessageFor(model => model.data_rozpoczecia)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.data_zakonczenia)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.data_zakonczenia)
+            @Html.ValidationMessageFor(model => model.data_zakonczenia)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.data_zgloszenia)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.data_zgloszenia)
+            @Html.ValidationMessageFor(model => model.data_zgloszenia)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.symbol_patentowy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.symbol_patentowy)
+            @Html.ValidationMessageFor(model => model.symbol_patentowy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.tytul_polski)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.tytul_polski)
+            @Html.ValidationMessageFor(model => model.tytul_polski)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.tytul_angielski)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.tytul_angielski)
+            @Html.ValidationMessageFor(model => model.tytul_angielski)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.opis_polski)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.opis_polski)
+            @Html.ValidationMessageFor(model => model.opis_polski)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.opis_angielski)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.opis_angielski)
+            @Html.ValidationMessageFor(model => model.opis_angielski)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.osrodek_opracowujacy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.osrodek_opracowujacy)
+            @Html.ValidationMessageFor(model => model.osrodek_opracowujacy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.url)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.url)
+            @Html.ValidationMessageFor(model => model.url)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
