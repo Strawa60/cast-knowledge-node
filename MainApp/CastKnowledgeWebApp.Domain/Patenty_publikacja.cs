@@ -15,10 +15,10 @@ namespace CastKnowledgeWebApp.Domain
     public partial class Patenty_publikacja
     {
         public int id { get; set; }
-        public Nullable<int> numer_wynalazku { get; set; }
         public Nullable<int> id_publikacji { get; set; }
+        public Nullable<int> id_patentu { get; set; }
     
-        public virtual Patenty Patenty { get; set; }
         public virtual Publikacje Publikacje { get; set; }
+        public virtual Patenty patenty { get; set; }
     }
 }

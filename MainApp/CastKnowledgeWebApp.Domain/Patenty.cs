@@ -21,7 +21,8 @@ namespace CastKnowledgeWebApp.Domain
             this.Patenty_tagi = new HashSet<Patenty_tagi>();
         }
     
-        public int numer_wynalazku { get; set; }
+        public int id_patentu { get; set; }
+        public string numer_wynalazku { get; set; }
         public string data_rozpoczecia { get; set; }
         public string data_zakonczenia { get; set; }
         public string data_zgloszenia { get; set; }

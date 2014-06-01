@@ -16,7 +16,7 @@ namespace CastKnowledgeWebApp.Domain
     {
         public int id { get; set; }
         public Nullable<int> id_autora { get; set; }
-        public Nullable<int> numer_wynalazku { get; set; }
+        public Nullable<int> id_patentu { get; set; }
     
         public virtual Autorzy Autorzy { get; set; }
         public virtual Patenty Patenty { get; set; }

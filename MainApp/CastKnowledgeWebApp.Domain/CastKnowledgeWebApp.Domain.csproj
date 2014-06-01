@@ -117,12 +117,6 @@
     <Compile Include="Slowa_kluczowe.cs">
       <DependentUpon>CastKnowledge.tt</DependentUpon>
     </Compile>
-    <Compile Include="Technologia.cs">
-      <DependentUpon>CastKnowledge.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Tworzywo.cs">
-      <DependentUpon>CastKnowledge.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="CastKnowledge.edmx">

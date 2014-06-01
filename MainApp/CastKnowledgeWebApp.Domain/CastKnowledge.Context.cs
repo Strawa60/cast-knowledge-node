@@ -28,17 +28,15 @@ namespace CastKnowledgeWebApp.Domain
         public DbSet<Autorzy> autorzy { get; set; }
         public DbSet<Dostawca> dostawca { get; set; }
         public DbSet<Dostawca_tagi> dostawca_tagi { get; set; }
-        public DbSet<Odlewnia> odlewnia { get; set; }
         public DbSet<Odlewnia_tagi> odlewnia_tagi { get; set; }
         public DbSet<Patent_autor> patent_autor { get; set; }
-        public DbSet<Patenty> patenty { get; set; }
         public DbSet<Patenty_publikacja> patenty_publikacja { get; set; }
         public DbSet<Patenty_tagi> patenty_tagi { get; set; }
         public DbSet<Publikacja_autor> publikacja_autor { get; set; }
         public DbSet<Publikacje> publikacje { get; set; }
         public DbSet<Publikacje_tagi> publikacje_tagi { get; set; }
         public DbSet<Slowa_kluczowe> slowa_kluczowe { get; set; }
-        public DbSet<Technologia> technologia { get; set; }
-        public DbSet<Tworzywo> tworzywo { get; set; }
+        public DbSet<Odlewnia> odlewnia { get; set; }
+        public DbSet<Patenty> patenty { get; set; }
     }
 }
