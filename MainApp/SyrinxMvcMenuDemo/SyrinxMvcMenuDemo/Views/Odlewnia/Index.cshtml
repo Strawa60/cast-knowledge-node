@@ -1,93 +1,46 @@
-﻿@model IEnumerable<CastKnowledgeWebApp.Domain.Odlewnia>
+﻿@model SyrinxMvc.Models.OdlewniaListWrapper
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Odlewnie";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <p>
+                Baza odlewni.
+            </p>
+        </div>
+    </section>
 }
 
-<h2>Index</h2>
+<p>@Html.ActionLink("+ Dodaj", "Create")</p>
+<p>@Html.ActionLink("+ Dodaj z xls", "Import","Import",new { _viewName = "Odlewnie"},null)</p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id_odlewni)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nazwa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.miejscowosc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.kod_pocztowy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ulica)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fax)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.www)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.e_mail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nazwa_technologii)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nazwa_tworzywa)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_odlewni)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nazwa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.miejscowosc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.kod_pocztowy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ulica)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fax)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.www)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.e_mail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nazwa_technologii)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nazwa_tworzywa)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+@foreach (var item in Model.foundries) {
+    <p>
+            @Html.Partial("OdlewniePartial", item)
+            <p><b>Tagi:</b> 
+            @for(int i=0;i<Model.keyWords.Count;i++)
+            {
+                if(item.id_odlewni == Model.keyWords[i].t1)
+                {
+                    foreach(var q in Model.keyWords[i].t2)
+                    {
+                     @q <text>|</text>   
+                    }
+                }
+            }
+                </p>
+        <br />
+            @Html.ActionLink("Edytuj", "Edit", new {  id=item.id_odlewni  }) |
+            @Html.ActionLink("Szczegóły", "Details", new {  id=item.id_odlewni  }) |
+            @Html.ActionLink("Usuń", "Delete", new {  id=item.id_odlewni  })
+    </p>
 }
 
-</table>
+<div class="pager">
+    @Html.PageLinks(Model.pagingInfo, x=> Url.Action("Index", new {page = x}))
+</div>

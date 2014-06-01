@@ -35,24 +35,27 @@ namespace SyrinxMvc.DbSaveData
                     return dataFromExcel[i].t1.nazwa.ToString();      
                 }
 
-                for (int j = 0; j < dataFromExcel[i].t2.Count; j++)
+                if (dataFromExcel[i].t2.Count > 0)
                 {
-                    try
+                    for (int j = 0; j < dataFromExcel[i].t2.Count; j++)
                     {
-                        keyWord.nazwa = dataFromExcel[i].t2[j];
+                        try
+                        {
+                            keyWord.nazwa = dataFromExcel[i].t2[j];
 
-                        db.slowa_kluczowe.Add(keyWord);
-                        db.SaveChanges();
-                        two = keyWord.id_deskryptora;
+                            db.slowa_kluczowe.Add(keyWord);
+                            db.SaveChanges();
+                            two = keyWord.id_deskryptora;
 
-                        contractorKeyWordDependency.Add(new PairDataTemplate<int, int>(one, two));
+                            contractorKeyWordDependency.Add(new PairDataTemplate<int, int>(one, two));
+                        }
+                        catch (Exception e)
+                        {
+                            e.Message.ToString();
+                            return dataFromExcel[i].t1.nazwa.ToString();
+                        }
+
                     }
-                    catch (Exception e)
-                    {
-                        e.Message.ToString();
-                        return dataFromExcel[i].t1.nazwa.ToString();
-                    }
-
                 }
             }
 
@@ -141,7 +144,79 @@ namespace SyrinxMvc.DbSaveData
 
         }
 
+        public static string InsertFoundryDataFromExcel(string file)
+        {
+            List<PairDataTemplate<Odlewnia, List<string>>> dataFromExcel = new List<PairDataTemplate<Odlewnia, List<string>>>();
+            
+            //dataFromExcel = SyrinxMvc.DbSaveData.ExcelParser.ParseContractorData(file);
+            dataFromExcel = SyrinxMvc.DbSaveData.ExcelParser.ParseFoundryData(file);
 
+
+            List<PairDataTemplate<int, int>> foundryKeyWordDependency = new List<PairDataTemplate<int, int>>();
+
+            Slowa_kluczowe keyWord = new Slowa_kluczowe();
+            int one = 0, two = 0;
+
+            for (int i = 0; i < dataFromExcel.Count; i++)
+            {
+                try
+                {
+                    db.odlewnia.Add(dataFromExcel[i].t1);
+                    db.SaveChanges();
+                    one = dataFromExcel[i].t1.id_odlewni;
+                }
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                    return dataFromExcel[i].t1.nazwa.ToString();
+                }
+
+                if (dataFromExcel[i].t2.Count > 0)
+                {
+                    for (int j = 0; j < dataFromExcel[i].t2.Count; j++)
+                    {
+                        try
+                        {
+                            keyWord.nazwa = dataFromExcel[i].t2[j];
+
+                            db.slowa_kluczowe.Add(keyWord);
+                            db.SaveChanges();
+                            two = keyWord.id_deskryptora;
+
+                            foundryKeyWordDependency.Add(new PairDataTemplate<int, int>(one, two));
+                        }
+                        catch (Exception e)
+                        {
+                            e.Message.ToString();
+                            return dataFromExcel[i].t1.nazwa.ToString();
+                        }
+
+                    }
+                }
+            }
+
+            Odlewnia_tagi tags = new Odlewnia_tagi();
+
+            foreach (var q in foundryKeyWordDependency)
+            {
+
+                tags.id_odlewni = q.t1;
+                tags.id_deskryptora = q.t2;
+
+                try
+                {
+                    db.odlewnia_tagi.Add(tags);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                }
+            }
+
+            return null;
+
+        }
 
     }
 }

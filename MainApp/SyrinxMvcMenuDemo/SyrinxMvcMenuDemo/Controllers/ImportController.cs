@@ -12,7 +12,7 @@ namespace SyrinxMvc.Controllers
     public class ImportController : Controller
     {
         private CastKnowledgeEntities db = new CastKnowledgeEntities();
-        private string viewName;
+        private static string viewName;
         //
         // GET: /Import/
 
@@ -42,22 +42,44 @@ namespace SyrinxMvc.Controllers
                         }
                         Request.Files["file"].SaveAs(fileLocation);
 
-                        idFailed=DbSaveData.InsertDataToDB.InsertContractorDataFromExcel(fileLocation);
+
+                        if (viewName=="Dostawca")
+                        {
+                            idFailed = DbSaveData.InsertDataToDB.InsertContractorDataFromExcel(fileLocation);
+                        }
+                        else if (viewName == "Odlewnie")
+                        {
+                            idFailed = DbSaveData.InsertDataToDB.InsertFoundryDataFromExcel(fileLocation);
+                        }
+                        else
+                        {
+                            idFailed = "ErrorOpenFile";
+                        }
+
                         System.IO.File.Delete(fileLocation);
                     }
                 }
+
                 if (idFailed == null)
                 {
                     return View("Consume");
                 }
+                else if (idFailed != "ErrorOpenFile")
+                {
+                    return View("ConsumeFailed", null, idFailed);
+                }
+                else if (idFailed == "ErrorOpenFile")
+                {
+                    return View("ErrorOpenFile");
+                }
                 else
                 {
-                    return View("ConsumeFailed",null, idFailed);
+                    return View("Error");
                 }
             }
             catch (Exception)
             {
-                return View("ConsumeFailed",idFailed);
+                return View("Error");
             }
         }
 

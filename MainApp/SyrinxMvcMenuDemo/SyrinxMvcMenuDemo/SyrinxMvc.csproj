@@ -193,6 +193,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DostawcaWrapper.cs" />
     <Compile Include="Models\DostawcaListWrapper.cs" />
+    <Compile Include="Models\OdlewniaListWrapper.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -263,6 +264,7 @@
     <Content Include="Content\.Xls\Dostawcy materiały wsadowe.xlsx" />
     <Content Include="Content\.Xls\Dostawcy odlewnictwo.xlsx" />
     <Content Include="Content\.Xls\Dostawcy Inne.xlsx" />
+    <Content Include="Content\.Xls\Odlewnie.xlsx" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Menus\defaultMainMenu.xml">
       <SubType>Designer</SubType>
@@ -342,6 +344,8 @@
     <Content Include="Views\Patenty\Create.cshtml" />
     <Content Include="Views\Patenty\Edit.cshtml" />
     <Content Include="Views\Patenty\Delete.cshtml" />
+    <Content Include="Views\Shared\ErrorOpenFile.cshtml" />
+    <Content Include="Views\Odlewnia\OdlewniePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

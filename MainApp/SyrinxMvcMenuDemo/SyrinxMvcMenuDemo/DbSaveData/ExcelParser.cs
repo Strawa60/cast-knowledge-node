@@ -17,7 +17,8 @@ namespace SyrinxMvc.DbSaveData
         private static Excel.Worksheet mySheet = null;
         private static int lastRow = 0;
 
-        private static List<PairDataTemplate<Dostawca, List<string>>> contractorList = new List<PairDataTemplate<Dostawca, List<string>>>();
+        //private static List<PairDataTemplate<Dostawca, List<string>>> contractorList = new List<PairDataTemplate<Dostawca, List<string>>>();
+        //private static List<PairDataTemplate<Odlewnia, List<string>>> foundryList = new List<PairDataTemplate<Odlewnia, List<string>>>();
 
 
         private static void InitializeExcel(string file)
@@ -53,6 +54,7 @@ namespace SyrinxMvc.DbSaveData
 
         public static List<PairDataTemplate<Dostawca, List<string>>> ParseContractorData(string file)
         {
+            List<PairDataTemplate<Dostawca, List<string>>> contractorList = new List<PairDataTemplate<Dostawca, List<string>>>();
             try
             {
                 InitializeExcel(file);
@@ -66,6 +68,50 @@ namespace SyrinxMvc.DbSaveData
                 CloseExcel();
             }
             return contractorList;
+
+        }
+
+        public static List<PairDataTemplate<Odlewnia, List<string>>> ParseFoundryData(string file)
+        {
+            List<PairDataTemplate<Odlewnia, List<string>>> foundryList = new List<PairDataTemplate<Odlewnia, List<string>>>();
+            try
+            {
+                InitializeExcel(file);
+                foundryList.Clear();
+                foundryList = ReadFoundryData(mySheet.Name);
+
+            }
+            finally
+            {
+
+                CloseExcel();
+            }
+            return foundryList;
+
+
+        }
+
+        private static List<PairDataTemplate<Odlewnia, List<string>>> ReadFoundryData(string dataType)
+        {
+            //posiada dostawce i liste slow kluczowych
+            List<PairDataTemplate<Odlewnia, List<string>>> foundryList = new List<PairDataTemplate<Odlewnia, List<string>>>();
+            
+
+            for (int index = 2; index <= lastRow; index++)
+            {
+                Odlewnia foundryData = new Odlewnia();
+                List<string> foundryKeyWords = new List<string>();
+
+                System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "K" + index.ToString()).Cells.Value;
+                if (myValues.GetValue(1, 11) != null)
+                {
+                    foundryKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 11).ToString());
+                }
+
+                foundryList.Add(new PairDataTemplate<Odlewnia, List<string>>(ValidateFoundryData(myValues, foundryData), foundryKeyWords));
+
+            }
+            return foundryList;
 
         }
 
@@ -143,6 +189,32 @@ namespace SyrinxMvc.DbSaveData
             return validateContracorData;
         }
 
+        private static Odlewnia ValidateFoundryData(System.Array myValues, Odlewnia validateFoundryData)
+        {
+            if (myValues.GetValue(1, 1) != null)
+                validateFoundryData.nazwa = myValues.GetValue(1, 1).ToString();
+            if (myValues.GetValue(1, 2) != null)
+                validateFoundryData.miejscowosc = myValues.GetValue(1, 2).ToString();
+            if (myValues.GetValue(1, 3) != null)
+                validateFoundryData.kod_pocztowy = myValues.GetValue(1, 3).ToString();
+            if (myValues.GetValue(1, 4) != null)
+                validateFoundryData.ulica = myValues.GetValue(1, 4).ToString();
+            if (myValues.GetValue(1, 5) != null)
+                validateFoundryData.telefon = myValues.GetValue(1, 5).ToString();
+            if (myValues.GetValue(1, 6) != null)
+                validateFoundryData.fax = myValues.GetValue(1, 6).ToString();
+            if (myValues.GetValue(1, 7) != null)
+                validateFoundryData.www = myValues.GetValue(1, 7).ToString();
+            if (myValues.GetValue(1, 8) != null)
+                validateFoundryData.e_mail = myValues.GetValue(1, 8).ToString();
+            if (myValues.GetValue(1, 9) != null)
+                validateFoundryData.nazwa_technologii = myValues.GetValue(1, 9).ToString();
+            if (myValues.GetValue(1, 10) != null)
+                validateFoundryData.nazwa_tworzywa = myValues.GetValue(1, 10).ToString();
+
+
+            return validateFoundryData;
+        }
 
     }
 }

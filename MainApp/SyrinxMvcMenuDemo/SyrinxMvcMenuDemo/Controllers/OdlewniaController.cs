@@ -6,19 +6,65 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CastKnowledgeWebApp.Domain;
+using CastKnowledgeWebApp.Domain.MultiTableDependency;
+using SyrinxMvc.Models;
 
 namespace SyrinxMvc.Controllers
 {
     public class OdlewniaController : Controller
     {
         private CastKnowledgeEntities db = new CastKnowledgeEntities();
+        public int pageSize = 10;
 
         //
         // GET: /Odlewnia/
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            return View(db.odlewnia.ToList());
+            List<Odlewnia> foundryList = new List<Odlewnia>();
+            List<Odlewnia_tagi> tags = new List<Odlewnia_tagi>();
+            List<PairDataTemplate<int, List<string>>> foundryTags = new List<PairDataTemplate<int, List<string>>>();
+            List<string> words2 = new List<string>();
+            foundryList.Clear();
+            tags.Clear();
+            foundryTags.Clear();
+
+            try
+            {
+                foundryList = db.odlewnia.ToList();
+                tags = db.odlewnia_tagi.ToList();
+
+                for (int i = 0; i < foundryList.Count; i++)
+                {
+                    words2.Clear();
+                    for (int j = 0; j < tags.Count; j++)
+                    {
+                        if (foundryList[i].id_odlewni == tags[j].id_odlewni)
+                        {
+                            words2.Add(tags[j].Slowa_kluczowe.nazwa);
+                        }
+                    }
+                    foundryTags.Add(new PairDataTemplate<int, List<string>>(foundryList[i].id_odlewni, new List<string>(words2)));
+                }
+
+                OdlewniaListWrapper viewModel = new OdlewniaListWrapper
+                {
+                    foundries = foundryList.OrderBy(p => p.id_odlewni).Skip((page - 1) * pageSize).Take(pageSize),
+                    pagingInfo = new PagingInfo
+                    {
+                        currentPage = page,
+                        itemsPerPage = pageSize,
+                        totalItems = foundryList.Count()
+                    },
+                    keyWords = foundryTags
+                };
+
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         //
