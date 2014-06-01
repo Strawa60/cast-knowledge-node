@@ -12,7 +12,7 @@ namespace SyrinxMvc.DbSaveData
     {
         private static CastKnowledgeEntities db = new CastKnowledgeEntities();
 
-        public static void InsertContractorDataFromExcel(string file)
+        public static string InsertContractorDataFromExcel(string file)
         {
             List<PairDataTemplate<Dostawca, List<string>>> dataFromExcel = new List<PairDataTemplate<Dostawca, List<string>>>();
             dataFromExcel = SyrinxMvc.DbSaveData.ExcelParser.ParseContractorData(file);
@@ -32,6 +32,7 @@ namespace SyrinxMvc.DbSaveData
                 catch (Exception e)
                 {
                     e.Message.ToString();
+                    return dataFromExcel[i].t1.nazwa.ToString();      
                 }
 
                 for (int j = 0; j < dataFromExcel[i].t2.Count; j++)
@@ -49,6 +50,7 @@ namespace SyrinxMvc.DbSaveData
                     catch (Exception e)
                     {
                         e.Message.ToString();
+                        return dataFromExcel[i].t1.nazwa.ToString();
                     }
 
                 }
@@ -72,8 +74,8 @@ namespace SyrinxMvc.DbSaveData
                     e.Message.ToString();
                 }
             }
-            
 
+            return null;
         }
 
         public static void InsertContractorDataFromForm(SyrinxMvc.Models.DostawcaWrapper contractorDataFromForm)
@@ -84,13 +86,12 @@ namespace SyrinxMvc.DbSaveData
             Slowa_kluczowe keyWord = new Slowa_kluczowe();
             int one = 0, two = 0;
 
-
-
             try
             {
                 db.dostawca.Add(contractorDataFromForm.contractors);
                 db.SaveChanges();
                 one = contractorDataFromForm.contractors.id_firmy;
+                
             }
             catch (Exception e)
             {
@@ -139,6 +140,8 @@ namespace SyrinxMvc.DbSaveData
 
 
         }
+
+
 
     }
 }

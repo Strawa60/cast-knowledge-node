@@ -25,6 +25,7 @@ namespace SyrinxMvc.Controllers
         [HttpPost]
         public ActionResult Import(HttpPostedFileBase file)
         {
+            string idFailed=null;
             try
             {
                 if (Request.Files["file"].ContentLength > 0)
@@ -41,16 +42,22 @@ namespace SyrinxMvc.Controllers
                         }
                         Request.Files["file"].SaveAs(fileLocation);
 
-                        DbSaveData.InsertDataToDB.InsertContractorDataFromExcel(fileLocation);
+                        idFailed=DbSaveData.InsertDataToDB.InsertContractorDataFromExcel(fileLocation);
                         System.IO.File.Delete(fileLocation);
                     }
                 }
-
-                return View("Consume");
+                if (idFailed == null)
+                {
+                    return View("Consume");
+                }
+                else
+                {
+                    return View("ConsumeFailed",null, idFailed);
+                }
             }
             catch (Exception)
             {
-                return View("ConsumeFailed");
+                return View("ConsumeFailed",idFailed);
             }
         }
 
