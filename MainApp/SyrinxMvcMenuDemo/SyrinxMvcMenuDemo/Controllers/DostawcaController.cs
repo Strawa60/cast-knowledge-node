@@ -15,7 +15,7 @@ namespace SyrinxMvc.Controllers
     public class DostawcaController : Controller
     {
         private CastKnowledgeEntities db = new CastKnowledgeEntities();
-        public int pageSize = 10;
+        public int pageSize = 50;
         //
         // GET: /Dostawca/
 

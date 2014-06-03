@@ -14,7 +14,7 @@ namespace SyrinxMvc.Controllers
     public class OdlewniaController : Controller
     {
         private CastKnowledgeEntities db = new CastKnowledgeEntities();
-        public int pageSize = 10;
+        public int pageSize = 50;
 
         //
         // GET: /Odlewnia/

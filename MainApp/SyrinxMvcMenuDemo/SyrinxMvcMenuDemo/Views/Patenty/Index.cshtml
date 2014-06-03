@@ -1,99 +1,47 @@
-﻿@model IEnumerable<CastKnowledgeWebApp.Domain.Patenty>
+﻿@model SyrinxMvc.Models.PatentyListWrapper
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Patenty";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id_patentu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.numer_wynalazku)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.data_rozpoczecia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.data_zakonczenia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.data_zgloszenia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.symbol_patentowy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tytul_polski)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tytul_angielski)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.opis_polski)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.opis_angielski)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.osrodek_opracowujacy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.url)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_patentu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.numer_wynalazku)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.data_rozpoczecia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.data_zakonczenia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.data_zgloszenia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.symbol_patentowy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tytul_polski)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tytul_angielski)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.opis_polski)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.opis_angielski)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.osrodek_opracowujacy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.url)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <p>
+                Baza grantów, patentów i innowacji
+            </p>
+        </div>
+    </section>
 }
 
-</table>
+<p>@Html.ActionLink("+ Dodaj", "Create")</p>
+<p>@Html.ActionLink("+ Dodaj z xls", "Import","Import",new { _viewName = "Patenty"},null)</p>
+
+@foreach (var item in Model.patents) {
+    <p>
+            @Html.Partial("PatentyPartial", item)
+            <p><b>Tagi:</b> 
+            @for(int i=0;i<Model.keyWords.Count;i++)
+            {
+                if (item.id_patentu == Model.keyWords[i].t1)
+                {
+                    foreach(var q in Model.keyWords[i].t2)
+                    {
+                     @q <text>|</text>   
+                    }
+                }
+            }
+                </p>
+        <br />
+            @Html.ActionLink("Edytuj", "Edit", new {  id=item.id_patentu  }) |
+            @Html.ActionLink("Szczegóły", "Details", new {  id=item.id_patentu  }) |
+            @Html.ActionLink("Usuń", "Delete", new {  id=item.id_patentu  })
+    </p>
+}
+
+<div class="pager">
+    @Html.PageLinks(Model.pagingInfo, x=> Url.Action("Index", new {page = x}))
+</div>

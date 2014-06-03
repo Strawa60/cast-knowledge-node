@@ -190,12 +190,13 @@
             <PropertyRef Name="id_publikacji" />
           </Key>
           <Property Name="id_publikacji" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nr_publikacji" Type="char" MaxLength="100" />
           <Property Name="rok_publikacji" Type="char" MaxLength="20" />
           <Property Name="tytul_polski" Type="text" />
           <Property Name="tytul_zagraniczny" Type="text" />
           <Property Name="streszczenie_pol" Type="text" />
           <Property Name="streszczenie_ang" Type="text" />
-          <Property Name="zrodlo_publikacji" Type="char" MaxLength="150" />
+          <Property Name="zrodlo_publikacji" Type="text" />
         </EntityType>
         <EntityType Name="publikacje_tagi">
           <Key>
@@ -560,6 +561,7 @@
           <NavigationProperty Name="Patenty_publikacja" Relationship="CastKnowledgeModel.publikacja_na_temat" FromRole="publikacje" ToRole="patenty_publikacja" />
           <NavigationProperty Name="Publikacja_autor" Relationship="CastKnowledgeModel.publikacja_autor_ibfk_1" FromRole="publikacje" ToRole="publikacja_autor" />
           <NavigationProperty Name="Publikacje_tagi" Relationship="CastKnowledgeModel.publikacje_tagi_ibfk_1" FromRole="publikacje" ToRole="publikacje_tagi" />
+          <Property Type="String" Name="nr_publikacji" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Publikacje_tagi">
           <Key>
@@ -880,6 +882,7 @@
           <EntitySetMapping Name="publikacje">
             <EntityTypeMapping TypeName="CastKnowledgeModel.Publikacje">
               <MappingFragment StoreEntitySet="publikacje">
+                <ScalarProperty Name="nr_publikacji" ColumnName="nr_publikacji" />
                 <ScalarProperty Name="id_publikacji" ColumnName="id_publikacji" />
                 <ScalarProperty Name="rok_publikacji" ColumnName="rok_publikacji" />
                 <ScalarProperty Name="tytul_polski" ColumnName="tytul_polski" />

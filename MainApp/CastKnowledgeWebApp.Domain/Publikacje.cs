@@ -28,6 +28,7 @@ namespace CastKnowledgeWebApp.Domain
         public string streszczenie_pol { get; set; }
         public string streszczenie_ang { get; set; }
         public string zrodlo_publikacji { get; set; }
+        public string nr_publikacji { get; set; }
     
         public virtual ICollection<Patenty_publikacja> Patenty_publikacja { get; set; }
         public virtual ICollection<Publikacja_autor> Publikacja_autor { get; set; }

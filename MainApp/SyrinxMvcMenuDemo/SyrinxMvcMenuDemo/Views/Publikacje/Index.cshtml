@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CastKnowledgeWebApp.Domain.Publikacje>
+﻿@model SyrinxMvc.Models.PublikacjeListWrapper
 
 @{
     ViewBag.Title = "Publikacje";
@@ -20,33 +20,28 @@
 <p>@Html.ActionLink("+ Dodaj", "Create")</p>
 <p>@Html.ActionLink("+ Dodaj z xls", "Import","Import",new { _viewName = "Publikacje"},null)</p>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_publikacji)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.rok_publikacji)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tytul_polski)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tytul_zagraniczny)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.streszczenie_pol)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.streszczenie_ang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.zrodlo_publikacji)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+@foreach (var item in Model.publications) {
+    <p>
+            @Html.Partial("PublikacjePartial", item)
+            <p><b>Tagi:</b> 
+            @for(int i=0;i<Model.keyWords.Count;i++)
+            {
+                if(item.id_publikacji == Model.keyWords[i].t1)
+                {
+                    foreach(var q in Model.keyWords[i].t2)
+                    {
+                     @q <text>|</text>   
+                    }
+                }
+            }
+                </p>
+        <br />
+            @Html.ActionLink("Edytuj", "Edit", new {  id=item.id_publikacji  }) |
+            @Html.ActionLink("Szczegóły", "Details", new {  id=item.id_publikacji  }) |
+            @Html.ActionLink("Usuń", "Delete", new {  id=item.id_publikacji  })
+    </p>
 }
+
+<div class="pager">
+    @Html.PageLinks(Model.pagingInfo, x=> Url.Action("Index", new {page = x}))
+</div>

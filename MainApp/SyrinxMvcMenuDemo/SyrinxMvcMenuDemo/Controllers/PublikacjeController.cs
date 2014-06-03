@@ -6,19 +6,64 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CastKnowledgeWebApp.Domain;
+using CastKnowledgeWebApp.Domain.MultiTableDependency;
+using SyrinxMvc.Models;
 
 namespace SyrinxMvc.Controllers
 {
     public class PublikacjeController : Controller
     {
         private CastKnowledgeEntities db = new CastKnowledgeEntities();
-
+        public int pageSize = 50;
         //
         // GET: /Publikacje/
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            return View(db.publikacje.ToList());
+            List<Publikacje> publicationsList = new List<Publikacje>();
+            List<Publikacje_tagi> tags = new List<Publikacje_tagi>();
+            List<PairDataTemplate<int, List<string>>> publicationsTags = new List<PairDataTemplate<int, List<string>>>();
+            List<string> words2 = new List<string>();
+            publicationsList.Clear();
+            tags.Clear();
+            publicationsTags.Clear();
+
+            try
+            {
+                publicationsList = db.publikacje.ToList();
+                tags = db.publikacje_tagi.ToList();
+
+                for (int i = 0; i < publicationsList.Count; i++)
+                {
+                    words2.Clear();
+                    for (int j = 0; j < tags.Count; j++)
+                    {
+                        if (publicationsList[i].id_publikacji == tags[j].id_publikacji)
+                        {
+                            words2.Add(tags[j].Slowa_kluczowe.nazwa);
+                        }
+                    }
+                    publicationsTags.Add(new PairDataTemplate<int, List<string>>(publicationsList[i].id_publikacji, new List<string>(words2)));
+                }
+
+                PublikacjeListWrapper viewModel = new PublikacjeListWrapper
+                {
+                    publications = publicationsList.OrderBy(p => p.id_publikacji).Skip((page - 1) * pageSize).Take(pageSize),
+                    pagingInfo = new PagingInfo
+                    {
+                        currentPage = page,
+                        itemsPerPage = pageSize,
+                        totalItems = publicationsList.Count()
+                    },
+                    keyWords = publicationsTags
+                };
+
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         //

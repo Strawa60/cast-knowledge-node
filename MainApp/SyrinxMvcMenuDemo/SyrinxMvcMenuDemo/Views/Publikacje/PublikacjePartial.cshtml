@@ -1,0 +1,36 @@
+﻿@model CastKnowledgeWebApp.Domain.Publikacje
+
+<div class="item">
+    <h3>Tytuł polski: @Model.tytul_polski</h3><br />
+
+    @if(Model.nr_publikacji != null)
+    {
+       <b>Numer publikacji:</b> @Model.nr_publikacji<br><br>
+    }
+    
+    @if(Model.rok_publikacji != null)
+    {
+    <b>Data:</b> @Model.rok_publikacji<br><br>
+    }
+
+    @if(Model.tytul_zagraniczny != null)
+    {
+        <p>Tytuł zagraniczny: @Model.tytul_zagraniczny</p><br>
+    }
+    
+    @if(Model.streszczenie_pol != null)
+    {
+        @Model.streszczenie_pol<br><br>
+    }
+    
+    @if(Model.streszczenie_ang != null)
+    {
+        @Model.streszczenie_ang<br><br>
+    }
+    
+    @if(Model.zrodlo_publikacji != null)
+    {
+        <b>@Model.zrodlo_publikacji</b><br>
+    }
+
+</div>

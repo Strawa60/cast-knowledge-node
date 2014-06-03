@@ -6,19 +6,64 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CastKnowledgeWebApp.Domain;
+using CastKnowledgeWebApp.Domain.MultiTableDependency;
+using SyrinxMvc.Models;
 
 namespace SyrinxMvc.Controllers
 {
     public class PatentyController : Controller
     {
         private CastKnowledgeEntities db = new CastKnowledgeEntities();
-
+        public int pageSize = 50;
         //
         // GET: /Patenty/
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            return View(db.patenty.ToList());
+            List<Patenty> patentsList = new List<Patenty>();
+            List<Patenty_tagi> tags = new List<Patenty_tagi>();
+            List<PairDataTemplate<int, List<string>>> patentsTags = new List<PairDataTemplate<int, List<string>>>();
+            List<string> words2 = new List<string>();
+            patentsList.Clear();
+            tags.Clear();
+            patentsTags.Clear();
+
+            try
+            {
+                patentsList = db.patenty.ToList();
+                tags = db.patenty_tagi.ToList();
+
+                for (int i = 0; i < patentsList.Count; i++)
+                {
+                    words2.Clear();
+                    for (int j = 0; j < tags.Count; j++)
+                    {
+                        if (patentsList[i].id_patentu == tags[j].id_patentu)
+                        {
+                            words2.Add(tags[j].Slowa_kluczowe.nazwa);
+                        }
+                    }
+                    patentsTags.Add(new PairDataTemplate<int, List<string>>(patentsList[i].id_patentu, new List<string>(words2)));
+                }
+
+                PatentyListWrapper viewModel = new PatentyListWrapper
+                {
+                    patents = patentsList.OrderBy(p => p.id_patentu).Skip((page - 1) * pageSize).Take(pageSize),
+                    pagingInfo = new PagingInfo
+                    {
+                        currentPage = page,
+                        itemsPerPage = pageSize,
+                        totalItems = patentsList.Count()
+                    },
+                    keyWords = patentsTags
+                };
+
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         //

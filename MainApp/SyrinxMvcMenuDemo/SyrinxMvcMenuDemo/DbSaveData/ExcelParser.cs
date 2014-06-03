@@ -59,7 +59,7 @@ namespace SyrinxMvc.DbSaveData
             {
                 InitializeExcel(file);
                 contractorList.Clear();
-                contractorList = ReadContractorData(mySheet.Name);
+                contractorList = ReadContractorData();
 
             }
             finally
@@ -78,7 +78,7 @@ namespace SyrinxMvc.DbSaveData
             {
                 InitializeExcel(file);
                 foundryList.Clear();
-                foundryList = ReadFoundryData(mySheet.Name);
+                foundryList = ReadFoundryData();
 
             }
             finally
@@ -91,7 +91,51 @@ namespace SyrinxMvc.DbSaveData
 
         }
 
-        private static List<PairDataTemplate<Odlewnia, List<string>>> ReadFoundryData(string dataType)
+        public static List<PairDataTemplate<Publikacje, List<string>>> ParsePublicationData(string file)
+        {
+            List<PairDataTemplate<Publikacje, List<string>>> publicationList = new List<PairDataTemplate<Publikacje, List<string>>>();
+            try
+            {
+                InitializeExcel(file);
+                publicationList.Clear();
+                publicationList = ReadPublicationData();
+
+            }
+            finally
+            {
+
+                CloseExcel();
+            }
+            return publicationList;
+
+
+        }
+
+        private static List<PairDataTemplate<Publikacje, List<string>>> ReadPublicationData()
+        {
+            //posiada publikacje i liste slow kluczowych
+            List<PairDataTemplate<Publikacje, List<string>>> publicationList = new List<PairDataTemplate<Publikacje, List<string>>>();
+
+
+            for (int index = 2; index <= lastRow; index++)
+            {
+                Publikacje publicationData = new Publikacje();
+                List<string> publicationKeyWords = new List<string>();
+
+                System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "H" + index.ToString()).Cells.Value;
+                if (myValues.GetValue(1, 8) != null)
+                {
+                    publicationKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 8).ToString());
+                }
+
+                publicationList.Add(new PairDataTemplate<Publikacje, List<string>>(ValidatePublicationData(myValues, publicationData), publicationKeyWords));
+
+            }
+            return publicationList;
+
+        }
+
+        private static List<PairDataTemplate<Odlewnia, List<string>>> ReadFoundryData()
         {
             //posiada dostawce i liste slow kluczowych
             List<PairDataTemplate<Odlewnia, List<string>>> foundryList = new List<PairDataTemplate<Odlewnia, List<string>>>();
@@ -115,7 +159,7 @@ namespace SyrinxMvc.DbSaveData
 
         }
 
-        private static List<PairDataTemplate<Dostawca, List<string>>> ReadContractorData(string dataType)
+        private static List<PairDataTemplate<Dostawca, List<string>>> ReadContractorData()
         {
             //posiada dostawce i liste slow kluczowych
             List<PairDataTemplate<Dostawca, List<string>>> moContractorList = new List<PairDataTemplate<Dostawca, List<string>>>();
@@ -124,36 +168,10 @@ namespace SyrinxMvc.DbSaveData
             {
                 Dostawca ContracorData = new Dostawca();
 
-                System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "L" + index.ToString()).Cells.Value;
-                List<string> moKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 12).ToString());
+                System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "M" + index.ToString()).Cells.Value;
+                List<string> moKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 13).ToString());
 
-                switch (dataType)
-                {
-                    case "Materiały Ogniotrwałe":
-                        {
-                            ContracorData.typ_firmy = "Materiały Ogniotrwałe";
-                            break;
-                        }
-                    case "Materiały Wsadowe":
-                        {
-                            ContracorData.typ_firmy = "Materiały Wsadowe";
-                            break;
-                        }
-                    case "Dostawcy Odlewnictwo":
-                        {
-                            ContracorData.typ_firmy = "Dostawcy Odlewnictwo";
-                            break;
-                        }
-                    case "Dostawcy Inni":
-                        {
-                            ContracorData.typ_firmy = "Inne";
-                            break;
-                        }
-                    default:
-                        {
-                            break;
-                        }
-                }
+
                 
                 moContractorList.Add(new PairDataTemplate<Dostawca, List<string>>(ValidateContractorData(myValues, ContracorData), moKeyWords));
 
@@ -185,7 +203,8 @@ namespace SyrinxMvc.DbSaveData
                 validateContracorData.prezes = myValues.GetValue(1, 10).ToString();
             if (myValues.GetValue(1, 11) != null)
                 validateContracorData.zasoby = myValues.GetValue(1, 11).ToString();
-            //validateContracorData.typ_firmy = "Materiały Ogniotrwałe";
+            if (myValues.GetValue(1, 12) != null)
+                validateContracorData.typ_firmy = myValues.GetValue(1, 12).ToString();
             return validateContracorData;
         }
 
@@ -212,6 +231,27 @@ namespace SyrinxMvc.DbSaveData
             if (myValues.GetValue(1, 10) != null)
                 validateFoundryData.nazwa_tworzywa = myValues.GetValue(1, 10).ToString();
 
+
+            return validateFoundryData;
+        }
+
+        private static Publikacje ValidatePublicationData(System.Array myValues, Publikacje validateFoundryData)
+        {
+
+            if (myValues.GetValue(1, 1) != null)
+                validateFoundryData.nr_publikacji = myValues.GetValue(1, 1).ToString();
+            if (myValues.GetValue(1, 2) != null)
+                validateFoundryData.rok_publikacji = myValues.GetValue(1, 2).ToString();
+            if (myValues.GetValue(1, 3) != null)
+                validateFoundryData.tytul_polski = myValues.GetValue(1, 3).ToString();
+            if (myValues.GetValue(1, 4) != null)
+                validateFoundryData.tytul_zagraniczny = myValues.GetValue(1, 4).ToString();
+            if (myValues.GetValue(1, 5) != null)
+                validateFoundryData.streszczenie_pol = myValues.GetValue(1, 5).ToString();
+            if (myValues.GetValue(1, 6) != null)
+                validateFoundryData.streszczenie_ang = myValues.GetValue(1, 6).ToString();
+            if (myValues.GetValue(1, 7) != null)
+                validateFoundryData.zrodlo_publikacji = myValues.GetValue(1, 7).ToString();
 
             return validateFoundryData;
         }
