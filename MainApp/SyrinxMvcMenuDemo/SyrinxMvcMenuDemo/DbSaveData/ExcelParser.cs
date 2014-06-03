@@ -17,10 +17,6 @@ namespace SyrinxMvc.DbSaveData
         private static Excel.Worksheet mySheet = null;
         private static int lastRow = 0;
 
-        //private static List<PairDataTemplate<Dostawca, List<string>>> contractorList = new List<PairDataTemplate<Dostawca, List<string>>>();
-        //private static List<PairDataTemplate<Odlewnia, List<string>>> foundryList = new List<PairDataTemplate<Odlewnia, List<string>>>();
-
-
         private static void InitializeExcel(string file)
         {
             try
@@ -111,6 +107,57 @@ namespace SyrinxMvc.DbSaveData
 
         }
 
+        public static List<PairDataTemplate<Patenty, List<string>>> ParsePatentData(string file)
+        {
+            List<PairDataTemplate<Patenty, List<string>>> patentsList = new List<PairDataTemplate<Patenty, List<string>>>();
+            try
+            {
+                InitializeExcel(file);
+                patentsList.Clear();
+                patentsList = ReadPatentData();
+
+            }
+            finally
+            {
+
+                CloseExcel();
+            }
+            return patentsList;
+
+
+        }
+
+        private static List<PairDataTemplate<Patenty, List<string>>> ReadPatentData()
+        {
+            //posiada patenty i liste slow kluczowych
+            List<PairDataTemplate<Patenty, List<string>>> patentList = new List<PairDataTemplate<Patenty, List<string>>>();
+
+
+            for (int index = 2; index <= lastRow; index++)
+            {
+                try
+                {
+                    Patenty patentData = new Patenty();
+                    List<string> patentKeyWords = new List<string>();
+
+                    System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "L" + index.ToString()).Cells.Value;
+                    if (myValues.GetValue(1, 12) != null)
+                    {
+                        patentKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 12).ToString());
+                    }
+
+                    patentList.Add(new PairDataTemplate<Patenty, List<string>>(ValidatePatentData(myValues, patentData), patentKeyWords));
+                }
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                    index.ToString();
+                }
+            }
+            return patentList;
+
+        }
+
         private static List<PairDataTemplate<Publikacje, List<string>>> ReadPublicationData()
         {
             //posiada publikacje i liste slow kluczowych
@@ -119,17 +166,24 @@ namespace SyrinxMvc.DbSaveData
 
             for (int index = 2; index <= lastRow; index++)
             {
-                Publikacje publicationData = new Publikacje();
-                List<string> publicationKeyWords = new List<string>();
-
-                System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "H" + index.ToString()).Cells.Value;
-                if (myValues.GetValue(1, 8) != null)
+                try
                 {
-                    publicationKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 8).ToString());
+                    Publikacje publicationData = new Publikacje();
+                    List<string> publicationKeyWords = new List<string>();
+
+                    System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "H" + index.ToString()).Cells.Value;
+                    if (myValues.GetValue(1, 8) != null)
+                    {
+                        publicationKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 8).ToString());
+                    }
+
+                    publicationList.Add(new PairDataTemplate<Publikacje, List<string>>(ValidatePublicationData(myValues, publicationData), publicationKeyWords));
                 }
-
-                publicationList.Add(new PairDataTemplate<Publikacje, List<string>>(ValidatePublicationData(myValues, publicationData), publicationKeyWords));
-
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                    index.ToString();
+                }
             }
             return publicationList;
 
@@ -139,21 +193,28 @@ namespace SyrinxMvc.DbSaveData
         {
             //posiada dostawce i liste slow kluczowych
             List<PairDataTemplate<Odlewnia, List<string>>> foundryList = new List<PairDataTemplate<Odlewnia, List<string>>>();
-            
+
 
             for (int index = 2; index <= lastRow; index++)
             {
-                Odlewnia foundryData = new Odlewnia();
-                List<string> foundryKeyWords = new List<string>();
-
-                System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "K" + index.ToString()).Cells.Value;
-                if (myValues.GetValue(1, 11) != null)
+                try
                 {
-                    foundryKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 11).ToString());
+                    Odlewnia foundryData = new Odlewnia();
+                    List<string> foundryKeyWords = new List<string>();
+
+                    System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "K" + index.ToString()).Cells.Value;
+                    if (myValues.GetValue(1, 11) != null)
+                    {
+                        foundryKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 11).ToString());
+                    }
+
+                    foundryList.Add(new PairDataTemplate<Odlewnia, List<string>>(ValidateFoundryData(myValues, foundryData), foundryKeyWords));
                 }
-
-                foundryList.Add(new PairDataTemplate<Odlewnia, List<string>>(ValidateFoundryData(myValues, foundryData), foundryKeyWords));
-
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                    index.ToString();
+                }
             }
             return foundryList;
 
@@ -166,14 +227,22 @@ namespace SyrinxMvc.DbSaveData
 
             for (int index = 2; index <= lastRow; index++)
             {
-                Dostawca ContracorData = new Dostawca();
+                try
+                {
+                    Dostawca ContracorData = new Dostawca();
 
-                System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "M" + index.ToString()).Cells.Value;
-                List<string> moKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 13).ToString());
+                    System.Array myValues = (System.Array)mySheet.get_Range("A" + index.ToString(), "M" + index.ToString()).Cells.Value;
+                    List<string> moKeyWords = Helpers.Contener.SeparateKeyWords(myValues.GetValue(1, 13).ToString());
 
 
-                
-                moContractorList.Add(new PairDataTemplate<Dostawca, List<string>>(ValidateContractorData(myValues, ContracorData), moKeyWords));
+
+                    moContractorList.Add(new PairDataTemplate<Dostawca, List<string>>(ValidateContractorData(myValues, ContracorData), moKeyWords));
+                }
+                catch(Exception e)
+                {
+                    e.Message.ToString();
+                    index.ToString();
+                }
 
             }
             return moContractorList;
@@ -235,25 +304,54 @@ namespace SyrinxMvc.DbSaveData
             return validateFoundryData;
         }
 
-        private static Publikacje ValidatePublicationData(System.Array myValues, Publikacje validateFoundryData)
+        private static Publikacje ValidatePublicationData(System.Array myValues, Publikacje validatePublicationData)
         {
 
             if (myValues.GetValue(1, 1) != null)
-                validateFoundryData.nr_publikacji = myValues.GetValue(1, 1).ToString();
+                validatePublicationData.nr_publikacji = myValues.GetValue(1, 1).ToString();
             if (myValues.GetValue(1, 2) != null)
-                validateFoundryData.rok_publikacji = myValues.GetValue(1, 2).ToString();
+                validatePublicationData.rok_publikacji = myValues.GetValue(1, 2).ToString();
             if (myValues.GetValue(1, 3) != null)
-                validateFoundryData.tytul_polski = myValues.GetValue(1, 3).ToString();
+                validatePublicationData.tytul_polski = myValues.GetValue(1, 3).ToString();
             if (myValues.GetValue(1, 4) != null)
-                validateFoundryData.tytul_zagraniczny = myValues.GetValue(1, 4).ToString();
+                validatePublicationData.tytul_zagraniczny = myValues.GetValue(1, 4).ToString();
             if (myValues.GetValue(1, 5) != null)
-                validateFoundryData.streszczenie_pol = myValues.GetValue(1, 5).ToString();
+                validatePublicationData.streszczenie_pol = myValues.GetValue(1, 5).ToString();
             if (myValues.GetValue(1, 6) != null)
-                validateFoundryData.streszczenie_ang = myValues.GetValue(1, 6).ToString();
+                validatePublicationData.streszczenie_ang = myValues.GetValue(1, 6).ToString();
             if (myValues.GetValue(1, 7) != null)
-                validateFoundryData.zrodlo_publikacji = myValues.GetValue(1, 7).ToString();
+                validatePublicationData.zrodlo_publikacji = myValues.GetValue(1, 7).ToString();
 
-            return validateFoundryData;
+            return validatePublicationData;
+        }
+
+        private static Patenty ValidatePatentData(System.Array myValues, Patenty validatePatentData)
+        {
+
+            if (myValues.GetValue(1, 1) != null)
+                validatePatentData.numer_wynalazku = myValues.GetValue(1, 1).ToString();
+            if (myValues.GetValue(1, 2) != null)
+                validatePatentData.data_rozpoczecia = myValues.GetValue(1, 2).ToString();
+            if (myValues.GetValue(1, 3) != null)
+                validatePatentData.data_zakonczenia = myValues.GetValue(1, 3).ToString();
+            if (myValues.GetValue(1, 4) != null)
+                validatePatentData.data_zgloszenia = myValues.GetValue(1, 4).ToString();
+            if (myValues.GetValue(1, 5) != null)
+                validatePatentData.symbol_patentowy = myValues.GetValue(1, 5).ToString();
+            if (myValues.GetValue(1, 6) != null)
+                validatePatentData.tytul_polski = myValues.GetValue(1, 6).ToString();
+            if (myValues.GetValue(1, 7) != null)
+                validatePatentData.tytul_angielski = myValues.GetValue(1, 7).ToString();
+            if (myValues.GetValue(1, 8) != null)
+                validatePatentData.opis_polski= myValues.GetValue(1, 8).ToString();
+            if (myValues.GetValue(1, 9) != null)
+                validatePatentData.opis_angielski = myValues.GetValue(1, 9).ToString();
+            if (myValues.GetValue(1, 10) != null)
+                validatePatentData.osrodek_opracowujacy = myValues.GetValue(1, 10).ToString();
+            if (myValues.GetValue(1, 11) != null)
+                validatePatentData.url = myValues.GetValue(1, 11).ToString();
+
+            return validatePatentData;
         }
 
     }

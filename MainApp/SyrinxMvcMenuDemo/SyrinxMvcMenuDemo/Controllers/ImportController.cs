@@ -55,6 +55,10 @@ namespace SyrinxMvc.Controllers
                         {
                             idFailed = DbSaveData.InsertDataToDB.InsertPublicationDataFromExcel(fileLocation);
                         }
+                        else if (viewName == "Patenty")
+                        {
+                            idFailed = DbSaveData.InsertDataToDB.InsertPatentsDataFromExcel(fileLocation);
+                        }
                         else
                         {
                             idFailed = "ErrorOpenFile";
