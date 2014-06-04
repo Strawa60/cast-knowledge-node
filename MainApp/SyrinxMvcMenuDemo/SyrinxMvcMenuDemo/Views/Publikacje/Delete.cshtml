@@ -1,68 +1,17 @@
 ﻿@model CastKnowledgeWebApp.Domain.Publikacje
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Usuń";
 }
 
-<h2>Delete</h2>
+<h2>Usuń @Model.tytul_polski ?</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Publikacje</legend>
+<h3>Czy jesteś pewien?</h3>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.id_publikacji)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.id_publikacji)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.rok_publikacji)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.rok_publikacji)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.tytul_polski)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.tytul_polski)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.tytul_zagraniczny)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.tytul_zagraniczny)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.streszczenie_pol)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.streszczenie_pol)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.streszczenie_ang)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.streszczenie_ang)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.zrodlo_publikacji)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.zrodlo_publikacji)
-    </div>
-</fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Usuń" /> |
+        @Html.ActionLink("Cofnij do listy", "Index")
     </p>
 }

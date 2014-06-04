@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using CastKnowledgeWebApp.Domain.MultiTableDependency;
 using CastKnowledgeWebApp.Domain;
 
 namespace SyrinxMvc.Models
 {
-    public class PublikacjeWrapper
+    public class OdlewniaWrapper
     {
-        public Publikacje publications { get; set; }
+        public Odlewnia foundries { get; set; }
         public string keyWords { get; set; }
     }
 }

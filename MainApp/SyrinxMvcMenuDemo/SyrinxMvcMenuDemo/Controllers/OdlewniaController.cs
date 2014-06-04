@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using CastKnowledgeWebApp.Domain;
 using CastKnowledgeWebApp.Domain.MultiTableDependency;
 using SyrinxMvc.Models;
+using System.Text;
 
 namespace SyrinxMvc.Controllers
 {
@@ -72,12 +73,29 @@ namespace SyrinxMvc.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Odlewnia odlewnia = db.odlewnia.Find(id);
-            if (odlewnia == null)
+            Odlewnia foundry = db.odlewnia.Find(id);
+            OdlewniaWrapper fw = new OdlewniaWrapper();
+            List<Odlewnia_tagi> keywordsDetails = db.odlewnia_tagi.ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            fw.foundries = foundry;
+
+            for (int i = 0; i < keywordsDetails.Count; i++)
+            {
+                if (foundry.id_odlewni == keywordsDetails[i].id_odlewni)
+                {
+                    sb.Append(keywordsDetails[i].Slowa_kluczowe.nazwa).Append("; ");
+                }
+            }
+
+            fw.keyWords = sb.ToString();
+
+            if (foundry == null)
             {
                 return HttpNotFound();
             }
-            return View(odlewnia);
+            return View(fw);
         }
 
         //
@@ -93,16 +111,15 @@ namespace SyrinxMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Odlewnia odlewnia)
+        public ActionResult Create(OdlewniaWrapper fw)
         {
             if (ModelState.IsValid)
             {
-                db.odlewnia.Add(odlewnia);
-                db.SaveChanges();
+                DbSaveData.InsertDataToDB.InsertFoundryDataFromForm(fw);
                 return RedirectToAction("Index");
             }
 
-            return View(odlewnia);
+            return View(fw);
         }
 
         //
@@ -110,12 +127,31 @@ namespace SyrinxMvc.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Odlewnia odlewnia = db.odlewnia.Find(id);
-            if (odlewnia == null)
+            Odlewnia foundry = db.odlewnia.Find(id);
+            OdlewniaWrapper fw = new OdlewniaWrapper();
+            List<Odlewnia_tagi> keywordsEdit = new List<Odlewnia_tagi>();
+
+            StringBuilder sb = new StringBuilder();
+
+            keywordsEdit = db.odlewnia_tagi.ToList();
+
+            fw.foundries = foundry;
+
+            for (int i = 0; i < keywordsEdit.Count; i++)
+            {
+                if (foundry.id_odlewni == keywordsEdit[i].id_odlewni)
+                {
+                    sb.Append(keywordsEdit[i].Slowa_kluczowe.nazwa).Append("; ");
+                }
+            }
+
+            fw.keyWords = sb.ToString();
+
+            if (foundry == null)
             {
                 return HttpNotFound();
             }
-            return View(odlewnia);
+            return View(fw);
         }
 
         //
@@ -123,15 +159,109 @@ namespace SyrinxMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Odlewnia odlewnia)
+        public ActionResult Edit(OdlewniaWrapper fw)
         {
+            Odlewnia foundry = fw.foundries;
+
+            List<Odlewnia_tagi> temp = new List<Odlewnia_tagi>();
+            temp = db.odlewnia_tagi.ToList();
+            List<Slowa_kluczowe> temp2 = new List<Slowa_kluczowe>();
+            List<string> temp3 = Helpers.Contener.SeparateKeyWords(fw.keyWords);
+            List<Slowa_kluczowe> doDodania = new List<Slowa_kluczowe>();
+            List<Slowa_kluczowe> doUsuniecia = new List<Slowa_kluczowe>();
+
+            /////////////////przygotowanie listy tagow do edycji
+            for (int i = 0; i < temp.Count; i++)
+            {
+                if (foundry.id_odlewni == temp[i].id_odlewni)
+                {
+                    temp2.Add(temp[i].Slowa_kluczowe);
+                }
+            }
+
+
+            for (int i = 0; i < temp3.Count; i++)
+            {
+                for (int j = 0; j < temp2.Count; j++)
+                {
+                    if (temp3[i] != null && temp2[j] != null)
+                    {
+                        if (temp3[i] == temp2[j].nazwa)
+                        {
+                            temp3[i] = null;
+                            temp2[j] = null;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < temp3.Count; i++)
+            {
+                if (temp3[i] != null)
+                {
+                    doDodania.Add(new Slowa_kluczowe { nazwa = temp3[i] });
+                }
+            }
+            for (int i = 0; i < temp2.Count; i++)
+            {
+                if (temp2[i] != null)
+                {
+                    doUsuniecia.Add(temp2[i]);
+                }
+            }
+
+            //////////////////////////////////////////////////////////////
+            Slowa_kluczowe tempolary = new Slowa_kluczowe();
+            int id = 0;
+
             if (ModelState.IsValid)
             {
-                db.Entry(odlewnia).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.Entry(foundry).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return View("Error");
+                }
+
+                if (doUsuniecia.Count > 0)
+                {
+                    foreach (var q in doUsuniecia)
+                    {
+                        for (int i = 0; i < temp.Count; i++)
+                        {
+                            if (temp[i].Slowa_kluczowe == q)
+                            {
+                                db.odlewnia_tagi.Remove(temp[i]);
+                            }
+                        }
+                        db.slowa_kluczowe.Remove(q);
+                    }
+                    db.SaveChanges();
+                }
+                if (doDodania.Count > 0)
+                {
+                    try
+                    {
+                        foreach (var q in doDodania)
+                        {
+                            db.slowa_kluczowe.Add(q);
+                            id = q.id_deskryptora;
+                            db.odlewnia_tagi.Add(new Odlewnia_tagi { id_odlewni = foundry.id_odlewni, id_deskryptora = id });
+                        }
+                        db.SaveChanges();
+                    }
+                    catch (Exception)
+                    {
+                        return View("Error");
+                    }
+                }
+
                 return RedirectToAction("Index");
             }
-            return View(odlewnia);
+            return View(fw);
         }
 
         //
@@ -154,8 +284,16 @@ namespace SyrinxMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Odlewnia odlewnia = db.odlewnia.Find(id);
-            db.odlewnia.Remove(odlewnia);
+            var result = db.Set<Odlewnia_tagi>().Where(x => x.id_odlewni == id).ToList();
+
+            foreach (var item in result)
+            {
+                db.slowa_kluczowe.Remove(item.Slowa_kluczowe);
+                db.odlewnia_tagi.Remove(item);
+            }
+
+            Odlewnia foundry = db.odlewnia.Find(id);
+            db.odlewnia.Remove(foundry);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

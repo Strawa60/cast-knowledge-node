@@ -1,10 +1,10 @@
 ﻿@model SyrinxMvc.Models.DostawcaWrapper
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edytuj";
 }
 
-<h2>Edit</h2>
+<h2>Edytuj</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -13,12 +13,8 @@
     <fieldset>
         <legend>Dostawca</legend>
 
-         <div class="editor-label">
-            @Html.Label("Id firmy")
-        </div>
         <div class="editor-field">
-@*            @Html.EditorFor(model => model.contractors.id_firmy, new { @readonly="readonly" })*@
-            @Html.EditorFor(model => model.contractors.id_firmy, new { disabled="disabled", @readonly = "readonly"})
+            @Html.HiddenFor(model => model.contractors.id_firmy)
             @Html.ValidationMessageFor(model => model.contractors.id_firmy)
         </div>
         <div class="editor-label">

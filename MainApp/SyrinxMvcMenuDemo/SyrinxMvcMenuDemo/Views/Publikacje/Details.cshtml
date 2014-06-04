@@ -1,64 +1,20 @@
-﻿@model CastKnowledgeWebApp.Domain.Publikacje
+﻿@model SyrinxMvc.Models.PublikacjeWrapper
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Szczegóły";
 }
 
-<h2>Details</h2>
+<h2>Szczegóły publikacji</h2>
 
 <fieldset>
-    <legend>Publikacje</legend>
+    <legend>Publikacja</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.id_publikacji)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.id_publikacji)
-    </div>
+    @Html.Partial("PublikacjePartial", Model.publications)
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.rok_publikacji)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.rok_publikacji)
-    </div>
+    <p><b>Tagi: @Model.keyWords</b> </p><br />
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.tytul_polski)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.tytul_polski)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.tytul_zagraniczny)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.tytul_zagraniczny)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.streszczenie_pol)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.streszczenie_pol)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.streszczenie_ang)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.streszczenie_ang)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.zrodlo_publikacji)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.zrodlo_publikacji)
-    </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edytuj", "Edit", new {  id=Model.publications.id_publikacji  }) |
+    @Html.ActionLink("Cofnij do listy", "Index")
 </p>

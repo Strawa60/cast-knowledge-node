@@ -1,7 +1,7 @@
-﻿@model CastKnowledgeWebApp.Domain.Dostawca
+﻿@model SyrinxMvc.Models.DostawcaWrapper
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Szczegóły";
 }
 
 <h2>Szczegóły firmy</h2>
@@ -9,101 +9,12 @@
 <fieldset>
     <legend>Dostawca</legend>
 
-@*         <div class="editor-label">
-            @Html.Label("Nazwa")
-        </div>*@
-        <div class="display-field">
-            @Html.DisplayFor(model => model.nazwa)
-        </div>
+    @Html.Partial("DostawcaPartial", Model.contractors)
 
-        <div class="editor-label" style ="font-weight: bold">
-            <b>@Html.Label("Miejscowość")</b>
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.miejscowosc)
-        </div>
-
-        <div class="editor-label">
-            @Html.Label("Kod pocztowy")
-        </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.kod_pocztowy)
-    </div>
-
-        <div class="editor-label">
-            @Html.Label("Ulica")
-        </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ulica)
-    </div>
-
-        <div class="editor-label">
-            @Html.Label("Województwo")
-        </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.wojewodztwo)
-    </div>
-
-        <div class="editor-label">
-            @Html.Label("Telefon")
-        </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.telefon)
-    </div>
-
-        <div class="editor-label">
-            @Html.Label("Fax")
-        </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.fax)
-    </div>
-
-        <div class="editor-label">
-            @Html.Label("Adres www")
-        </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.www)
-    </div>
-
-        <div class="editor-label">
-            @Html.Label("Adres e-mail")
-        </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.e_mail)
-    </div>
-
-        <div class="editor-label">
-            @Html.Label("Prezes firmy")
-        </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.prezes)
-    </div>
-
-        <div class="editor-label">
-            @Html.Label("Zasoby")
-        </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.zasoby)
-    </div>
-
-        <div class="editor-label">
-            @Html.Label("Typ firmy")
-        </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.typ_firmy)
-    </div>
-
-@*        <div class="editor-label">
-            @Html.Label("Tagi (separator ';')")
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.keyWords)
-            @Html.ValidationMessageFor(model => model.keyWords)
-        </div>*@
-
+    <p><b>Tagi: @Model.keyWords</b> </p><br />
 
 </fieldset>
 <p>
-    @Html.ActionLink("Edytuj", "Edit", new {  id=Model.id_firmy  }) |
+    @Html.ActionLink("Edytuj", "Edit", new {  id=Model.contractors.id_firmy  }) |
     @Html.ActionLink("Cofnij do listy", "Index")
 </p>

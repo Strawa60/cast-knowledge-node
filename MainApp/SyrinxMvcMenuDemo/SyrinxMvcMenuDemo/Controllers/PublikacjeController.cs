@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using CastKnowledgeWebApp.Domain;
 using CastKnowledgeWebApp.Domain.MultiTableDependency;
 using SyrinxMvc.Models;
+using System.Text;
 
 namespace SyrinxMvc.Controllers
 {
@@ -71,12 +72,29 @@ namespace SyrinxMvc.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Publikacje publikacje = db.publikacje.Find(id);
-            if (publikacje == null)
+            Publikacje publication = db.publikacje.Find(id);
+            PublikacjeWrapper pw = new PublikacjeWrapper();
+            List<Publikacje_tagi> keywordsDetails = db.publikacje_tagi.ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            pw.publications = publication;
+
+            for (int i = 0; i < keywordsDetails.Count; i++)
+            {
+                if (publication.id_publikacji == keywordsDetails[i].id_publikacji)
+                {
+                    sb.Append(keywordsDetails[i].Slowa_kluczowe.nazwa).Append("; ");
+                }
+            }
+
+            pw.keyWords = sb.ToString();
+
+            if (publication == null)
             {
                 return HttpNotFound();
             }
-            return View(publikacje);
+            return View(pw);
         }
 
         //
@@ -92,16 +110,15 @@ namespace SyrinxMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Publikacje publikacje)
+        public ActionResult Create(PublikacjeWrapper publication)
         {
             if (ModelState.IsValid)
             {
-                db.publikacje.Add(publikacje);
-                db.SaveChanges();
+                DbSaveData.InsertDataToDB.InsertPublicationDataFromForm(publication);
                 return RedirectToAction("Index");
             }
 
-            return View(publikacje);
+            return View(publication);
         }
 
         //
@@ -109,12 +126,31 @@ namespace SyrinxMvc.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Publikacje publikacje = db.publikacje.Find(id);
-            if (publikacje == null)
+            Publikacje publication = db.publikacje.Find(id);
+            PublikacjeWrapper pw = new PublikacjeWrapper();
+            List<Publikacje_tagi> keywordsEdit = new List<Publikacje_tagi>();
+
+            StringBuilder sb = new StringBuilder();
+
+            keywordsEdit = db.publikacje_tagi.ToList();
+
+            pw.publications = publication;
+
+            for (int i = 0; i < keywordsEdit.Count; i++)
+            {
+                if (publication.id_publikacji == keywordsEdit[i].id_publikacji)
+                {
+                    sb.Append(keywordsEdit[i].Slowa_kluczowe.nazwa).Append("; ");
+                }
+            }
+
+            pw.keyWords = sb.ToString();
+
+            if (publication == null)
             {
                 return HttpNotFound();
             }
-            return View(publikacje);
+            return View(pw);
         }
 
         //
@@ -122,15 +158,109 @@ namespace SyrinxMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Publikacje publikacje)
+        public ActionResult Edit(PublikacjeWrapper pw)
         {
+            Publikacje publication = pw.publications;
+
+            List<Publikacje_tagi> temp = new List<Publikacje_tagi>();
+            temp = db.publikacje_tagi.ToList();
+            List<Slowa_kluczowe> temp2 = new List<Slowa_kluczowe>();
+            List<string> temp3 = Helpers.Contener.SeparateKeyWords(pw.keyWords);
+            List<Slowa_kluczowe> doDodania = new List<Slowa_kluczowe>();
+            List<Slowa_kluczowe> doUsuniecia = new List<Slowa_kluczowe>();
+
+            /////////////////przygotowanie listy tagow do edycji
+            for (int i = 0; i < temp.Count; i++)
+            {
+                if (publication.id_publikacji == temp[i].id_publikacji)
+                {
+                    temp2.Add(temp[i].Slowa_kluczowe);
+                }
+            }
+
+
+            for (int i = 0; i < temp3.Count; i++)
+            {
+                for (int j = 0; j < temp2.Count; j++)
+                {
+                    if (temp3[i] != null && temp2[j] != null)
+                    {
+                        if (temp3[i] == temp2[j].nazwa)
+                        {
+                            temp3[i] = null;
+                            temp2[j] = null;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < temp3.Count; i++)
+            {
+                if (temp3[i] != null)
+                {
+                    doDodania.Add(new Slowa_kluczowe { nazwa = temp3[i] });
+                }
+            }
+            for (int i = 0; i < temp2.Count; i++)
+            {
+                if (temp2[i] != null)
+                {
+                    doUsuniecia.Add(temp2[i]);
+                }
+            }
+
+            //////////////////////////////////////////////////////////////
+            Slowa_kluczowe tempolary = new Slowa_kluczowe();
+            int id = 0;
+
             if (ModelState.IsValid)
             {
-                db.Entry(publikacje).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.Entry(publication).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return View("Error");
+                }
+
+                if (doUsuniecia.Count > 0)
+                {
+                    foreach (var q in doUsuniecia)
+                    {
+                        for (int i = 0; i < temp.Count; i++)
+                        {
+                            if (temp[i].Slowa_kluczowe == q)
+                            {
+                                db.publikacje_tagi.Remove(temp[i]);
+                            }
+                        }
+                        db.slowa_kluczowe.Remove(q);
+                    }
+                    db.SaveChanges();
+                }
+                if (doDodania.Count > 0)
+                {
+                    try
+                    {
+                        foreach (var q in doDodania)
+                        {
+                            db.slowa_kluczowe.Add(q);
+                            id = q.id_deskryptora;
+                            db.publikacje_tagi.Add(new Publikacje_tagi { id_publikacji = publication.id_publikacji, id_deskryptora = id });
+                        }
+                        db.SaveChanges();
+                    }
+                    catch (Exception)
+                    {
+                        return View("Error");
+                    }
+                }
+
                 return RedirectToAction("Index");
             }
-            return View(publikacje);
+            return View(pw);
         }
 
         //
@@ -153,8 +283,16 @@ namespace SyrinxMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Publikacje publikacje = db.publikacje.Find(id);
-            db.publikacje.Remove(publikacje);
+            var result = db.Set<Publikacje_tagi>().Where(x => x.id_publikacji == id).ToList();
+
+            foreach (var item in result)
+            {
+                db.slowa_kluczowe.Remove(item.Slowa_kluczowe);
+                db.publikacje_tagi.Remove(item);
+            }
+
+            Publikacje publication = db.publikacje.Find(id);
+            db.publikacje.Remove(publication);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

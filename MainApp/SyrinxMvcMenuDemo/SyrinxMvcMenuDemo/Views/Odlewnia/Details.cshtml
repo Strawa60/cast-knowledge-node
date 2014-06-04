@@ -1,4 +1,4 @@
-﻿@model CastKnowledgeWebApp.Domain.Odlewnia
+﻿@model SyrinxMvc.Models.OdlewniaWrapper
 
 @{
     ViewBag.Title = "Details";
@@ -9,84 +9,11 @@
 <fieldset>
     <legend>Odlewnia</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.id_odlewni)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.id_odlewni)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.nazwa)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.nazwa)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.miejscowosc)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.miejscowosc)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.kod_pocztowy)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.kod_pocztowy)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ulica)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ulica)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.telefon)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.telefon)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.fax)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.fax)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.www)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.www)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.e_mail)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.e_mail)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.nazwa_technologii)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.nazwa_technologii)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.nazwa_tworzywa)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.nazwa_tworzywa)
-    </div>
+    @Html.Partial("OdlewniePartial", Model.foundries)
+    <p><b>Tagi: @Model.keyWords</b> </p><br />
+    
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.foundries.id_odlewni }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

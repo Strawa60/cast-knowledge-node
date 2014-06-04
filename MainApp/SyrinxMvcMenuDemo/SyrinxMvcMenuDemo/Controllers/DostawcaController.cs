@@ -72,11 +72,28 @@ namespace SyrinxMvc.Controllers
         public ActionResult Details(int id = 0)
         {
             Dostawca dostawca = db.dostawca.Find(id);
+            DostawcaWrapper dcw = new DostawcaWrapper();
+            List<Dostawca_tagi> keywordsDetails = db.dostawca_tagi.ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            dcw.contractors = dostawca;
+
+            for (int i = 0; i < keywordsDetails.Count; i++)
+            {
+                if (dostawca.id_firmy == keywordsDetails[i].id_firmy)
+                {
+                    sb.Append(keywordsDetails[i].Slowa_kluczowe.nazwa).Append("; ");
+                }
+            }
+
+            dcw.keyWords = sb.ToString();
+
             if (dostawca == null)
             {
                 return HttpNotFound();
             }
-            return View(dostawca);
+            return View(dcw);
         }
 
         //
@@ -107,7 +124,6 @@ namespace SyrinxMvc.Controllers
         {
             Dostawca dostawca = db.dostawca.Find(id);
             DostawcaWrapper dcw = new DostawcaWrapper();
-            //List<Dostawca_tagi> 
             List<Dostawca_tagi> keywordsEdit = new List<Dostawca_tagi>();
 
             StringBuilder sb = new StringBuilder();
@@ -283,5 +299,7 @@ namespace SyrinxMvc.Controllers
             base.Dispose(disposing);
         }
 
+
+        
     }
 }

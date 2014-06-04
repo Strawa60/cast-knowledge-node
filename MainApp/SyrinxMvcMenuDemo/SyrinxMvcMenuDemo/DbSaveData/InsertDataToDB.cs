@@ -358,7 +358,131 @@ namespace SyrinxMvc.DbSaveData
 
         }
 
-        
+        public static void InsertFoundryDataFromForm(SyrinxMvc.Models.OdlewniaWrapper foundryDataFromForm)
+        {
+
+            List<PairDataTemplate<int, int>> foundryKeyWordDependency = new List<PairDataTemplate<int, int>>();
+            List<string> keyWords = new List<string>();
+            Slowa_kluczowe keyWord = new Slowa_kluczowe();
+            int one = 0, two = 0;
+
+            try
+            {
+                db.odlewnia.Add(foundryDataFromForm.foundries);
+                db.SaveChanges();
+                one = foundryDataFromForm.foundries.id_odlewni;
+
+            }
+            catch (Exception e)
+            {
+                e.Message.ToString();
+            }
+
+            keyWords = Helpers.Contener.SeparateKeyWords(foundryDataFromForm.keyWords);
+
+            for (int j = 0; j < keyWords.Count; j++)
+            {
+                try
+                {
+                    keyWord.nazwa = keyWords[j];
+
+                    db.slowa_kluczowe.Add(keyWord);
+                    db.SaveChanges();
+                    two = keyWord.id_deskryptora;
+
+                    foundryKeyWordDependency.Add(new PairDataTemplate<int, int>(one, two));
+                }
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                }
+
+            }
+
+            Odlewnia_tagi tags = new Odlewnia_tagi();
+
+            foreach (var q in foundryKeyWordDependency)
+            {
+
+                tags.id_odlewni = q.t1;
+                tags.id_deskryptora = q.t2;
+
+                try
+                {
+                    db.odlewnia_tagi.Add(tags);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                }
+            }
+
+
+        }
+
+        public static void InsertPublicationDataFromForm(SyrinxMvc.Models.PublikacjeWrapper publicationDataFromForm)
+        {
+
+            List<PairDataTemplate<int, int>> publicationKeyWordDependency = new List<PairDataTemplate<int, int>>();
+            List<string> keyWords = new List<string>();
+            Slowa_kluczowe keyWord = new Slowa_kluczowe();
+            int one = 0, two = 0;
+
+            try
+            {
+                db.publikacje.Add(publicationDataFromForm.publications);
+                db.SaveChanges();
+                one = publicationDataFromForm.publications.id_publikacji;
+
+            }
+            catch (Exception e)
+            {
+                e.Message.ToString();
+            }
+
+            keyWords = Helpers.Contener.SeparateKeyWords(publicationDataFromForm.keyWords);
+
+            for (int j = 0; j < keyWords.Count; j++)
+            {
+                try
+                {
+                    keyWord.nazwa = keyWords[j];
+
+                    db.slowa_kluczowe.Add(keyWord);
+                    db.SaveChanges();
+                    two = keyWord.id_deskryptora;
+
+                    publicationKeyWordDependency.Add(new PairDataTemplate<int, int>(one, two));
+                }
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                }
+
+            }
+
+            Publikacje_tagi tags = new Publikacje_tagi();
+
+            foreach (var q in publicationKeyWordDependency)
+            {
+
+                tags.id_publikacji = q.t1;
+                tags.id_deskryptora = q.t2;
+
+                try
+                {
+                    db.publikacje_tagi.Add(tags);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                }
+            }
+
+
+        }
 
     }
 }

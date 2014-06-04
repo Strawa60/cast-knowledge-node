@@ -1,10 +1,10 @@
-﻿@model CastKnowledgeWebApp.Domain.Publikacje
+﻿@model SyrinxMvc.Models.PublikacjeWrapper
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Utwórz";
 }
 
-<h2>Create</h2>
+<h2>Dodaj</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -14,59 +14,67 @@
         <legend>Publikacje</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.id_publikacji)
+            @Html.Label("Numer publikacji")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.id_publikacji)
-            @Html.ValidationMessageFor(model => model.id_publikacji)
+            @Html.EditorFor(model => model.publications.nr_publikacji)
+            @Html.ValidationMessageFor(model => model.publications.nr_publikacji)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.rok_publikacji)
+           @Html.Label("Rok publikacji")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.rok_publikacji)
-            @Html.ValidationMessageFor(model => model.rok_publikacji)
+            @Html.EditorFor(model => model.publications.rok_publikacji)
+            @Html.ValidationMessageFor(model => model.publications.rok_publikacji)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.tytul_polski)
+            @Html.Label("Tytuł polski")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.tytul_polski)
-            @Html.ValidationMessageFor(model => model.tytul_polski)
+            @Html.TextAreaFor(model => model.publications.tytul_polski)
+            @Html.ValidationMessageFor(model => model.publications.tytul_polski)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.tytul_zagraniczny)
+           @Html.Label("Tytuł zagraniczny")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.tytul_zagraniczny)
-            @Html.ValidationMessageFor(model => model.tytul_zagraniczny)
+            @Html.TextAreaFor(model => model.publications.tytul_zagraniczny)
+            @Html.ValidationMessageFor(model => model.publications.tytul_zagraniczny)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.streszczenie_pol)
+           @Html.Label("Streszczenie polskie")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.streszczenie_pol)
-            @Html.ValidationMessageFor(model => model.streszczenie_pol)
+            @Html.TextAreaFor(model => model.publications.streszczenie_pol)
+            @Html.ValidationMessageFor(model => model.publications.streszczenie_pol)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.streszczenie_ang)
+            @Html.Label("Streszczenie zagraniczne")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.streszczenie_ang)
-            @Html.ValidationMessageFor(model => model.streszczenie_ang)
+            @Html.TextAreaFor(model => model.publications.streszczenie_ang)
+            @Html.ValidationMessageFor(model => model.publications.streszczenie_ang)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.zrodlo_publikacji)
+         <div class="editor-label">
+            @Html.Label("Źródło")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.zrodlo_publikacji)
-            @Html.ValidationMessageFor(model => model.zrodlo_publikacji)
+            @Html.TextAreaFor(model => model.publications.zrodlo_publikacji)
+            @Html.ValidationMessageFor(model => model.publications.zrodlo_publikacji)
+        </div>
+
+         <div class="editor-label">
+            @Html.Label("Tagi (separator ';')")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.keyWords)
+            @Html.ValidationMessageFor(model => model.keyWords)
         </div>
 
         <p>
@@ -76,7 +84,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Cofnij do listy", "Index")
 </div>
 
 @section Scripts {
