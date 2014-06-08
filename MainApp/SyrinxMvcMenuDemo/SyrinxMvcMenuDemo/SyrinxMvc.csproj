@@ -197,6 +197,7 @@
     <Compile Include="Models\OdlewniaWrapper.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\PatentyListWrapper.cs" />
+    <Compile Include="Models\PatentyWrapper.cs" />
     <Compile Include="Models\PublikacjeListWrapper.cs" />
     <Compile Include="Models\PublikacjeWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

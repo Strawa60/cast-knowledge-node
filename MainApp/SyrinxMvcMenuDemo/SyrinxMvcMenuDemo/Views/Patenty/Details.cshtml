@@ -1,99 +1,20 @@
-﻿@model CastKnowledgeWebApp.Domain.Patenty
+﻿@model SyrinxMvc.Models.PatentyWrapper
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Szczegóły";
 }
 
-<h2>Details</h2>
+<h2>Szczegóły patentu</h2>
 
 <fieldset>
-    <legend>Patenty</legend>
+    <legend>Patent</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.id_patentu)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.id_patentu)
-    </div>
+    @Html.Partial("PatentyPartial", Model.patents)
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.numer_wynalazku)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.numer_wynalazku)
-    </div>
+    <p><b>Tagi: @Model.keyWords</b> </p><br />
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.data_rozpoczecia)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.data_rozpoczecia)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.data_zakonczenia)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.data_zakonczenia)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.data_zgloszenia)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.data_zgloszenia)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.symbol_patentowy)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.symbol_patentowy)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.tytul_polski)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.tytul_polski)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.tytul_angielski)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.tytul_angielski)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.opis_polski)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.opis_polski)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.opis_angielski)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.opis_angielski)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.osrodek_opracowujacy)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.osrodek_opracowujacy)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.url)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.url)
-    </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edytuj", "Edit", new {  id=Model.patents.id_patentu  }) |
+    @Html.ActionLink("Cofnij do listy", "Index")
 </p>

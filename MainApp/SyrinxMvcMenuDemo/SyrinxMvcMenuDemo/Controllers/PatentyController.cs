@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using CastKnowledgeWebApp.Domain;
 using CastKnowledgeWebApp.Domain.MultiTableDependency;
 using SyrinxMvc.Models;
+using System.Text;
 
 namespace SyrinxMvc.Controllers
 {
@@ -71,12 +72,29 @@ namespace SyrinxMvc.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Patenty patenty = db.patenty.Find(id);
-            if (patenty == null)
+            Patenty patent = db.patenty.Find(id);
+            PatentyWrapper ptn = new PatentyWrapper();
+            List<Patenty_tagi> keywordsDetails = db.patenty_tagi.ToList();
+
+            StringBuilder sb = new StringBuilder();
+
+            ptn.patents = patent;
+
+            for (int i = 0; i < keywordsDetails.Count; i++)
+            {
+                if (patent.id_patentu == keywordsDetails[i].id_patentu)
+                {
+                    sb.Append(keywordsDetails[i].Slowa_kluczowe.nazwa).Append("; ");
+                }
+            }
+
+            ptn.keyWords = sb.ToString();
+
+            if (patent == null)
             {
                 return HttpNotFound();
             }
-            return View(patenty);
+            return View(ptn);
         }
 
         //
@@ -92,16 +110,15 @@ namespace SyrinxMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Patenty patenty)
+        public ActionResult Create(PatentyWrapper ptn)
         {
             if (ModelState.IsValid)
             {
-                db.patenty.Add(patenty);
-                db.SaveChanges();
+                DbSaveData.InsertDataToDB.InsertPatentDataFromForm(ptn);
                 return RedirectToAction("Index");
             }
 
-            return View(patenty);
+            return View(ptn);
         }
 
         //
@@ -109,12 +126,31 @@ namespace SyrinxMvc.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Patenty patenty = db.patenty.Find(id);
-            if (patenty == null)
+            Patenty patent = db.patenty.Find(id);
+            PatentyWrapper ptn = new PatentyWrapper();
+            List<Patenty_tagi> keywordsEdit = new List<Patenty_tagi>();
+
+            StringBuilder sb = new StringBuilder();
+
+            keywordsEdit = db.patenty_tagi.ToList();
+
+            ptn.patents = patent;
+
+            for (int i = 0; i < keywordsEdit.Count; i++)
+            {
+                if (patent.id_patentu == keywordsEdit[i].id_patentu)
+                {
+                    sb.Append(keywordsEdit[i].Slowa_kluczowe.nazwa).Append("; ");
+                }
+            }
+
+            ptn.keyWords = sb.ToString();
+
+            if (patent == null)
             {
                 return HttpNotFound();
             }
-            return View(patenty);
+            return View(ptn);
         }
 
         //
@@ -122,15 +158,109 @@ namespace SyrinxMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Patenty patenty)
+        public ActionResult Edit(PatentyWrapper ptn)
         {
+            Patenty patent = ptn.patents;
+
+            List<Patenty_tagi> temp = new List<Patenty_tagi>();
+            temp = db.patenty_tagi.ToList();
+            List<Slowa_kluczowe> temp2 = new List<Slowa_kluczowe>();
+            List<string> temp3 = Helpers.Contener.SeparateKeyWords(ptn.keyWords);
+            List<Slowa_kluczowe> doDodania = new List<Slowa_kluczowe>();
+            List<Slowa_kluczowe> doUsuniecia = new List<Slowa_kluczowe>();
+
+            /////////////////przygotowanie listy tagow do edycji
+            for (int i = 0; i < temp.Count; i++)
+            {
+                if (patent.id_patentu == temp[i].id_patentu)
+                {
+                    temp2.Add(temp[i].Slowa_kluczowe);
+                }
+            }
+
+
+            for (int i = 0; i < temp3.Count; i++)
+            {
+                for (int j = 0; j < temp2.Count; j++)
+                {
+                    if (temp3[i] != null && temp2[j] != null)
+                    {
+                        if (temp3[i] == temp2[j].nazwa)
+                        {
+                            temp3[i] = null;
+                            temp2[j] = null;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < temp3.Count; i++)
+            {
+                if (temp3[i] != null)
+                {
+                    doDodania.Add(new Slowa_kluczowe { nazwa = temp3[i] });
+                }
+            }
+            for (int i = 0; i < temp2.Count; i++)
+            {
+                if (temp2[i] != null)
+                {
+                    doUsuniecia.Add(temp2[i]);
+                }
+            }
+
+            //////////////////////////////////////////////////////////////
+            Slowa_kluczowe tempolary = new Slowa_kluczowe();
+            int id = 0;
+
             if (ModelState.IsValid)
             {
-                db.Entry(patenty).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.Entry(patent).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return View("Error");
+                }
+
+                if (doUsuniecia.Count > 0)
+                {
+                    foreach (var q in doUsuniecia)
+                    {
+                        for (int i = 0; i < temp.Count; i++)
+                        {
+                            if (temp[i].Slowa_kluczowe == q)
+                            {
+                                db.patenty_tagi.Remove(temp[i]);
+                            }
+                        }
+                        db.slowa_kluczowe.Remove(q);
+                    }
+                    db.SaveChanges();
+                }
+                if (doDodania.Count > 0)
+                {
+                    try
+                    {
+                        foreach (var q in doDodania)
+                        {
+                            db.slowa_kluczowe.Add(q);
+                            id = q.id_deskryptora;
+                            db.patenty_tagi.Add(new Patenty_tagi { id_patentu = patent.id_patentu, id_deskryptora = id });
+                        }
+                        db.SaveChanges();
+                    }
+                    catch (Exception)
+                    {
+                        return View("Error");
+                    }
+                }
+
                 return RedirectToAction("Index");
             }
-            return View(patenty);
+            return View(ptn);
         }
 
         //
@@ -153,8 +283,16 @@ namespace SyrinxMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Patenty patenty = db.patenty.Find(id);
-            db.patenty.Remove(patenty);
+            var result = db.Set<Patenty_tagi>().Where(x => x.id_patentu == id).ToList();
+
+            foreach (var item in result)
+            {
+                db.slowa_kluczowe.Remove(item.Slowa_kluczowe);
+                db.patenty_tagi.Remove(item);
+            }
+
+            Patenty patent = db.patenty.Find(id);
+            db.patenty.Remove(patent);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

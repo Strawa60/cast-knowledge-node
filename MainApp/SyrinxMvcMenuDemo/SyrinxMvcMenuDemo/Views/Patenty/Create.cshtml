@@ -1,10 +1,10 @@
-﻿@model CastKnowledgeWebApp.Domain.Patenty
+﻿@model SyrinxMvc.Models.PatentyWrapper
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Utwórz";
 }
 
-<h2>Create</h2>
+<h2>Dodaj</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -14,99 +14,97 @@
         <legend>Patenty</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.id_patentu)
+            @Html.Label("Numer patentu")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.id_patentu)
-            @Html.ValidationMessageFor(model => model.id_patentu)
+            @Html.EditorFor(model => model.patents.numer_wynalazku)
+            @Html.ValidationMessageFor(model => model.patents.numer_wynalazku)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.numer_wynalazku)
+           @Html.Label("Data rozpoczęcia")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.numer_wynalazku)
-            @Html.ValidationMessageFor(model => model.numer_wynalazku)
+            @Html.EditorFor(model => model.patents.data_rozpoczecia)
+            @Html.ValidationMessageFor(model => model.patents.data_rozpoczecia)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.data_rozpoczecia)
+            @Html.Label("Data zakończenia")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.data_rozpoczecia)
-            @Html.ValidationMessageFor(model => model.data_rozpoczecia)
+            @Html.EditorFor(model => model.patents.data_zakonczenia)
+            @Html.ValidationMessageFor(model => model.patents.data_zakonczenia)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.data_zakonczenia)
+           @Html.Label("Data zgłoszenia")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.data_zakonczenia)
-            @Html.ValidationMessageFor(model => model.data_zakonczenia)
+            @Html.EditorFor(model => model.patents.data_zgloszenia)
+            @Html.ValidationMessageFor(model => model.patents.data_zgloszenia)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.data_zgloszenia)
+           @Html.Label("Symbol patentowy")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.data_zgloszenia)
-            @Html.ValidationMessageFor(model => model.data_zgloszenia)
+            @Html.TextAreaFor(model => model.patents.symbol_patentowy)
+            @Html.ValidationMessageFor(model => model.patents.symbol_patentowy)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.symbol_patentowy)
+            @Html.Label("Tytuł polski")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.symbol_patentowy)
-            @Html.ValidationMessageFor(model => model.symbol_patentowy)
+            @Html.TextAreaFor(model => model.patents.tytul_polski)
+            @Html.ValidationMessageFor(model => model.patents.tytul_polski)
+        </div>
+
+         <div class="editor-label">
+            @Html.Label("Tytuł zagraniczny")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.patents.tytul_angielski)
+            @Html.ValidationMessageFor(model => model.patents.tytul_angielski)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.tytul_polski)
+            @Html.Label("Opis polski")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.tytul_polski)
-            @Html.ValidationMessageFor(model => model.tytul_polski)
+            @Html.TextAreaFor(model => model.patents.opis_polski)
+            @Html.ValidationMessageFor(model => model.patents.opis_polski)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.tytul_angielski)
+         <div class="editor-label">
+            @Html.Label("Opis zagraniczny")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.tytul_angielski)
-            @Html.ValidationMessageFor(model => model.tytul_angielski)
+            @Html.TextAreaFor(model => model.patents.opis_angielski)
+            @Html.ValidationMessageFor(model => model.patents.opis_angielski)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Ośrodek opracowywujący")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.patents.osrodek_opracowujacy)
+            @Html.ValidationMessageFor(model => model.patents.osrodek_opracowujacy)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Adres www")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.patents.url)
+            @Html.ValidationMessageFor(model => model.patents.url)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.opis_polski)
+         <div class="editor-label">
+            @Html.Label("Tagi (separator ';')")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.opis_polski)
-            @Html.ValidationMessageFor(model => model.opis_polski)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.opis_angielski)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.opis_angielski)
-            @Html.ValidationMessageFor(model => model.opis_angielski)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.osrodek_opracowujacy)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.osrodek_opracowujacy)
-            @Html.ValidationMessageFor(model => model.osrodek_opracowujacy)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.url)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.url)
-            @Html.ValidationMessageFor(model => model.url)
+            @Html.TextAreaFor(model => model.keyWords)
+            @Html.ValidationMessageFor(model => model.keyWords)
         </div>
 
         <p>
@@ -116,7 +114,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Cofnij do listy", "Index")
 </div>
 
 @section Scripts {

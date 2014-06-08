@@ -484,5 +484,66 @@ namespace SyrinxMvc.DbSaveData
 
         }
 
+        public static void InsertPatentDataFromForm(SyrinxMvc.Models.PatentyWrapper patentDataFromForm)
+        {
+            List<PairDataTemplate<int, int>> patentKeyWordDependency = new List<PairDataTemplate<int, int>>();
+            List<string> keyWords = new List<string>();
+            Slowa_kluczowe keyWord = new Slowa_kluczowe();
+            int one = 0, two = 0;
+
+            try
+            {
+                db.patenty.Add(patentDataFromForm.patents);
+                db.SaveChanges();
+                one = patentDataFromForm.patents.id_patentu;
+
+            }
+            catch (Exception e)
+            {
+                e.Message.ToString();
+            }
+
+            keyWords = Helpers.Contener.SeparateKeyWords(patentDataFromForm.keyWords);
+
+            for (int j = 0; j < keyWords.Count; j++)
+            {
+                try
+                {
+                    keyWord.nazwa = keyWords[j];
+
+                    db.slowa_kluczowe.Add(keyWord);
+                    db.SaveChanges();
+                    two = keyWord.id_deskryptora;
+
+                    patentKeyWordDependency.Add(new PairDataTemplate<int, int>(one, two));
+                }
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                }
+
+            }
+
+            Patenty_tagi tags = new Patenty_tagi();
+
+            foreach (var q in patentKeyWordDependency)
+            {
+
+                tags.id_patentu = q.t1;
+                tags.id_deskryptora = q.t2;
+
+                try
+                {
+                    db.patenty_tagi.Add(tags);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    e.Message.ToString();
+                }
+            }
+
+        }
+
     }
 }
