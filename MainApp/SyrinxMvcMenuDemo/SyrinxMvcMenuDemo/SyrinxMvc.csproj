@@ -182,8 +182,12 @@
     <Compile Include="Controllers\OdlewniaController.cs" />
     <Compile Include="Controllers\PatentyController.cs" />
     <Compile Include="Controllers\PublikacjeController.cs" />
-    <Compile Include="DbSaveData\ExcelParser.cs" />
-    <Compile Include="DbSaveData\InsertDataToDB.cs" />
+    <Compile Include="DbSaveData\ExcelParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DbSaveData\InsertDataToDB.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

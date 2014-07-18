@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastKnowledgeWebApp.Domain"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyrinxMvc", "SyrinxMvcMenuDemo\SyrinxMvcMenuDemo\SyrinxMvc.csproj", "{F5FDFF00-FEAC-4F68-B959-B6B67217B481}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "..\śmieci\CastKnowledgeWebApp\TestConsoleApp\TestConsoleApp.csproj", "{BC71439C-5129-4F9C-9078-F63D62804C8C}"
-EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -31,10 +29,6 @@ Global
 		{F5FDFF00-FEAC-4F68-B959-B6B67217B481}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5FDFF00-FEAC-4F68-B959-B6B67217B481}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5FDFF00-FEAC-4F68-B959-B6B67217B481}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC71439C-5129-4F9C-9078-F63D62804C8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC71439C-5129-4F9C-9078-F63D62804C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC71439C-5129-4F9C-9078-F63D62804C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC71439C-5129-4F9C-9078-F63D62804C8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

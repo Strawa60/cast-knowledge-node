@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
 namespace CastKnowledgeWebApp.Domain
 {
     using System;
@@ -19,8 +22,10 @@ namespace CastKnowledgeWebApp.Domain
             this.Patent_autor = new HashSet<Patent_autor>();
             this.Publikacja_autor = new HashSet<Publikacja_autor>();
         }
-    
+
+
         public int id_autora { get; set; }
+
         public string imie { get; set; }
         public string nazwisko { get; set; }
         public string afiliacja { get; set; }

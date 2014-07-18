@@ -6,6 +6,8 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace CastKnowledgeWebApp.Domain
 {
@@ -19,6 +21,7 @@ namespace CastKnowledgeWebApp.Domain
             this.Odlewnia_tagi = new HashSet<Odlewnia_tagi>();
         }
     
+
         public int id_odlewni { get; set; }
         public string nazwa { get; set; }
         public string miejscowosc { get; set; }
