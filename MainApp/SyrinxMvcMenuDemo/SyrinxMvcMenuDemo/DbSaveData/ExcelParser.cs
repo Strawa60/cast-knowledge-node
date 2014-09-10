@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Excel = Microsoft.Office.Interop.Excel;
 using CastKnowledgeWebApp.Domain;
-using CastKnowledgeWebApp.Domain.MultiTableDependency;
+using CastKnowledgeWebApp.Libraries.MultiTableDependency;
 
 namespace SyrinxMvc.DbSaveData
 {

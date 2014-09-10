@@ -86,7 +86,6 @@
     <Compile Include="Dostawca_tagi.cs">
       <DependentUpon>CastKnowledge.tt</DependentUpon>
     </Compile>
-    <Compile Include="MultiTableDependency\PairDataTemplate.cs" />
     <Compile Include="Odlewnia.cs">
       <DependentUpon>CastKnowledge.tt</DependentUpon>
     </Compile>
@@ -144,6 +143,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CastKnowledgeWebApp.Libraries\CastKnowledgeWebApp.Libraries.csproj">
+      <Project>{ffbdf62d-3cbe-4429-815a-80f200712316}</Project>
+      <Name>CastKnowledgeWebApp.Libraries</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

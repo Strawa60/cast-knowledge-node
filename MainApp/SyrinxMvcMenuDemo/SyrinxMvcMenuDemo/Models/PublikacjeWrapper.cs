@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using CastKnowledgeWebApp.Domain.MultiTableDependency;
 using CastKnowledgeWebApp.Domain;
 
 namespace SyrinxMvc.Models

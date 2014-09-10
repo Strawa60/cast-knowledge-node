@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CastKnowledgeWebApp.Domain;
-using CastKnowledgeWebApp.Domain.MultiTableDependency;
+using CastKnowledgeWebApp.Libraries.MultiTableDependency;
 using SyrinxMvc.Models;
 using System.Text;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CastKnowledgeWebApp.Domain;
-using CastKnowledgeWebApp.Domain.MultiTableDependency;
+using CastKnowledgeWebApp.Libraries.MultiTableDependency;
 using System.Collections;
 
 namespace SyrinxMvc.DbSaveData

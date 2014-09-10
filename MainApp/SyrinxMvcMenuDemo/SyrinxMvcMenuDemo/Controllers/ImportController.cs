@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CastKnowledgeWebApp.Domain.MultiTableDependency;
+using CastKnowledgeWebApp.Libraries.MultiTableDependency;
 using CastKnowledgeWebApp.Domain;
 using System.Collections;
 

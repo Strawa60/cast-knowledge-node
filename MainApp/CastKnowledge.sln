@@ -5,7 +5,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyrinxMenu", "SyrinxMenu\Sy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastKnowledgeWebApp.Domain", "CastKnowledgeWebApp.Domain\CastKnowledgeWebApp.Domain.csproj", "{FCC97E2B-78B7-41F4-ACC7-744DD9029B35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyrinxMvc", "SyrinxMvcMenuDemo\SyrinxMvcMenuDemo\SyrinxMvc.csproj", "{F5FDFF00-FEAC-4F68-B959-B6B67217B481}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastKnowledgeWebApp.WebUI", "SyrinxMvcMenuDemo\SyrinxMvcMenuDemo\CastKnowledgeWebApp.WebUI.csproj", "{F5FDFF00-FEAC-4F68-B959-B6B67217B481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastKnowledgeWebApp.Libraries", "CastKnowledgeWebApp.Libraries\CastKnowledgeWebApp.Libraries.csproj", "{FFBDF62D-3CBE-4429-815A-80F200712316}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastKnowledgeWebApp.SearchEngine", "CastKnowledgeWebApp.SearchEngine\CastKnowledgeWebApp.SearchEngine.csproj", "{5E780FDC-A382-4E02-8E45-A2A6FBEA60A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastKnowledgeWebApp.Ontology", "CastKnowledgeWebApp.Ontology\CastKnowledgeWebApp.Ontology.csproj", "{63283D53-CC8F-428D-B739-A42E762A9AEB}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -29,6 +35,18 @@ Global
 		{F5FDFF00-FEAC-4F68-B959-B6B67217B481}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5FDFF00-FEAC-4F68-B959-B6B67217B481}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5FDFF00-FEAC-4F68-B959-B6B67217B481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFBDF62D-3CBE-4429-815A-80F200712316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFBDF62D-3CBE-4429-815A-80F200712316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFBDF62D-3CBE-4429-815A-80F200712316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFBDF62D-3CBE-4429-815A-80F200712316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E780FDC-A382-4E02-8E45-A2A6FBEA60A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E780FDC-A382-4E02-8E45-A2A6FBEA60A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E780FDC-A382-4E02-8E45-A2A6FBEA60A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E780FDC-A382-4E02-8E45-A2A6FBEA60A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63283D53-CC8F-428D-B739-A42E762A9AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63283D53-CC8F-428D-B739-A42E762A9AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63283D53-CC8F-428D-B739-A42E762A9AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63283D53-CC8F-428D-B739-A42E762A9AEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
