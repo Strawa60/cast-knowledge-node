@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyrinxMenu", "SyrinxMenu\Sy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastKnowledgeWebApp.Domain", "CastKnowledgeWebApp.Domain\CastKnowledgeWebApp.Domain.csproj", "{FCC97E2B-78B7-41F4-ACC7-744DD9029B35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastKnowledgeWebApp.WebUI", "SyrinxMvcMenuDemo\SyrinxMvcMenuDemo\CastKnowledgeWebApp.WebUI.csproj", "{F5FDFF00-FEAC-4F68-B959-B6B67217B481}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyrinxMvc", "SyrinxMvcMenuDemo\SyrinxMvcMenuDemo\SyrinxMvc.csproj", "{F5FDFF00-FEAC-4F68-B959-B6B67217B481}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastKnowledgeWebApp.SearchEngine", "CastKnowledgeWebApp.SearchEngine\CastKnowledgeWebApp.SearchEngine.csproj", "{5E780FDC-A382-4E02-8E45-A2A6FBEA60A5}"
 EndProject
@@ -14,13 +14,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastKnowledgeWebApp.Repository", "CastKnowledgeWebApp.Repository\CastKnowledgeWebApp.Repository.csproj", "{8BFE0A6A-E7FF-4789-89AD-E890FC196AF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastKnowledgeWebApp.Tools", "CastKnowledgeWebApp.Tools\CastKnowledgeWebApp.Tools.csproj", "{C65D03B8-E56A-46CE-8A57-89C60AD7F9CE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C26DFA55-C68F-41C9-945D-842B8EEF2D88}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
