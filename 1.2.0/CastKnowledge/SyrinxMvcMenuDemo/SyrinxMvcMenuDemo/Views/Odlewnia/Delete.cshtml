@@ -1,0 +1,17 @@
+﻿@model CastKnowledgeWebApp.Domain.Odlewnia
+
+@{
+    ViewBag.Title = "Usuń";
+}
+
+<h2>Usuń @Model.nazwa ?</h2>
+
+<h3>Czy jesteś pewien?</h3>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Usuń" /> |
+        @Html.ActionLink("Wróć do listy", "Index")
+    </p>
+}

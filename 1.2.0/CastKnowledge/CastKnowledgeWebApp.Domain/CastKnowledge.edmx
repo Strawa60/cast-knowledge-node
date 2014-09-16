@@ -1,0 +1,970 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CastKnowledgeModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="CastKnowledgeModelStoreContainer">
+          <EntitySet Name="autorzy" EntityType="CastKnowledgeModel.Store.autorzy" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="dostawca" EntityType="CastKnowledgeModel.Store.dostawca" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="dostawca_tagi" EntityType="CastKnowledgeModel.Store.dostawca_tagi" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="odlewnia" EntityType="CastKnowledgeModel.Store.odlewnia" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="odlewnia_tagi" EntityType="CastKnowledgeModel.Store.odlewnia_tagi" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="patent_autor" EntityType="CastKnowledgeModel.Store.patent_autor" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="patenty" EntityType="CastKnowledgeModel.Store.patenty" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="patenty_publikacja" EntityType="CastKnowledgeModel.Store.patenty_publikacja" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="patenty_tagi" EntityType="CastKnowledgeModel.Store.patenty_tagi" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="publikacja_autor" EntityType="CastKnowledgeModel.Store.publikacja_autor" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="publikacje" EntityType="CastKnowledgeModel.Store.publikacje" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="publikacje_tagi" EntityType="CastKnowledgeModel.Store.publikacje_tagi" store:Type="Tables" Schema="castknowledge" />
+          <EntitySet Name="slowa_kluczowe" EntityType="CastKnowledgeModel.Store.slowa_kluczowe" store:Type="Tables" Schema="castknowledge" />
+          <AssociationSet Name="dostawca_tagi_ibfk_1" Association="CastKnowledgeModel.Store.dostawca_tagi_ibfk_1">
+            <End Role="dostawca" EntitySet="dostawca" />
+            <End Role="dostawca_tagi" EntitySet="dostawca_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="dostawca_tagi_ibfk_2" Association="CastKnowledgeModel.Store.dostawca_tagi_ibfk_2">
+            <End Role="slowa_kluczowe" EntitySet="slowa_kluczowe" />
+            <End Role="dostawca_tagi" EntitySet="dostawca_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="odlewnia_tagi_ibfk_1" Association="CastKnowledgeModel.Store.odlewnia_tagi_ibfk_1">
+            <End Role="odlewnia" EntitySet="odlewnia" />
+            <End Role="odlewnia_tagi" EntitySet="odlewnia_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="odlewnia_tagi_ibfk_2" Association="CastKnowledgeModel.Store.odlewnia_tagi_ibfk_2">
+            <End Role="slowa_kluczowe" EntitySet="slowa_kluczowe" />
+            <End Role="odlewnia_tagi" EntitySet="odlewnia_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="patent_autor_ibfk_1" Association="CastKnowledgeModel.Store.patent_autor_ibfk_1">
+            <End Role="patenty" EntitySet="patenty" />
+            <End Role="patent_autor" EntitySet="patent_autor" />
+          </AssociationSet>
+          <AssociationSet Name="patent_posiada_autorow" Association="CastKnowledgeModel.Store.patent_posiada_autorow">
+            <End Role="autorzy" EntitySet="autorzy" />
+            <End Role="patent_autor" EntitySet="patent_autor" />
+          </AssociationSet>
+          <AssociationSet Name="patenty_publikacja_ibfk_1" Association="CastKnowledgeModel.Store.patenty_publikacja_ibfk_1">
+            <End Role="patenty" EntitySet="patenty" />
+            <End Role="patenty_publikacja" EntitySet="patenty_publikacja" />
+          </AssociationSet>
+          <AssociationSet Name="patenty_tagi_ibfk_1" Association="CastKnowledgeModel.Store.patenty_tagi_ibfk_1">
+            <End Role="slowa_kluczowe" EntitySet="slowa_kluczowe" />
+            <End Role="patenty_tagi" EntitySet="patenty_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="patenty_tagi_ibfk_2" Association="CastKnowledgeModel.Store.patenty_tagi_ibfk_2">
+            <End Role="patenty" EntitySet="patenty" />
+            <End Role="patenty_tagi" EntitySet="patenty_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="publikacja_autor_ibfk_1" Association="CastKnowledgeModel.Store.publikacja_autor_ibfk_1">
+            <End Role="publikacje" EntitySet="publikacje" />
+            <End Role="publikacja_autor" EntitySet="publikacja_autor" />
+          </AssociationSet>
+          <AssociationSet Name="publikacja_na_temat" Association="CastKnowledgeModel.Store.publikacja_na_temat">
+            <End Role="publikacje" EntitySet="publikacje" />
+            <End Role="patenty_publikacja" EntitySet="patenty_publikacja" />
+          </AssociationSet>
+          <AssociationSet Name="publikacja_posiada_autorow" Association="CastKnowledgeModel.Store.publikacja_posiada_autorow">
+            <End Role="autorzy" EntitySet="autorzy" />
+            <End Role="publikacja_autor" EntitySet="publikacja_autor" />
+          </AssociationSet>
+          <AssociationSet Name="publikacje_tagi_ibfk_1" Association="CastKnowledgeModel.Store.publikacje_tagi_ibfk_1">
+            <End Role="publikacje" EntitySet="publikacje" />
+            <End Role="publikacje_tagi" EntitySet="publikacje_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="publikacje_tagi_ibfk_2" Association="CastKnowledgeModel.Store.publikacje_tagi_ibfk_2">
+            <End Role="slowa_kluczowe" EntitySet="slowa_kluczowe" />
+            <End Role="publikacje_tagi" EntitySet="publikacje_tagi" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="autorzy">
+          <Key>
+            <PropertyRef Name="id_autora" />
+          </Key>
+          <Property Name="id_autora" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="imie" Type="char" MaxLength="20" />
+          <Property Name="nazwisko" Type="char" MaxLength="30" />
+          <Property Name="afiliacja" Type="char" MaxLength="50" />
+          <Property Name="funkcja" Type="char" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="dostawca">
+          <Key>
+            <PropertyRef Name="id_firmy" />
+          </Key>
+          <Property Name="id_firmy" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="char" MaxLength="100" />
+          <Property Name="miejscowosc" Type="char" MaxLength="100" />
+          <Property Name="kod_pocztowy" Type="char" MaxLength="10" />
+          <Property Name="ulica" Type="char" MaxLength="100" />
+          <Property Name="wojewodztwo" Type="char" MaxLength="100" />
+          <Property Name="telefon" Type="char" MaxLength="20" />
+          <Property Name="fax" Type="char" MaxLength="20" />
+          <Property Name="www" Type="char" MaxLength="100" />
+          <Property Name="e_mail" Type="char" MaxLength="100" />
+          <Property Name="prezes" Type="char" MaxLength="100" />
+          <Property Name="zasoby" Type="text" />
+          <Property Name="typ_firmy" Type="char" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="dostawca_tagi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_firmy" Type="int" />
+          <Property Name="id_deskryptora" Type="int" />
+        </EntityType>
+        <EntityType Name="odlewnia">
+          <Key>
+            <PropertyRef Name="id_odlewni" />
+          </Key>
+          <Property Name="id_odlewni" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="char" MaxLength="100" />
+          <Property Name="miejscowosc" Type="char" MaxLength="100" />
+          <Property Name="kod_pocztowy" Type="char" MaxLength="10" />
+          <Property Name="ulica" Type="char" MaxLength="100" />
+          <Property Name="telefon" Type="char" MaxLength="20" />
+          <Property Name="fax" Type="char" MaxLength="20" />
+          <Property Name="www" Type="char" MaxLength="100" />
+          <Property Name="e_mail" Type="char" MaxLength="100" />
+          <Property Name="nazwa_technologii" Type="char" MaxLength="100" />
+          <Property Name="nazwa_tworzywa" Type="char" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="odlewnia_tagi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_odlewni" Type="int" />
+          <Property Name="id_deskryptora" Type="int" />
+        </EntityType>
+        <EntityType Name="patent_autor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_autora" Type="int" />
+          <Property Name="id_patentu" Type="int" />
+        </EntityType>
+        <EntityType Name="patenty">
+          <Key>
+            <PropertyRef Name="id_patentu" />
+          </Key>
+          <Property Name="id_patentu" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="numer_wynalazku" Type="char" MaxLength="100" />
+          <Property Name="data_rozpoczecia" Type="char" MaxLength="100" />
+          <Property Name="data_zakonczenia" Type="char" MaxLength="100" />
+          <Property Name="data_zgloszenia" Type="char" MaxLength="100" />
+          <Property Name="symbol_patentowy" Type="text" />
+          <Property Name="tytul_polski" Type="text" />
+          <Property Name="tytul_angielski" Type="text" />
+          <Property Name="opis_polski" Type="text" />
+          <Property Name="opis_angielski" Type="text" />
+          <Property Name="osrodek_opracowujacy" Type="char" MaxLength="100" />
+          <Property Name="url" Type="char" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="patenty_publikacja">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_publikacji" Type="int" />
+          <Property Name="id_patentu" Type="int" />
+        </EntityType>
+        <EntityType Name="patenty_tagi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_deskryptora" Type="int" />
+          <Property Name="id_patentu" Type="int" />
+        </EntityType>
+        <EntityType Name="publikacja_autor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_publikacji" Type="int" />
+          <Property Name="id_autora" Type="int" />
+        </EntityType>
+        <EntityType Name="publikacje">
+          <Key>
+            <PropertyRef Name="id_publikacji" />
+          </Key>
+          <Property Name="id_publikacji" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nr_publikacji" Type="char" MaxLength="100" />
+          <Property Name="rok_publikacji" Type="char" MaxLength="20" />
+          <Property Name="tytul_polski" Type="text" />
+          <Property Name="tytul_zagraniczny" Type="text" />
+          <Property Name="streszczenie_pol" Type="text" />
+          <Property Name="streszczenie_ang" Type="text" />
+          <Property Name="zrodlo_publikacji" Type="text" />
+        </EntityType>
+        <EntityType Name="publikacje_tagi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_publikacji" Type="int" />
+          <Property Name="id_deskryptora" Type="int" />
+        </EntityType>
+        <EntityType Name="slowa_kluczowe">
+          <Key>
+            <PropertyRef Name="id_deskryptora" />
+          </Key>
+          <Property Name="id_deskryptora" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="char" MaxLength="100" />
+        </EntityType>
+        <Association Name="dostawca_tagi_ibfk_1">
+          <End Role="dostawca" Type="CastKnowledgeModel.Store.dostawca" Multiplicity="0..1" />
+          <End Role="dostawca_tagi" Type="CastKnowledgeModel.Store.dostawca_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dostawca">
+              <PropertyRef Name="id_firmy" />
+            </Principal>
+            <Dependent Role="dostawca_tagi">
+              <PropertyRef Name="id_firmy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="dostawca_tagi_ibfk_2">
+          <End Role="slowa_kluczowe" Type="CastKnowledgeModel.Store.slowa_kluczowe" Multiplicity="0..1" />
+          <End Role="dostawca_tagi" Type="CastKnowledgeModel.Store.dostawca_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="slowa_kluczowe">
+              <PropertyRef Name="id_deskryptora" />
+            </Principal>
+            <Dependent Role="dostawca_tagi">
+              <PropertyRef Name="id_deskryptora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="odlewnia_tagi_ibfk_1">
+          <End Role="odlewnia" Type="CastKnowledgeModel.Store.odlewnia" Multiplicity="0..1" />
+          <End Role="odlewnia_tagi" Type="CastKnowledgeModel.Store.odlewnia_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="odlewnia">
+              <PropertyRef Name="id_odlewni" />
+            </Principal>
+            <Dependent Role="odlewnia_tagi">
+              <PropertyRef Name="id_odlewni" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="odlewnia_tagi_ibfk_2">
+          <End Role="slowa_kluczowe" Type="CastKnowledgeModel.Store.slowa_kluczowe" Multiplicity="0..1" />
+          <End Role="odlewnia_tagi" Type="CastKnowledgeModel.Store.odlewnia_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="slowa_kluczowe">
+              <PropertyRef Name="id_deskryptora" />
+            </Principal>
+            <Dependent Role="odlewnia_tagi">
+              <PropertyRef Name="id_deskryptora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="patent_autor_ibfk_1">
+          <End Role="patenty" Type="CastKnowledgeModel.Store.patenty" Multiplicity="0..1" />
+          <End Role="patent_autor" Type="CastKnowledgeModel.Store.patent_autor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patenty">
+              <PropertyRef Name="id_patentu" />
+            </Principal>
+            <Dependent Role="patent_autor">
+              <PropertyRef Name="id_patentu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="patent_posiada_autorow">
+          <End Role="autorzy" Type="CastKnowledgeModel.Store.autorzy" Multiplicity="0..1" />
+          <End Role="patent_autor" Type="CastKnowledgeModel.Store.patent_autor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="autorzy">
+              <PropertyRef Name="id_autora" />
+            </Principal>
+            <Dependent Role="patent_autor">
+              <PropertyRef Name="id_autora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="patenty_publikacja_ibfk_1">
+          <End Role="patenty" Type="CastKnowledgeModel.Store.patenty" Multiplicity="0..1" />
+          <End Role="patenty_publikacja" Type="CastKnowledgeModel.Store.patenty_publikacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patenty">
+              <PropertyRef Name="id_patentu" />
+            </Principal>
+            <Dependent Role="patenty_publikacja">
+              <PropertyRef Name="id_patentu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="patenty_tagi_ibfk_1">
+          <End Role="slowa_kluczowe" Type="CastKnowledgeModel.Store.slowa_kluczowe" Multiplicity="0..1" />
+          <End Role="patenty_tagi" Type="CastKnowledgeModel.Store.patenty_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="slowa_kluczowe">
+              <PropertyRef Name="id_deskryptora" />
+            </Principal>
+            <Dependent Role="patenty_tagi">
+              <PropertyRef Name="id_deskryptora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="patenty_tagi_ibfk_2">
+          <End Role="patenty" Type="CastKnowledgeModel.Store.patenty" Multiplicity="0..1" />
+          <End Role="patenty_tagi" Type="CastKnowledgeModel.Store.patenty_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patenty">
+              <PropertyRef Name="id_patentu" />
+            </Principal>
+            <Dependent Role="patenty_tagi">
+              <PropertyRef Name="id_patentu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publikacja_autor_ibfk_1">
+          <End Role="publikacje" Type="CastKnowledgeModel.Store.publikacje" Multiplicity="0..1" />
+          <End Role="publikacja_autor" Type="CastKnowledgeModel.Store.publikacja_autor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="publikacje">
+              <PropertyRef Name="id_publikacji" />
+            </Principal>
+            <Dependent Role="publikacja_autor">
+              <PropertyRef Name="id_publikacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publikacja_na_temat">
+          <End Role="publikacje" Type="CastKnowledgeModel.Store.publikacje" Multiplicity="0..1" />
+          <End Role="patenty_publikacja" Type="CastKnowledgeModel.Store.patenty_publikacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="publikacje">
+              <PropertyRef Name="id_publikacji" />
+            </Principal>
+            <Dependent Role="patenty_publikacja">
+              <PropertyRef Name="id_publikacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publikacja_posiada_autorow">
+          <End Role="autorzy" Type="CastKnowledgeModel.Store.autorzy" Multiplicity="0..1" />
+          <End Role="publikacja_autor" Type="CastKnowledgeModel.Store.publikacja_autor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="autorzy">
+              <PropertyRef Name="id_autora" />
+            </Principal>
+            <Dependent Role="publikacja_autor">
+              <PropertyRef Name="id_autora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publikacje_tagi_ibfk_1">
+          <End Role="publikacje" Type="CastKnowledgeModel.Store.publikacje" Multiplicity="0..1" />
+          <End Role="publikacje_tagi" Type="CastKnowledgeModel.Store.publikacje_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="publikacje">
+              <PropertyRef Name="id_publikacji" />
+            </Principal>
+            <Dependent Role="publikacje_tagi">
+              <PropertyRef Name="id_publikacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publikacje_tagi_ibfk_2">
+          <End Role="slowa_kluczowe" Type="CastKnowledgeModel.Store.slowa_kluczowe" Multiplicity="0..1" />
+          <End Role="publikacje_tagi" Type="CastKnowledgeModel.Store.publikacje_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="slowa_kluczowe">
+              <PropertyRef Name="id_deskryptora" />
+            </Principal>
+            <Dependent Role="publikacje_tagi">
+              <PropertyRef Name="id_deskryptora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CastKnowledgeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CastKnowledgeEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="autorzy" EntityType="CastKnowledgeModel.Autorzy" />
+          <EntitySet Name="dostawca" EntityType="CastKnowledgeModel.Dostawca" />
+          <EntitySet Name="dostawca_tagi" EntityType="CastKnowledgeModel.Dostawca_tagi" />
+          <EntitySet Name="odlewnia_tagi" EntityType="CastKnowledgeModel.Odlewnia_tagi" />
+          <EntitySet Name="patent_autor" EntityType="CastKnowledgeModel.Patent_autor" />
+          <EntitySet Name="patenty_publikacja" EntityType="CastKnowledgeModel.Patenty_publikacja" />
+          <EntitySet Name="patenty_tagi" EntityType="CastKnowledgeModel.Patenty_tagi" />
+          <EntitySet Name="publikacja_autor" EntityType="CastKnowledgeModel.Publikacja_autor" />
+          <EntitySet Name="publikacje" EntityType="CastKnowledgeModel.Publikacje" />
+          <EntitySet Name="publikacje_tagi" EntityType="CastKnowledgeModel.Publikacje_tagi" />
+          <EntitySet Name="slowa_kluczowe" EntityType="CastKnowledgeModel.Slowa_kluczowe" />
+          <AssociationSet Name="patent_posiada_autorow" Association="CastKnowledgeModel.patent_posiada_autorow">
+            <End Role="autorzy" EntitySet="autorzy" />
+            <End Role="patent_autor" EntitySet="patent_autor" />
+          </AssociationSet>
+          <AssociationSet Name="publikacja_posiada_autorow" Association="CastKnowledgeModel.publikacja_posiada_autorow">
+            <End Role="autorzy" EntitySet="autorzy" />
+            <End Role="publikacja_autor" EntitySet="publikacja_autor" />
+          </AssociationSet>
+          <AssociationSet Name="dostawca_tagi_ibfk_1" Association="CastKnowledgeModel.dostawca_tagi_ibfk_1">
+            <End Role="dostawca" EntitySet="dostawca" />
+            <End Role="dostawca_tagi" EntitySet="dostawca_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="dostawca_tagi_ibfk_2" Association="CastKnowledgeModel.dostawca_tagi_ibfk_2">
+            <End Role="slowa_kluczowe" EntitySet="slowa_kluczowe" />
+            <End Role="dostawca_tagi" EntitySet="dostawca_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="odlewnia_tagi_ibfk_2" Association="CastKnowledgeModel.odlewnia_tagi_ibfk_2">
+            <End Role="slowa_kluczowe" EntitySet="slowa_kluczowe" />
+            <End Role="odlewnia_tagi" EntitySet="odlewnia_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="publikacja_na_temat" Association="CastKnowledgeModel.publikacja_na_temat">
+            <End Role="publikacje" EntitySet="publikacje" />
+            <End Role="patenty_publikacja" EntitySet="patenty_publikacja" />
+          </AssociationSet>
+          <AssociationSet Name="patenty_tagi_ibfk_2" Association="CastKnowledgeModel.patenty_tagi_ibfk_2">
+            <End Role="slowa_kluczowe" EntitySet="slowa_kluczowe" />
+            <End Role="patenty_tagi" EntitySet="patenty_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="publikacja_autor_ibfk_1" Association="CastKnowledgeModel.publikacja_autor_ibfk_1">
+            <End Role="publikacje" EntitySet="publikacje" />
+            <End Role="publikacja_autor" EntitySet="publikacja_autor" />
+          </AssociationSet>
+          <AssociationSet Name="publikacje_tagi_ibfk_1" Association="CastKnowledgeModel.publikacje_tagi_ibfk_1">
+            <End Role="publikacje" EntitySet="publikacje" />
+            <End Role="publikacje_tagi" EntitySet="publikacje_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="publikacje_tagi_ibfk_2" Association="CastKnowledgeModel.publikacje_tagi_ibfk_2">
+            <End Role="slowa_kluczowe" EntitySet="slowa_kluczowe" />
+            <End Role="publikacje_tagi" EntitySet="publikacje_tagi" />
+          </AssociationSet>
+          <EntitySet Name="odlewnia" EntityType="CastKnowledgeModel.Odlewnia" />
+          <EntitySet Name="patenty" EntityType="CastKnowledgeModel.Patenty" />
+          <AssociationSet Name="odlewnia_tagi_ibfk_1" Association="CastKnowledgeModel.odlewnia_tagi_ibfk_1">
+            <End Role="odlewnia" EntitySet="odlewnia" />
+            <End Role="Odlewnia_tagi" EntitySet="odlewnia_tagi" />
+          </AssociationSet>
+          <AssociationSet Name="patent_autor_ibfk_1" Association="CastKnowledgeModel.patent_autor_ibfk_1">
+            <End Role="patenty" EntitySet="patenty" />
+            <End Role="Patent_autor" EntitySet="patent_autor" />
+          </AssociationSet>
+          <AssociationSet Name="patenty_publikacja_ibfk_1" Association="CastKnowledgeModel.patenty_publikacja_ibfk_1">
+            <End Role="patenty" EntitySet="patenty" />
+            <End Role="Patenty_publikacja" EntitySet="patenty_publikacja" />
+          </AssociationSet>
+          <AssociationSet Name="patenty_tagi_ibfk_21" Association="CastKnowledgeModel.patenty_tagi_ibfk_21">
+            <End Role="patenty" EntitySet="patenty" />
+            <End Role="Patenty_tagi" EntitySet="patenty_tagi" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Autorzy">
+          <Key>
+            <PropertyRef Name="id_autora" />
+          </Key>
+          <Property Name="id_autora" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="imie" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="afiliacja" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="funkcja" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Patent_autor" Relationship="CastKnowledgeModel.patent_posiada_autorow" FromRole="autorzy" ToRole="patent_autor" />
+          <NavigationProperty Name="Publikacja_autor" Relationship="CastKnowledgeModel.publikacja_posiada_autorow" FromRole="autorzy" ToRole="publikacja_autor" />
+        </EntityType>
+        <EntityType Name="Dostawca">
+          <Key>
+            <PropertyRef Name="id_firmy" />
+          </Key>
+          <Property Name="id_firmy" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="miejscowosc" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="kod_pocztowy" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ulica" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="wojewodztwo" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="telefon" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="fax" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="www" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="e_mail" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="prezes" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Dostawca_tagi" Relationship="CastKnowledgeModel.dostawca_tagi_ibfk_1" FromRole="dostawca" ToRole="dostawca_tagi" />
+          <Property Type="String" Name="zasoby" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="typ_firmy" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Dostawca_tagi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_firmy" Type="Int32" />
+          <Property Name="id_deskryptora" Type="Int32" />
+          <NavigationProperty Name="Dostawca" Relationship="CastKnowledgeModel.dostawca_tagi_ibfk_1" FromRole="dostawca_tagi" ToRole="dostawca" />
+          <NavigationProperty Name="Slowa_kluczowe" Relationship="CastKnowledgeModel.dostawca_tagi_ibfk_2" FromRole="dostawca_tagi" ToRole="slowa_kluczowe" />
+        </EntityType>
+        <EntityType Name="Odlewnia_tagi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_odlewni" Type="Int32" />
+          <Property Name="id_deskryptora" Type="Int32" />
+          <NavigationProperty Name="Slowa_kluczowe" Relationship="CastKnowledgeModel.odlewnia_tagi_ibfk_2" FromRole="odlewnia_tagi" ToRole="slowa_kluczowe" />
+          <NavigationProperty Name="Odlewnia" Relationship="CastKnowledgeModel.odlewnia_tagi_ibfk_1" FromRole="Odlewnia_tagi" ToRole="odlewnia" />
+        </EntityType>
+        <EntityType Name="Patent_autor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_autora" Type="Int32" />
+          <NavigationProperty Name="Autorzy" Relationship="CastKnowledgeModel.patent_posiada_autorow" FromRole="patent_autor" ToRole="autorzy" />
+          <Property Type="Int32" Name="id_patentu" />
+          <NavigationProperty Name="Patenty" Relationship="CastKnowledgeModel.patent_autor_ibfk_1" FromRole="Patent_autor" ToRole="patenty" />
+        </EntityType>
+        <EntityType Name="Patenty_publikacja">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_publikacji" Type="Int32" />
+          <NavigationProperty Name="Publikacje" Relationship="CastKnowledgeModel.publikacja_na_temat" FromRole="patenty_publikacja" ToRole="publikacje" />
+          <Property Type="Int32" Name="id_patentu" />
+          <NavigationProperty Name="patenty" Relationship="CastKnowledgeModel.patenty_publikacja_ibfk_1" FromRole="Patenty_publikacja" ToRole="patenty" />
+        </EntityType>
+        <EntityType Name="Patenty_tagi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_deskryptora" Type="Int32" />
+          <NavigationProperty Name="Slowa_kluczowe" Relationship="CastKnowledgeModel.patenty_tagi_ibfk_2" FromRole="patenty_tagi" ToRole="slowa_kluczowe" />
+          <Property Type="Int32" Name="id_patentu" />
+          <NavigationProperty Name="Patenty" Relationship="CastKnowledgeModel.patenty_tagi_ibfk_21" FromRole="Patenty_tagi" ToRole="patenty" />
+        </EntityType>
+        <EntityType Name="Publikacja_autor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_publikacji" Type="Int32" />
+          <Property Name="id_autora" Type="Int32" />
+          <NavigationProperty Name="Autorzy" Relationship="CastKnowledgeModel.publikacja_posiada_autorow" FromRole="publikacja_autor" ToRole="autorzy" />
+          <NavigationProperty Name="Publikacje" Relationship="CastKnowledgeModel.publikacja_autor_ibfk_1" FromRole="publikacja_autor" ToRole="publikacje" />
+        </EntityType>
+        <EntityType Name="Publikacje">
+          <Key>
+            <PropertyRef Name="id_publikacji" />
+          </Key>
+          <Property Name="id_publikacji" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="rok_publikacji" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="tytul_polski" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
+          <Property Name="tytul_zagraniczny" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
+          <Property Name="streszczenie_pol" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
+          <Property Name="streszczenie_ang" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
+          <Property Name="zrodlo_publikacji" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Patenty_publikacja" Relationship="CastKnowledgeModel.publikacja_na_temat" FromRole="publikacje" ToRole="patenty_publikacja" />
+          <NavigationProperty Name="Publikacja_autor" Relationship="CastKnowledgeModel.publikacja_autor_ibfk_1" FromRole="publikacje" ToRole="publikacja_autor" />
+          <NavigationProperty Name="Publikacje_tagi" Relationship="CastKnowledgeModel.publikacje_tagi_ibfk_1" FromRole="publikacje" ToRole="publikacje_tagi" />
+          <Property Type="String" Name="nr_publikacji" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Publikacje_tagi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_publikacji" Type="Int32" />
+          <Property Name="id_deskryptora" Type="Int32" />
+          <NavigationProperty Name="Publikacje" Relationship="CastKnowledgeModel.publikacje_tagi_ibfk_1" FromRole="publikacje_tagi" ToRole="publikacje" />
+          <NavigationProperty Name="Slowa_kluczowe" Relationship="CastKnowledgeModel.publikacje_tagi_ibfk_2" FromRole="publikacje_tagi" ToRole="slowa_kluczowe" />
+        </EntityType>
+        <EntityType Name="Slowa_kluczowe">
+          <Key>
+            <PropertyRef Name="id_deskryptora" />
+          </Key>
+          <Property Name="id_deskryptora" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Dostawca_tagi" Relationship="CastKnowledgeModel.dostawca_tagi_ibfk_2" FromRole="slowa_kluczowe" ToRole="dostawca_tagi" />
+          <NavigationProperty Name="Odlewnia_tagi" Relationship="CastKnowledgeModel.odlewnia_tagi_ibfk_2" FromRole="slowa_kluczowe" ToRole="odlewnia_tagi" />
+          <NavigationProperty Name="Patenty_tagi" Relationship="CastKnowledgeModel.patenty_tagi_ibfk_2" FromRole="slowa_kluczowe" ToRole="patenty_tagi" />
+          <NavigationProperty Name="Publikacje_tagi" Relationship="CastKnowledgeModel.publikacje_tagi_ibfk_2" FromRole="slowa_kluczowe" ToRole="publikacje_tagi" />
+        </EntityType>
+        <Association Name="patent_posiada_autorow">
+          <End Role="autorzy" Type="CastKnowledgeModel.Autorzy" Multiplicity="0..1" />
+          <End Role="patent_autor" Type="CastKnowledgeModel.Patent_autor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="autorzy">
+              <PropertyRef Name="id_autora" />
+            </Principal>
+            <Dependent Role="patent_autor">
+              <PropertyRef Name="id_autora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publikacja_posiada_autorow">
+          <End Role="autorzy" Type="CastKnowledgeModel.Autorzy" Multiplicity="0..1" />
+          <End Role="publikacja_autor" Type="CastKnowledgeModel.Publikacja_autor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="autorzy">
+              <PropertyRef Name="id_autora" />
+            </Principal>
+            <Dependent Role="publikacja_autor">
+              <PropertyRef Name="id_autora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="dostawca_tagi_ibfk_1">
+          <End Role="dostawca" Type="CastKnowledgeModel.Dostawca" Multiplicity="0..1" />
+          <End Role="dostawca_tagi" Type="CastKnowledgeModel.Dostawca_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dostawca">
+              <PropertyRef Name="id_firmy" />
+            </Principal>
+            <Dependent Role="dostawca_tagi">
+              <PropertyRef Name="id_firmy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="dostawca_tagi_ibfk_2">
+          <End Role="slowa_kluczowe" Type="CastKnowledgeModel.Slowa_kluczowe" Multiplicity="0..1" />
+          <End Role="dostawca_tagi" Type="CastKnowledgeModel.Dostawca_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="slowa_kluczowe">
+              <PropertyRef Name="id_deskryptora" />
+            </Principal>
+            <Dependent Role="dostawca_tagi">
+              <PropertyRef Name="id_deskryptora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="odlewnia_tagi_ibfk_2">
+          <End Role="slowa_kluczowe" Type="CastKnowledgeModel.Slowa_kluczowe" Multiplicity="0..1" />
+          <End Role="odlewnia_tagi" Type="CastKnowledgeModel.Odlewnia_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="slowa_kluczowe">
+              <PropertyRef Name="id_deskryptora" />
+            </Principal>
+            <Dependent Role="odlewnia_tagi">
+              <PropertyRef Name="id_deskryptora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publikacja_na_temat">
+          <End Role="publikacje" Type="CastKnowledgeModel.Publikacje" Multiplicity="0..1" />
+          <End Role="patenty_publikacja" Type="CastKnowledgeModel.Patenty_publikacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="publikacje">
+              <PropertyRef Name="id_publikacji" />
+            </Principal>
+            <Dependent Role="patenty_publikacja">
+              <PropertyRef Name="id_publikacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="patenty_tagi_ibfk_2">
+          <End Role="slowa_kluczowe" Type="CastKnowledgeModel.Slowa_kluczowe" Multiplicity="0..1" />
+          <End Role="patenty_tagi" Type="CastKnowledgeModel.Patenty_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="slowa_kluczowe">
+              <PropertyRef Name="id_deskryptora" />
+            </Principal>
+            <Dependent Role="patenty_tagi">
+              <PropertyRef Name="id_deskryptora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publikacja_autor_ibfk_1">
+          <End Role="publikacje" Type="CastKnowledgeModel.Publikacje" Multiplicity="0..1" />
+          <End Role="publikacja_autor" Type="CastKnowledgeModel.Publikacja_autor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="publikacje">
+              <PropertyRef Name="id_publikacji" />
+            </Principal>
+            <Dependent Role="publikacja_autor">
+              <PropertyRef Name="id_publikacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publikacje_tagi_ibfk_1">
+          <End Role="publikacje" Type="CastKnowledgeModel.Publikacje" Multiplicity="0..1" />
+          <End Role="publikacje_tagi" Type="CastKnowledgeModel.Publikacje_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="publikacje">
+              <PropertyRef Name="id_publikacji" />
+            </Principal>
+            <Dependent Role="publikacje_tagi">
+              <PropertyRef Name="id_publikacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="publikacje_tagi_ibfk_2">
+          <End Role="slowa_kluczowe" Type="CastKnowledgeModel.Slowa_kluczowe" Multiplicity="0..1" />
+          <End Role="publikacje_tagi" Type="CastKnowledgeModel.Publikacje_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="slowa_kluczowe">
+              <PropertyRef Name="id_deskryptora" />
+            </Principal>
+            <Dependent Role="publikacje_tagi">
+              <PropertyRef Name="id_deskryptora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Odlewnia">
+          <Key>
+            <PropertyRef Name="id_odlewni" />
+          </Key>
+          <Property Type="Int32" Name="id_odlewni" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nazwa" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="miejscowosc" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="kod_pocztowy" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ulica" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="telefon" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="fax" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="www" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="e_mail" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nazwa_technologii" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nazwa_tworzywa" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Odlewnia_tagi" Relationship="CastKnowledgeModel.odlewnia_tagi_ibfk_1" FromRole="odlewnia" ToRole="Odlewnia_tagi" />
+        </EntityType>
+        <EntityType Name="Patenty">
+          <Key>
+            <PropertyRef Name="id_patentu" />
+          </Key>
+          <Property Type="Int32" Name="id_patentu" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="numer_wynalazku" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="data_rozpoczecia" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="data_zakonczenia" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="data_zgloszenia" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="symbol_patentowy" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tytul_polski" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tytul_angielski" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="opis_polski" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="opis_angielski" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="osrodek_opracowujacy" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="url" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Patent_autor" Relationship="CastKnowledgeModel.patent_autor_ibfk_1" FromRole="patenty" ToRole="Patent_autor" />
+          <NavigationProperty Name="Patenty_publikacja" Relationship="CastKnowledgeModel.patenty_publikacja_ibfk_1" FromRole="patenty" ToRole="Patenty_publikacja" />
+          <NavigationProperty Name="Patenty_tagi" Relationship="CastKnowledgeModel.patenty_tagi_ibfk_21" FromRole="patenty" ToRole="Patenty_tagi" />
+        </EntityType>
+        <Association Name="odlewnia_tagi_ibfk_1">
+          <End Type="CastKnowledgeModel.Odlewnia" Role="odlewnia" Multiplicity="0..1" />
+          <End Type="CastKnowledgeModel.Odlewnia_tagi" Role="Odlewnia_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="odlewnia">
+              <PropertyRef Name="id_odlewni" />
+            </Principal>
+            <Dependent Role="Odlewnia_tagi">
+              <PropertyRef Name="id_odlewni" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="patent_autor_ibfk_1">
+          <End Type="CastKnowledgeModel.Patenty" Role="patenty" Multiplicity="0..1" />
+          <End Type="CastKnowledgeModel.Patent_autor" Role="Patent_autor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patenty">
+              <PropertyRef Name="id_patentu" />
+            </Principal>
+            <Dependent Role="Patent_autor">
+              <PropertyRef Name="id_patentu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="patenty_publikacja_ibfk_1">
+          <End Type="CastKnowledgeModel.Patenty" Role="patenty" Multiplicity="0..1" />
+          <End Type="CastKnowledgeModel.Patenty_publikacja" Role="Patenty_publikacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patenty">
+              <PropertyRef Name="id_patentu" />
+            </Principal>
+            <Dependent Role="Patenty_publikacja">
+              <PropertyRef Name="id_patentu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="patenty_tagi_ibfk_21">
+          <End Type="CastKnowledgeModel.Patenty" Role="patenty" Multiplicity="0..1" />
+          <End Type="CastKnowledgeModel.Patenty_tagi" Role="Patenty_tagi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patenty">
+              <PropertyRef Name="id_patentu" />
+            </Principal>
+            <Dependent Role="Patenty_tagi">
+              <PropertyRef Name="id_patentu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CastKnowledgeModelStoreContainer" CdmEntityContainer="CastKnowledgeEntities">
+          <EntitySetMapping Name="autorzy">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Autorzy">
+              <MappingFragment StoreEntitySet="autorzy">
+                <ScalarProperty Name="id_autora" ColumnName="id_autora" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="afiliacja" ColumnName="afiliacja" />
+                <ScalarProperty Name="funkcja" ColumnName="funkcja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dostawca">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Dostawca">
+              <MappingFragment StoreEntitySet="dostawca">
+                <ScalarProperty Name="typ_firmy" ColumnName="typ_firmy" />
+                <ScalarProperty Name="zasoby" ColumnName="zasoby" />
+                <ScalarProperty Name="id_firmy" ColumnName="id_firmy" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="miejscowosc" ColumnName="miejscowosc" />
+                <ScalarProperty Name="kod_pocztowy" ColumnName="kod_pocztowy" />
+                <ScalarProperty Name="ulica" ColumnName="ulica" />
+                <ScalarProperty Name="wojewodztwo" ColumnName="wojewodztwo" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="www" ColumnName="www" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="prezes" ColumnName="prezes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dostawca_tagi">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Dostawca_tagi">
+              <MappingFragment StoreEntitySet="dostawca_tagi">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_firmy" ColumnName="id_firmy" />
+                <ScalarProperty Name="id_deskryptora" ColumnName="id_deskryptora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="odlewnia_tagi">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Odlewnia_tagi">
+              <MappingFragment StoreEntitySet="odlewnia_tagi">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_odlewni" ColumnName="id_odlewni" />
+                <ScalarProperty Name="id_deskryptora" ColumnName="id_deskryptora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patent_autor">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Patent_autor">
+              <MappingFragment StoreEntitySet="patent_autor">
+                <ScalarProperty Name="id_patentu" ColumnName="id_patentu" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_autora" ColumnName="id_autora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patenty_publikacja">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Patenty_publikacja">
+              <MappingFragment StoreEntitySet="patenty_publikacja">
+                <ScalarProperty Name="id_patentu" ColumnName="id_patentu" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_publikacji" ColumnName="id_publikacji" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patenty_tagi">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Patenty_tagi">
+              <MappingFragment StoreEntitySet="patenty_tagi">
+                <ScalarProperty Name="id_patentu" ColumnName="id_patentu" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_deskryptora" ColumnName="id_deskryptora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="publikacja_autor">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Publikacja_autor">
+              <MappingFragment StoreEntitySet="publikacja_autor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_publikacji" ColumnName="id_publikacji" />
+                <ScalarProperty Name="id_autora" ColumnName="id_autora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="publikacje">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Publikacje">
+              <MappingFragment StoreEntitySet="publikacje">
+                <ScalarProperty Name="nr_publikacji" ColumnName="nr_publikacji" />
+                <ScalarProperty Name="id_publikacji" ColumnName="id_publikacji" />
+                <ScalarProperty Name="rok_publikacji" ColumnName="rok_publikacji" />
+                <ScalarProperty Name="tytul_polski" ColumnName="tytul_polski" />
+                <ScalarProperty Name="tytul_zagraniczny" ColumnName="tytul_zagraniczny" />
+                <ScalarProperty Name="streszczenie_pol" ColumnName="streszczenie_pol" />
+                <ScalarProperty Name="streszczenie_ang" ColumnName="streszczenie_ang" />
+                <ScalarProperty Name="zrodlo_publikacji" ColumnName="zrodlo_publikacji" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="publikacje_tagi">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Publikacje_tagi">
+              <MappingFragment StoreEntitySet="publikacje_tagi">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_publikacji" ColumnName="id_publikacji" />
+                <ScalarProperty Name="id_deskryptora" ColumnName="id_deskryptora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="slowa_kluczowe">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Slowa_kluczowe">
+              <MappingFragment StoreEntitySet="slowa_kluczowe">
+                <ScalarProperty Name="id_deskryptora" ColumnName="id_deskryptora" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="odlewnia">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Odlewnia">
+              <MappingFragment StoreEntitySet="odlewnia">
+                <ScalarProperty Name="nazwa_tworzywa" ColumnName="nazwa_tworzywa" />
+                <ScalarProperty Name="nazwa_technologii" ColumnName="nazwa_technologii" />
+                <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="www" ColumnName="www" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="ulica" ColumnName="ulica" />
+                <ScalarProperty Name="kod_pocztowy" ColumnName="kod_pocztowy" />
+                <ScalarProperty Name="miejscowosc" ColumnName="miejscowosc" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="id_odlewni" ColumnName="id_odlewni" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patenty">
+            <EntityTypeMapping TypeName="CastKnowledgeModel.Patenty">
+              <MappingFragment StoreEntitySet="patenty">
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="osrodek_opracowujacy" ColumnName="osrodek_opracowujacy" />
+                <ScalarProperty Name="opis_angielski" ColumnName="opis_angielski" />
+                <ScalarProperty Name="opis_polski" ColumnName="opis_polski" />
+                <ScalarProperty Name="tytul_angielski" ColumnName="tytul_angielski" />
+                <ScalarProperty Name="tytul_polski" ColumnName="tytul_polski" />
+                <ScalarProperty Name="symbol_patentowy" ColumnName="symbol_patentowy" />
+                <ScalarProperty Name="data_zgloszenia" ColumnName="data_zgloszenia" />
+                <ScalarProperty Name="data_zakonczenia" ColumnName="data_zakonczenia" />
+                <ScalarProperty Name="data_rozpoczecia" ColumnName="data_rozpoczecia" />
+                <ScalarProperty Name="numer_wynalazku" ColumnName="numer_wynalazku" />
+                <ScalarProperty Name="id_patentu" ColumnName="id_patentu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

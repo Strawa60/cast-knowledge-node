@@ -1,0 +1,47 @@
+﻿@model SyrinxMvc.Models.PublikacjeListWrapper
+
+@{
+    ViewBag.Title = "Publikacje";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <p>
+                Baza publikacji i artykułów.
+            </p>
+        </div>
+    </section>
+}
+
+<p>@Html.ActionLink("+ Dodaj", "Create")</p>
+<p>@Html.ActionLink("+ Dodaj z xls", "Import","Import",new { _viewName = "Publikacje"},null)</p>
+
+@foreach (var item in Model.publications) {
+    <p>
+            @Html.Partial("PublikacjePartial", item)
+            <p><b>Tagi:</b> 
+            @for(int i=0;i<Model.keyWords.Count;i++)
+            {
+                if(item.id_publikacji == Model.keyWords[i].t1)
+                {
+                    foreach(var q in Model.keyWords[i].t2)
+                    {
+                     @q <text>|</text>   
+                    }
+                }
+            }
+                </p>
+        <br />
+            @Html.ActionLink("Edytuj", "Edit", new {  id=item.id_publikacji  }) |
+            @Html.ActionLink("Szczegóły", "Details", new {  id=item.id_publikacji  }) |
+            @Html.ActionLink("Usuń", "Delete", new {  id=item.id_publikacji  })
+    </p>
+}
+
+<div class="pager">
+    @Html.PageLinks(Model.pagingInfo, x=> Url.Action("Index", new {page = x}))
+</div>

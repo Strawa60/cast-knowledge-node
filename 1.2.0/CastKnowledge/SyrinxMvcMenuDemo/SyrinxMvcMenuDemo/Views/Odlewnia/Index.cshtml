@@ -1,0 +1,46 @@
+﻿@model SyrinxMvc.Models.OdlewniaListWrapper
+
+@{
+    ViewBag.Title = "Odlewnie";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <p>
+                Baza odlewni.
+            </p>
+        </div>
+    </section>
+}
+
+<p>@Html.ActionLink("+ Dodaj", "Create")</p>
+<p>@Html.ActionLink("+ Dodaj z xls", "Import","Import",new { _viewName = "Odlewnie"},null)</p>
+
+@foreach (var item in Model.foundries) {
+    <p>
+            @Html.Partial("OdlewniePartial", item)
+            <p><b>Tagi:</b> 
+            @for(int i=0;i<Model.keyWords.Count;i++)
+            {
+                if(item.id_odlewni == Model.keyWords[i].t1)
+                {
+                    foreach(var q in Model.keyWords[i].t2)
+                    {
+                     @q <text>|</text>   
+                    }
+                }
+            }
+                </p>
+        <br />
+            @Html.ActionLink("Edytuj", "Edit", new {  id=item.id_odlewni  }) |
+            @Html.ActionLink("Szczegóły", "Details", new {  id=item.id_odlewni  }) |
+            @Html.ActionLink("Usuń", "Delete", new {  id=item.id_odlewni  })
+    </p>
+}
+
+<div class="pager">
+    @Html.PageLinks(Model.pagingInfo, x=> Url.Action("Index", new {page = x}))
+</div>

@@ -1,0 +1,62 @@
+﻿@model CastKnowledgeWebApp.Domain.Patenty
+
+<div class="item">
+
+    @if(Model.numer_wynalazku != null)
+    {
+       <b>Numer wynalazku:</b> @Model.numer_wynalazku<br><br>
+    }
+    
+    @if(Model.data_rozpoczecia != null)
+    {
+        <b>Data rozpoczęcia:</b> @Model.data_rozpoczecia<br><br>
+    }
+
+    @if(Model.data_zakonczenia != null)
+    {
+     <b>Data zakończenia:</b> @Model.data_zakonczenia<br><br>
+    }
+    
+    @if(Model.data_zgloszenia != null)
+    {
+        <b>Data zgłoszenia:</b> @Model.data_zgloszenia<br><br>
+    }
+    
+    @if(Model.symbol_patentowy != null)
+    {
+        <b>Symbol patentowy: </b>@Model.symbol_patentowy<br><br>
+    }
+    
+    @if(Model.tytul_polski != null)
+    {
+        <b>Tytuł polski: </b>@Model.tytul_polski<br><br>
+    }
+
+    @if(Model.tytul_angielski != null)
+    {
+        <b>Tytuł zagraniczny: </b>@Model.tytul_angielski<br><br>
+    }
+
+    @if(Model.opis_polski != null)
+    {
+        @Model.opis_polski<br><br>
+    }
+
+    @if(Model.opis_angielski != null)
+    {
+        @Model.opis_angielski<br><br>
+    }
+    @if(Model.osrodek_opracowujacy != null)
+    {
+        @Model.osrodek_opracowujacy<br><br>
+    }
+    
+    @if(Model.url != null)
+    {
+        <b>@Model.url</b><br>
+    }
+
+
+
+
+</div>

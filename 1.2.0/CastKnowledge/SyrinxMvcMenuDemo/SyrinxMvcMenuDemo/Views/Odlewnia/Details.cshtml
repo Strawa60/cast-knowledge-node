@@ -1,0 +1,19 @@
+﻿@model SyrinxMvc.Models.OdlewniaWrapper
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Odlewnia</legend>
+
+    @Html.Partial("OdlewniePartial", Model.foundries)
+    <p><b>Tagi: @Model.keyWords</b> </p><br />
+    
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.foundries.id_odlewni }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

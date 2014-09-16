@@ -1,0 +1,126 @@
+﻿@model SyrinxMvc.Models.PatentyWrapper
+
+@{
+    ViewBag.Title = "Edytuj";
+}
+
+<h2>Dodaj</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Patenty</legend>
+
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.patents.id_patentu)
+            @Html.ValidationMessageFor(model => model.patents.id_patentu)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Numer patentu")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.patents.numer_wynalazku)
+            @Html.ValidationMessageFor(model => model.patents.numer_wynalazku)
+        </div>
+
+        <div class="editor-label">
+           @Html.Label("Data rozpoczęcia")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.patents.data_rozpoczecia)
+            @Html.ValidationMessageFor(model => model.patents.data_rozpoczecia)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Data zakończenia")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.patents.data_zakonczenia)
+            @Html.ValidationMessageFor(model => model.patents.data_zakonczenia)
+        </div>
+
+        <div class="editor-label">
+           @Html.Label("Data zgłoszenia")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.patents.data_zgloszenia)
+            @Html.ValidationMessageFor(model => model.patents.data_zgloszenia)
+        </div>
+
+        <div class="editor-label">
+           @Html.Label("Symbol patentowy")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.patents.symbol_patentowy)
+            @Html.ValidationMessageFor(model => model.patents.symbol_patentowy)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Tytuł polski")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.patents.tytul_polski)
+            @Html.ValidationMessageFor(model => model.patents.tytul_polski)
+        </div>
+
+         <div class="editor-label">
+            @Html.Label("Tytuł zagraniczny")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.patents.tytul_angielski)
+            @Html.ValidationMessageFor(model => model.patents.tytul_angielski)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Opis polski")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.patents.opis_polski)
+            @Html.ValidationMessageFor(model => model.patents.opis_polski)
+        </div>
+
+         <div class="editor-label">
+            @Html.Label("Opis zagraniczny")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.patents.opis_angielski)
+            @Html.ValidationMessageFor(model => model.patents.opis_angielski)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Ośrodek opracowywujący")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.patents.osrodek_opracowujacy)
+            @Html.ValidationMessageFor(model => model.patents.osrodek_opracowujacy)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Adres www")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.patents.url)
+            @Html.ValidationMessageFor(model => model.patents.url)
+        </div>
+
+         <div class="editor-label">
+            @Html.Label("Tagi (separator ';')")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.keyWords)
+            @Html.ValidationMessageFor(model => model.keyWords)
+        </div>
+
+        <p>
+            <input type="submit" value="Edytuj" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Cofnij do listy", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

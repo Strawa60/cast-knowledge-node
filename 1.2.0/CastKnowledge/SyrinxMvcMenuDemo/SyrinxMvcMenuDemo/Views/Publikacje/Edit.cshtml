@@ -1,0 +1,96 @@
+﻿@model SyrinxMvc.Models.PublikacjeWrapper
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Publikacje</legend>
+
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.publications.id_publikacji)
+            @Html.ValidationMessageFor(model => model.publications.id_publikacji)
+        </div>
+         <div class="editor-label">
+            @Html.Label("Numer publikacji")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.publications.nr_publikacji)
+            @Html.ValidationMessageFor(model => model.publications.nr_publikacji)
+        </div>
+
+        <div class="editor-label">
+           @Html.Label("Rok publikacji")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.publications.rok_publikacji)
+            @Html.ValidationMessageFor(model => model.publications.rok_publikacji)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Tytuł polski")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.publications.tytul_polski)
+            @Html.ValidationMessageFor(model => model.publications.tytul_polski)
+        </div>
+
+        <div class="editor-label">
+           @Html.Label("Tytuł zagraniczny")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.publications.tytul_zagraniczny)
+            @Html.ValidationMessageFor(model => model.publications.tytul_zagraniczny)
+        </div>
+
+        <div class="editor-label">
+           @Html.Label("Streszczenie polskie")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.publications.streszczenie_pol)
+            @Html.ValidationMessageFor(model => model.publications.streszczenie_pol)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Streszczenie zagraniczne")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.publications.streszczenie_ang)
+            @Html.ValidationMessageFor(model => model.publications.streszczenie_ang)
+        </div>
+
+         <div class="editor-label">
+            @Html.Label("Źródło")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.publications.zrodlo_publikacji)
+            @Html.ValidationMessageFor(model => model.publications.zrodlo_publikacji)
+        </div>
+
+         <div class="editor-label">
+            @Html.Label("Tagi (separator ';')")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.keyWords)
+            @Html.ValidationMessageFor(model => model.keyWords)
+        </div>
+
+        <p>
+            <input type="submit" value="Edytuj" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Cofnij do listy", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

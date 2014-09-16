@@ -1,0 +1,20 @@
+﻿@model SyrinxMvc.Models.PatentyWrapper
+
+@{
+    ViewBag.Title = "Szczegóły";
+}
+
+<h2>Szczegóły patentu</h2>
+
+<fieldset>
+    <legend>Patent</legend>
+
+    @Html.Partial("PatentyPartial", Model.patents)
+
+    <p><b>Tagi: @Model.keyWords</b> </p><br />
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edytuj", "Edit", new {  id=Model.patents.id_patentu  }) |
+    @Html.ActionLink("Cofnij do listy", "Index")
+</p>

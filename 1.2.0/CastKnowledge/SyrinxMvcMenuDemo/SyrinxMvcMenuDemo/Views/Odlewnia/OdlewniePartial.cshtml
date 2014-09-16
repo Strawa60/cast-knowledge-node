@@ -1,0 +1,43 @@
+﻿@model CastKnowledgeWebApp.Domain.Odlewnia
+
+<div class="item">
+    <h3>@Model.nazwa</h3>
+
+    Dane tele-adresowe:<br>
+    @if(Model.ulica != null)
+    {
+        @Model.ulica<br>
+    }
+    @if(Model.kod_pocztowy != null)
+    {
+        @Model.kod_pocztowy<br>
+    }
+    @if(Model.miejscowosc != null)
+    {
+        @Model.miejscowosc<br>
+    }
+    @if(Model.telefon != null)
+    {
+        @Model.telefon<br>
+    }
+    @if(Model.fax != null)
+    {
+        @Model.fax<br>
+    }
+    @if(Model.e_mail != null)
+    {
+        @Model.e_mail<br>
+    }
+    @if(Model.www != null)
+    {
+        @Model.www<br>
+    }
+    @if(Model.nazwa_technologii != null)
+    {
+        <p>Technologie: @Model.nazwa_technologii</p>
+    }
+    @if(Model.nazwa_tworzywa != null)
+    {
+        <p>Wykorzystywane tworzywa: @Model.nazwa_tworzywa</p>
+    }
+</div>

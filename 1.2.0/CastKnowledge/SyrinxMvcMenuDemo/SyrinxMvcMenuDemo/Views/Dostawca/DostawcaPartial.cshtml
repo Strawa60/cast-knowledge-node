@@ -1,0 +1,46 @@
+﻿@model CastKnowledgeWebApp.Domain.Dostawca
+
+<div class="item">
+    <h3>@Model.nazwa</h3>
+    @if(Model.prezes!=null)
+    {
+    <h4>prezes: @Model.prezes</h4><br>
+    }
+    Dane tele-adresowe:<br>
+    @if(Model.ulica != null)
+    {
+        @Model.ulica<br>
+    }
+    @if(Model.kod_pocztowy != null)
+    {
+        @Model.kod_pocztowy<br>
+    }
+    @if(Model.miejscowosc != null)
+    {
+        @Model.miejscowosc<br>
+    }
+    @if(Model.wojewodztwo != null)
+    {
+        @Model.wojewodztwo<br>
+    }
+    @if(Model.telefon != null)
+    {
+        @Model.telefon<br>
+    }
+    @if(Model.fax != null)
+    {
+        @Model.fax<br>
+    }
+    @if(Model.e_mail != null)
+    {
+        @Model.e_mail<br>
+    }
+    @if(Model.www != null)
+    {
+        @Model.www<br>
+    }
+    @if(Model.zasoby != null)
+    {
+        <p>Zasoby: @Model.zasoby</p>
+    }
+</div>
