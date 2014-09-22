@@ -5,6 +5,7 @@
   <MenuItem text="Odlewnie" navigateUrl="~/Odlewnia/Index" />
   <MenuItem text="Publikacje" navigateUrl="~/Publikacje/Index" />
   <MenuItem text="Patenty" navigateUrl="~/Patenty/Index" />
+  <MenuItem text="Ontologia" navigateUrl="~/Ontologia/Index" />
   <!--<MenuItem text="Contact" navigateUrl="~/Home/Contact" />-->
 </Menu>
 

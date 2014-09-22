@@ -26,10 +26,10 @@
                     @*<p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>*@
                 </div>
                 <div class="float-right">
-                    <section id="login">
+                    <section id="Search">
                         @Html.Partial("_Search")
                     </section>
-                    <nav id="menu">
+                    <nav id="menu" style="font-size:0.75em;">
                     @Html.Raw(menu.Html)
                     </nav>
                 </div>
@@ -37,6 +37,7 @@
         </header>
         <div id="body">
             @RenderSection("featured", required: false)
+            @RenderSection("JavaScript",required: false)
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
             </section>
