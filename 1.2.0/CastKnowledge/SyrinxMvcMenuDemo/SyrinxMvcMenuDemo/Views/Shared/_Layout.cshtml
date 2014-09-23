@@ -23,7 +23,6 @@
             <div class="content-wrapper">
                 <div class="float-left">
                     <img src="~/Content/logo.jpg" />
-                    @*<p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>*@
                 </div>
                 <div class="float-right">
                     <section id="Search">
@@ -37,7 +36,6 @@
         </header>
         <div id="body">
             @RenderSection("featured", required: false)
-            @RenderSection("JavaScript",required: false)
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
             </section>
@@ -46,7 +44,6 @@
             <div class="content-wrapper">
                 <div class="float-left">
                     <p>&copy; @DateTime.Now.Year - Designed by Michał Strawczyński</p>
-                   @* @Html.ActionLink("Dostawca", "Index", "Dostawca")*@
                 </div>
             </div>
         </footer>

@@ -1,18 +1,33 @@
-﻿
-    <link href="~/Content/demo.css" rel="stylesheet" />
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css"></style>
+    <script src="~/Scripts/JSPlumb/dom.jsPlumb-1.6.4-min.js"></script>
+    <script src="~/Scripts/JSPlumb/ontologyJS.js"></script>
+    <link href="~/Content/jsBox.css" rel="stylesheet" />
     <link href="~/Content/jsplumb.css" rel="stylesheet" />
-    <script src="~/Scripts/JSPlumb/jquery-1.9.0-min.js"></script>
-    <script src="~/Scripts/JSPlumb/jquery-ui-1.9.2.min.js"></script>
-    <script src="~/Scripts/JSPlumb/jquery.jsPlumb-1.6.4-min.js"></script>
-	<script src="~/Scripts/JSPlumb/demo.js"></script>
+</head>
+
+<body>  
+   @section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <p>
+                Nawigacja po ontologii
+            </p>
+        </div>
+    </section>
+}
 
 
-            <div class="demo flowchart-demo" id="flowchart-demo">
-                <div class="window _jsPlumb_endpoint_anchor_ ui-draggable" id="flowchartWindow1"><strong>1</strong><br><br></div>
-                <div class="window _jsPlumb_endpoint_anchor_ ui-draggable" id="flowchartWindow2"><strong>2</strong><br><br></div>
-                <div class="window _jsPlumb_endpoint_anchor_ ui-draggable" id="flowchartWindow3"><strong>3</strong><br><br></div>
-                <div class="window _jsPlumb_endpoint_anchor_ ui-draggable" id="flowchartWindow4"><strong>4</strong><br><br></div>
-
-		
-		
-
+        <div id="drag-drop-demo" class="demo drag-drop-demo">
+            <div class="window jsplumb-draggable _jsPlumb_endpoint_anchor_" id="dragDropWindow1" style="left: 427px; top: 125px;">one</div>
+            <div class="window jsplumb-draggable _jsPlumb_endpoint_anchor_" id="dragDropWindow2">two</div>
+            <div class="window jsplumb-draggable _jsPlumb_endpoint_anchor_" id="dragDropWindow3">three</div>
+            <div class="window jsplumb-draggable _jsPlumb_endpoint_anchor_" id="dragDropWindow4">four</div>
+        </div>
+</body>
+</html>

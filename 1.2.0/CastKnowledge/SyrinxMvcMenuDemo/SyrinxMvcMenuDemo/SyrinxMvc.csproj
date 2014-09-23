@@ -205,11 +205,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\demo.css" />
+    <Content Include="Content\jsBox.css" />
     <Content Include="Content\icon-search.png" />
     <Content Include="Content\jsplumb.css" />
     <Content Include="Content\logo.jpg" />
     <Content Include="Content\logo_iod_main.jpg" />
+    <Content Include="Content\Test\jquery-ui.css" />
     <Content Include="Images\find.png" />
     <Content Include="Images\search.png" />
     <Content Include="Content\SyrinxMenu.css" />
@@ -287,15 +288,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\JSPlumb\counter.js" />
-    <Content Include="Scripts\JSPlumb\demo-list.js" />
-    <Content Include="Scripts\JSPlumb\demo.js" />
-    <Content Include="Scripts\JSPlumb\ga.js" />
-    <Content Include="Scripts\JSPlumb\jquery-1.9.0-min.js" />
-    <Content Include="Scripts\JSPlumb\jquery-ui-1.9.2.min.js" />
-    <Content Include="Scripts\JSPlumb\jquery.jsPlumb-1.6.4-min.js" />
-    <Content Include="Scripts\JSPlumb\jquery.ui.touch-punch-0.2.2.min.js" />
-    <Content Include="Scripts\JSPlumb\widgets.js" />
+    <Content Include="Scripts\JSPlumb\ontologyJS.js" />
+    <Content Include="Scripts\JSPlumb\dom.jsPlumb-1.6.4-min.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
@@ -362,7 +356,6 @@
     <Content Include="Views\Publikacje\PublikacjePartial.cshtml" />
     <Content Include="Views\Patenty\PatentyPartial.cshtml" />
     <Content Include="Views\Ontologia\Index.cshtml" />
-    <Content Include="Scripts\JSPlumb\Import\Import.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
