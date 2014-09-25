@@ -8,26 +8,30 @@
     <link href="~/Content/jsplumb.css" rel="stylesheet" />
 </head>
 
-<body>  
-   @section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title</h1>
-            </hgroup>
-            <p>
-                Nawigacja po ontologii
-            </p>
-        </div>
-    </section>
-}
+<body>
+    @section featured {
+        <section class="featured">
+            <div class="content-wrapper">
+                <hgroup class="title">
+                    <h1>@ViewBag.Title</h1>
+                </hgroup>
+                <p>
+                    Nawigacja po ontologii
+                </p>
+            </div>
+        </section>
+    }
+    @{
+        
+    
+    }
 
 
-        <div id="drag-drop-demo" class="demo drag-drop-demo">
-            <div class="window jsplumb-draggable _jsPlumb_endpoint_anchor_" id="dragDropWindow1" style="left: 427px; top: 125px;">one</div>
-            <div class="window jsplumb-draggable _jsPlumb_endpoint_anchor_" id="dragDropWindow2">two</div>
-            <div class="window jsplumb-draggable _jsPlumb_endpoint_anchor_" id="dragDropWindow3">three</div>
-            <div class="window jsplumb-draggable _jsPlumb_endpoint_anchor_" id="dragDropWindow4">four</div>
-        </div>
+    <div id="drag-drop" class="demo drag-drop">
+        @for(var i=0; i<5;i++)
+        {
+            <div class="window jsplumb-draggable _jsPlumb_endpoint_anchor_" id="block @i">one</div>
+        }
+    </div>
 </body>
 </html>
