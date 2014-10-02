@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CastKnowledgeWebApp.Ontology
 {
-    interface IOwlObjectProperty
+    interface IOwlDataProperty
     {
     }
 }

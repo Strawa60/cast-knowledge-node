@@ -1,66 +1,29 @@
-using System;
-using System.Runtime.InteropServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace OwlDotNetApi
+namespace CastKnowledgeWebApp.Ontology
 {
-	/// <summary>
-	/// Represents an OWL resource of type owl:ObjectProperty.
-	/// </summary>
-	public class OwlObjectProperty : OwlProperty, IOwlObjectProperty
-	{
-		#region Creators
-		/// <summary>
-		/// Initializes a new instance of the OwlObjectProperty class
-		/// </summary>
-		/// <remarks>This constructor creates a new OwlNode with Uri owl:ObjectProperty and sets it as the child node of an edge with URI rdf:type</remarks>	
-		public OwlObjectProperty()
-		{
-//			_typeEdge = new OwlEdge(OwlNamespaceCollection.RdfNamespace+"type");
-//			_typeEdge.AttachChildNode(new OwlNode(OwlNamespaceCollection.OwlNamespace+"ObjectProperty"));
-//			AttachChildEdge(_typeEdge);
-		}
+    public class OwlObjectProperty : IOwlObjectProperty
+    {
+        public string objPropertyName { get; set; }
+        public string domain { get; set; }
+        public string range { get; set; }
 
-		/// <summary>
-		/// Initializes a new instance of the OwlObjectProperty class with the given Uri and TypeNode
-		/// </summary>
-		/// <param name="nodeUri">A string representing the Uri of this Resource</param>
-		/// <param name="typeNode">The OwlNode object to attach to the edge specifying the type. This is usually a node with ID owl:ObjectProperty.</param>
-		/// <exception cref="ArgumentNullException">typeNode is a null reference</exception>
-		public OwlObjectProperty(string nodeUri, OwlNode typeNode)
-		{
-			if(typeNode == null)
-				throw(new ArgumentNullException());
-			ID = nodeUri;
-			_typeEdge = new OwlEdge(OwlNamespaceCollection.RdfNamespace+"type");
-			_typeEdge.AttachChildNode(typeNode);
-			AttachChildEdge(_typeEdge);
-		}
-		/// <summary>
-		/// Initializes a new instance of the OwlObjectProperty class with the given Uri
-		/// </summary>
-		/// <param name="nodeUri">A string representing the URI of this Resource</param>
-		/// <remarks>This constructor creates a new OwlNode with URI owl:ObjectProperty and sets it as the child node of an edge with URI rdf:type</remarks>	
-		public OwlObjectProperty(string nodeUri)
-		{
-			ID = nodeUri;
-//			_typeEdge = new OwlEdge(OwlNamespaceCollection.RdfNamespace+"type");
-//			_typeEdge.AttachChildNode(new OwlNode(OwlNamespaceCollection.OwlNamespace+"ObjectProperty"));
-//			AttachChildEdge(_typeEdge);
-		}
+        public OwlObjectProperty()
+        {
+            
+        }
 
-		#endregion
+        public OwlObjectProperty(string _objPropertyName, string _domain, string _range)
+        {
 
-		#region Manipulators
-		/// <summary>
-		/// This is the accept method in the visitor pattern used for performing an action on the node.
-		/// </summary>
-		/// <param name="visitor">The visitor object itself</param>
-		/// <param name="parent">The parent object of the node</param>
-		public override void Accept(IOwlVisitor visitor, Object parent) 
-		{	
-			visitor.Visit(this, parent);
-		}
+            objPropertyName = _objPropertyName;
+            domain = _domain;
+            range = _range;
+        }
 
-		#endregion
-	}
+    }
 }

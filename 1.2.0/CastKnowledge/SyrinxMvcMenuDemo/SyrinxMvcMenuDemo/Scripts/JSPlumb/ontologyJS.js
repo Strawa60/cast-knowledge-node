@@ -52,6 +52,7 @@
 	        connectorStyle: connectorPaintStyle,
 	        hoverPaintStyle: endpointHoverStyle,
 	        connectorHoverStyle: connectorHoverStyle,
+	        maxConnections: 666,
 	        dragOptions: {},
 	        overlays: [
                 ["Label", {
@@ -75,6 +76,7 @@
 	        connectorStyle: connectorPaintStyle,
 	        hoverPaintStyle: endpointHoverStyle,
 	        connectorHoverStyle: connectorHoverStyle,
+	        maxConnections: 666,
 	        dragOptions: {},
 	        overlays: [
                 ["Label", {

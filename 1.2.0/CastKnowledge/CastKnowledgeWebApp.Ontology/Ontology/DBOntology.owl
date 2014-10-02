@@ -1,0 +1,522 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <Ontology rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#described_by1 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#described_by1">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Dostawca"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Slowa_kluczowe"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#described_by2 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#described_by2">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Odlewnia"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Slowa_kluczowe"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#described_by3 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#described_by3">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Slowa_kluczowe"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#described_by4 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#described_by4">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Publikacje"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Slowa_kluczowe"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#developed1 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#developed1">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Autorzy"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#developed2 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#developed2">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Autorzy"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Publikacje"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#developed_by1 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#developed_by1">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Autorzy"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#developed_by2 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#developed_by2">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Autorzy"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Publikacje"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a1 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a1">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Dostawca"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a2 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a2">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Odlewnia"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a3 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a3">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a4 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a4">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Publikacje"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a5 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a5">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Publikacje"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a6 -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#have_a6">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Publikacje"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#working_on -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#working_on">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Dostawca"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Zasoby"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#working_with -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#working_with">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Odlewnia"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Technologia"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Afillacja -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Afillacja">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Autorzy"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Autorzy -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Autorzy"/>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Data_rozpoczecia -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Data_rozpoczecia">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Data_zakonczenia -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Data_zakonczenia">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Data_zgloszenia -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Data_zgloszenia">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Dostawca -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Dostawca"/>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#E_mail -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#E_mail">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Fax -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Fax">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Funkcja -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Funkcja">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Autorzy"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Imie -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Imie">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Autorzy"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kod_pocztowy -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kod_pocztowy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt"/>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Miejscowosc -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Miejscowosc">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Nazwa_Odlewni -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Nazwa_Odlewni">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Odlewnia"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Nazwa_dostawcy -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Nazwa_dostawcy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Dostawca"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Nazwa_technologii -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Nazwa_technologii">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Technologia"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Nazwisko -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Nazwisko">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Autorzy"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Nr_publikacji -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Nr_publikacji">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Publikacje"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Numer_wynalazku -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Numer_wynalazku">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Odlewnia -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Odlewnia"/>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis"/>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis_polski -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis_polski">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis_zagraniczny -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis_zagraniczny">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Osrodek_opracowujacy -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Osrodek_opracowujacy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Prezes -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Prezes">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Dostawca"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Publikacje -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Publikacje"/>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Rok_publikacji -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Rok_publikacji">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Publikacje"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Slowa_kluczowe -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Slowa_kluczowe"/>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Symbol_patentowy -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Symbol_patentowy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Technologia -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Technologia"/>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Telefon -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Telefon">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Tworzywo -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Tworzywo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Technologia"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Typ_firmy -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Typ_firmy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Dostawca"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Tytul_polski -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Tytul_polski">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Tytul_zagraniczny -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Tytul_zagraniczny">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Opis"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#URL -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#URL">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Patenty"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Ulica -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Ulica">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#WWW -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#WWW">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Wojewodztwo -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Wojewodztwo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Kontakt"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Zasoby -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Zasoby"/>
+    
+
+
+    <!-- http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Zrodlo -->
+
+    <Class rdf:about="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Zrodlo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/x/ontologies/2014/8/untitled-ontology-17#Publikacje"/>
+    </Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+

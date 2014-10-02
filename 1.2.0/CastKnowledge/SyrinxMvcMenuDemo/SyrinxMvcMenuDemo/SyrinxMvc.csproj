@@ -288,7 +288,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\JSPlumb\jquery.jsPlumb-1.6.4-min.js" />
     <Content Include="Scripts\JSPlumb\ontologyJS.js" />
     <Content Include="Scripts\JSPlumb\dom.jsPlumb-1.6.4-min.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />

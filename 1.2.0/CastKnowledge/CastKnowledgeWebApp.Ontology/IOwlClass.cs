@@ -1,13 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
 
-using System;
-
-namespace OwlDotNetApi
+namespace CastKnowledgeWebApp.Ontology
 {
-	/// <summary>
-	/// Represents a OWL Node of type owl:Class
-	/// </summary>
-	public interface IOwlClass : IOwlResource
-	{
+    interface IOwlClass
+    {
 
-	}
+    }
 }
