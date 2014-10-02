@@ -43,6 +43,7 @@
     <Compile Include="IOwlDataProperty.cs" />
     <Compile Include="IOwlObjectProperty.cs" />
     <Compile Include="IOwlXmlParser.cs" />
+    <Compile Include="IOwlCollection.cs" />
     <Compile Include="OwlCollection.cs" />
     <Compile Include="OwlObjectProperty.cs" />
     <Compile Include="OwlClass.cs" />

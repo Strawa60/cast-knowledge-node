@@ -8,14 +8,19 @@ namespace CastKnowledgeWebApp.Ontology
 {
     public class OwlClass : IOwlClass
     {
-        public string className { get; private set; }
-        public bool isSubClass { get; private set; }
+        public string className { get; set; }
+        public string isSubClassOf { get; set; }
 
-        public OwlClass(string _className, bool _isSubClass)
+        public OwlClass(string _className, string _isSubClass)
         {
             className = _className;
-            isSubClass = _isSubClass;
+            isSubClassOf = _isSubClass;
 
+        }
+
+        public OwlClass()
+        {
+            
         }
     }
 

@@ -368,6 +368,10 @@
       <Project>{fcc97e2b-78b7-41f4-acc7-744dd9029b35}</Project>
       <Name>CastKnowledgeWebApp.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CastKnowledgeWebApp.Ontology\CastKnowledgeWebApp.Ontology.csproj">
+      <Project>{63283d53-cc8f-428d-b739-a42e762a9aeb}</Project>
+      <Name>CastKnowledgeWebApp.Ontology</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CastKnowledgeWebApp.SearchEngine\CastKnowledgeWebApp.SearchEngine.csproj">
       <Project>{5e780fdc-a382-4e02-8e45-a2a6fbea60a5}</Project>
       <Name>CastKnowledgeWebApp.SearchEngine</Name>

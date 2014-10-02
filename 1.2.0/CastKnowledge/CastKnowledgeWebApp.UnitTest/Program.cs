@@ -11,8 +11,9 @@ namespace CastKnowledgeWebApp.UnitTest
     {
         static void Main(string[] args)
         {
-            OwlXmlParser oxp = new OwlXmlParser();
-            oxp.ParseXml();
+
+            OwlCollection owlColl = new OwlCollection();
+            owlColl=owlColl.CreateOwlCollection();
 
             Console.WriteLine();
             Console.ReadKey();
