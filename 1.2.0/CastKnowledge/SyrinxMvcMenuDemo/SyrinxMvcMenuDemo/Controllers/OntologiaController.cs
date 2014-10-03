@@ -18,7 +18,9 @@ namespace SyrinxMvc.Controllers
         {
             getOntologyCollection = getOntologyCollection.CreateOwlCollection();
 
-            return View(getOntologyCollection.OwlClassCollection[0]);
+
+
+            return View(getOntologyCollection);
         }
 
     }
