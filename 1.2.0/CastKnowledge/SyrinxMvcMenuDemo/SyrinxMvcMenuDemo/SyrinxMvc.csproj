@@ -356,6 +356,7 @@
     <Content Include="Views\Publikacje\PublikacjePartial.cshtml" />
     <Content Include="Views\Patenty\PatentyPartial.cshtml" />
     <Content Include="Views\Ontologia\Index.cshtml" />
+    <Content Include="Views\Ontologia\JSFunctions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
