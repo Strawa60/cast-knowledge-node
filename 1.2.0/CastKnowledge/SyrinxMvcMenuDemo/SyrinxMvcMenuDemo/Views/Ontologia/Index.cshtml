@@ -6,17 +6,28 @@
 
 <!DOCTYPE html>
 <html>
-    <head>       
-            
-        <style type="text/css"></style>
-        <script src="~/Scripts/JSPlumb/dom.jsPlumb-1.6.4-min.js"></script>
-        @*<script src="~/Scripts/JSPlumb/ontologyJS.js"></script>*@
-        <link href="~/Content/jsBox.css" rel="stylesheet" />
-        <link href="~/Content/jsplumb.css" rel="stylesheet" />
-    
-        
-        @Html.Partial("JSFunctions",@Model)
-    </head>
+<head>
+
+    <style type="text/css"></style>
+    <script src="~/Scripts/JSPlumb/dom.jsPlumb-1.6.4-min.js"></script>
+    @*<script src="~/Scripts/JSPlumb/ontologyJS.js"></script>*@
+    <link href="~/Content/jsBox.css" rel="stylesheet" />
+    <link href="~/Content/jsplumb.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src='http://modernizr.com/downloads/modernizr-latest.js'></script>
+  <script src='https://rawgithub.com/debiki/utterscroll/master/jquery-scrollable.js'></script>
+  <script type="text/javascript">
+    jQuery(function($) {
+      if (!Modernizr.touch) { // if not a smartphone
+        debiki.Utterscroll.enable();
+      }
+    });
+  </script>
+
+    @Html.Partial("JSFunctions", @Model)
+
+
+</head>
 
 <body>
     @section featured {
@@ -31,15 +42,140 @@
             </div>
         </section>
     }
-
+    @{
+        
+        Random rand = new Random();
+        var posx = "";
+        var posy = "";
+    }
 
     <div id="drag-drop" class="demo drag-drop">
         @foreach (OwlClass t in @Model.OwlClassCollection)
         {
-            <div class="window jsplumb-draggable _jsPlumb_endpoint_anchor_" id="@t.className" style="top:100px;left:100px">        
-                @t.className.Replace('_',' ')
+            if (t.className == "Odlewnia")
+            {
+                posx = rand.Next(200, 500) + "px";
+                posy = rand.Next(500, 900) + "px";
+            }
+            else if (t.className == "Technologia")
+            {
+                posx = rand.Next(200, 400) + "px";
+                posy = rand.Next(400, 700) + "px";
+            }
+            else if (t.className == "Dostawca")
+            {
+                posx = rand.Next(1100, 1500) + "px";
+                posy = rand.Next(500, 900) + "px";
+            }
+            else if (t.className == "Patenty")
+            {
+                posx = rand.Next(500, 900) + "px";
+                posy = rand.Next(1100, 1500) + "px";
+            }
+            else if (t.className == "Publikacje")
+            {
+                posx = rand.Next(1100, 1500) + "px";
+                posy = rand.Next(1100, 1500) + "px";
+            }
+            else if (t.className == "Kontakt")
+            {
+                posx = rand.Next(900, 1100) + "px";
+                posy = rand.Next(400, 600) + "px";
+            }
+            else if (t.className == "Opis")
+            {
+                posx = rand.Next(900, 1100) + "px";
+                posy = rand.Next(1400, 1600) + "px";
+            }
+            else if (t.className == "Autorzy")
+            {
+                posx = rand.Next(900, 1100) + "px";
+                posy = rand.Next(1700, 1900) + "px";
+            }
+            else if (t.className == "Publikacje")
+            {
+                posx = rand.Next(1100, 1500) + "px";
+                posy = rand.Next(1100, 1500) + "px";
+            }
+            else if (t.className == "Slowa_kluczowe")
+            {
+                posx = 1000 + "px";
+                posy = 1000 + "px";
+            }/////////////////////////////////////////////////////////
+            else if (t.isSubClassOf == "Odlewnia")
+            {
+                posx = rand.Next(100, 500) + "px";
+                posy = rand.Next(100, 500) + "px";
+            }
+            else if (t.isSubClassOf == "Technologia")
+            {
+                posx = rand.Next(200, 400) + "px";
+                posy = rand.Next(400, 700) + "px";
+            }
+            else if (t.isSubClassOf == "Dostawca")
+            {
+                posx = rand.Next(1500, 1900) + "px";
+                posy = rand.Next(100, 500) + "px";
+            }
+            else if (t.isSubClassOf == "Patenty")
+            {
+                posx = rand.Next(100, 500) + "px";
+                posy = rand.Next(1500, 1900) + "px";
+            }
+            else if (t.isSubClassOf == "Publikacje")
+            {
+                posx = rand.Next(1500, 1900) + "px";
+                posy = rand.Next(1500, 1900) + "px";
+            }
+            else if (t.isSubClassOf == "Kontakt")
+            {
+                posx = rand.Next(700, 1200) + "px";
+                posy = rand.Next(100, 700) + "px";
+            }
+            else if (t.isSubClassOf == "Opis")
+            {
+                posx = rand.Next(900, 1200) + "px";
+                posy = rand.Next(1400, 1700) + "px";
+            }
+            else if (t.isSubClassOf == "Autorzy")
+            {
+                posx = rand.Next(700, 1400) + "px";
+                posy = rand.Next(1600, 1900) + "px";
+            }
+            else
+            {
+                posx = rand.Next(100, 2000) + "px";
+                posy = rand.Next(100, 2000) + "px";
+            }
+
+
+            <div class="window jsplumb-draggable _jsPlumb_endpoint_anchor_" id="@t.className" style="top:@posx;left:@posy">
+                @if (t.className == "Odlewnia")
+                {
+                    <p>@Html.ActionLink(@t.className.Replace('_', ' '), "../Odlewnia/Index")</p>
+                }
+                else if (t.className == "Dostawca")
+                {
+                    <p>@Html.ActionLink(@t.className.Replace('_', ' '), "../Dostawca/Index")</p>
+
+                }
+                else if (t.className == "Patenty")
+                {
+                    <p>@Html.ActionLink(@t.className.Replace('_', ' '), "../Patenty/Index")</p>
+
+                }
+                else if (t.className == "Publikacje")
+                {
+                    <p>@Html.ActionLink(@t.className.Replace('_', ' '), "../Publikacje/Index")</p>
+
+                }
+                else
+                {
+                    @t.className.Replace('_', ' ')  
+                }
             </div>
         }
     </div>
+    <script src='https://rawgithub.com/debiki/utterscroll/master/debiki-utterscroll.js'></script>
 </body>
 </html>

@@ -22,6 +22,13 @@
                         ],
                         Container: "drag-drop"
                     }); // this is the paint style for the connecting lines..
+
+                    // double click on any connection 
+                    //instance.bind("dblclick", function(connection, originalEvent) { alert("double click on connection from " + connection.sourceId + " to " + connection.targetId); });
+                    instance.bind("click", function(conn, originalEvent) {
+                        if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
+                            jsPlumb.detach(conn); 
+                    });	
                     var connectorPaintStyle = {
                             lineWidth: 4,
                             strokeStyle: "#61B7CF",
@@ -105,6 +112,7 @@
                             var targetUUID = toId + targetAnchors[j];
                             instance.addEndpoint(toId, targetEndpoint, { anchor: targetAnchors[j], uuid: targetUUID });
                         }
+
                     }; // suspend drawing and initialise.
                     instance.doWhileSuspended(function() { // bind to connection/connectionDetached events, and update the list of connections on screen.
                         instance.bind("connection", function(info, originalEvent) {
@@ -120,19 +128,150 @@
                         }; // make .window divs draggable
                         instance.draggable(jsPlumb.getSelector(".drag-drop .window"));
                         //dodanie pukntow
-                        var javaScriptClassCollection = @Html.Raw(Json.Encode(Model.OwlClassCollection))
+                        var javaScriptClassCollection = @Html.Raw(Json.Encode(Model.OwlClassCollection));
                         for (var i = 0; i < javaScriptClassCollection.length; i++)
                         {
                             _addEndpoints(javaScriptClassCollection[i].className, ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
+                            if (javaScriptClassCollection[i].isSubClassOf != null) {
+                                
+
+                            }
                         }
                        
                         //dodanie polaczen
                         //instance.connect({ uuids: ["block 1BottomCenter", "block 2TopCenter"], editable: true });
 
-                        var javaScriptObjectPropertyCollection = @Html.Raw(Json.Encode(Model.OwlObjPropertyCollection))
+                        var javaScriptObjectPropertyCollection = @Html.Raw(Json.Encode(Model.OwlObjPropertyCollection));
                         for (var j = 0; j < javaScriptObjectPropertyCollection.length; j++)
                         {
-                            instance.connect({ uuids: [javaScriptObjectPropertyCollection[j].domain+"BottomCenter", javaScriptObjectPropertyCollection[j].range+"TopCenter"], editable: true });
+                            var sourceNumber = Math.floor(Math.random() * (2 - 0)) + 0;
+                            var targetNumber = Math.floor(Math.random() * (2 - 0)) + 0;
+                            var source="BottomCenter";
+                            var target="TopCenter";
+                            switch (sourceNumber) {
+                                case 0:
+                                {
+                                    source = "TopCenter";
+                                    break;
+                                }
+                                //case 1:
+                                //    {
+                                //        source = "LeftMiddle";
+                                //    break;
+                                //}
+                                //case 2:
+                                //    {
+                                //        source = "RightMiddle";
+                                //    break;
+                                //}
+                                case 1:
+                                    {
+                                        source = "BottomCenter";
+                                    break;
+                                }
+                                
+                                default:
+                                {
+                                    break;
+                                }
+                            }
+                            switch (targetNumber) {
+                                //case 0:
+                                //    {
+                                //        target = "TopCenter";
+                                //        break;
+                                //    }
+                                case 0:
+                                    {
+                                        target = "LeftMiddle";
+                                        break;
+                                    }
+                                case 1:
+                                    {
+                                        target = "RightMiddle";
+                                        break;
+                                    }
+                                //case 3:
+                                //    {
+                                //        target = "BottomCenter";
+                                //        break;
+                                //    }
+                                
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
+                            
+
+                            var connectionLabelObj= instance.connect({ uuids: [javaScriptObjectPropertyCollection[j].domain+source, javaScriptObjectPropertyCollection[j].range+target], editable: false });
+                            connectionLabelObj.setLabel(javaScriptObjectPropertyCollection[j].objPropertyName);
+                        }
+
+                        for (var k = 0; k < javaScriptClassCollection.length; k++)
+                        {
+                            if (javaScriptClassCollection[k].isSubClassOf != null) {
+                            var sourceNumber = Math.floor(Math.random() * (2 - 0)) + 0;
+                            var targetNumber = Math.floor(Math.random() * (4 - 0)) + 0;
+                            var source="BottomCenter";
+                            var target="TopCenter";
+                            switch (sourceNumber) {
+                                //case 0:
+                                //    {
+                                //        source = "TopCenter";
+                                //        break;
+                                //    }
+                                case 1:
+                                    {
+                                        source = "LeftMiddle";
+                                        break;
+                                    }
+                                case 0:
+                                    {
+                                        source = "RightMiddle";
+                                        break;
+                                    }
+                                //case 3:
+                                //    {
+                                //        source = "BottomCenter";
+                                //        break;
+                                //    }
+                                
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
+                            switch (targetNumber) {
+                                case 0:
+                                    {
+                                        target = "TopCenter";
+                                        break;
+                                    }
+                                case 1:
+                                    {
+                                        target = "LeftMiddle";
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        target = "RightMiddle";
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        target = "BottomCenter";
+                                        break;
+                                    }
+                                
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
+                            var connectionLabelClass= instance.connect({ uuids: [javaScriptClassCollection[k].className+source, javaScriptClassCollection[k].isSubClassOf+target], editable: true });
+                                connectionLabelClass.setLabel("isSubClassOf");
+                            }
                         }
                     });
 
