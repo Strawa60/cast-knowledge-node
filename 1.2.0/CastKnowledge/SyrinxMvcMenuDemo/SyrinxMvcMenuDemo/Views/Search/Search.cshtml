@@ -1,0 +1,128 @@
+﻿@model SyrinxMvc.Models.SearchResults
+
+@{
+    ViewBag.Title = "Search Results";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            @if (Model.contractors.Count() == 0 && Model.foundries.Count() == 0 && Model.publications.Count() == 0  && Model.patents.Count() == 0)
+            {
+                <hgroup class="title">
+                    <h2 class="error">Brak wyników do wyświetlenia</h2>
+                </hgroup>
+
+            }
+            else
+            {
+                <p>
+                    Wyniki wyszukiwania
+                </p>
+            }
+
+        </div>
+    </section>
+}
+
+@foreach (var item in Model.contractors)
+{
+    <p>
+        @Html.Partial("../Dostawca/DostawcaPartial", item)
+        <p>
+            <b>Tagi:</b>
+            @for (int i = 0; i < Model.keyWordsContractor.Count; i++)
+            {
+                if (item.id_firmy == Model.keyWordsContractor[i].t1)
+                {
+                    foreach (var q in Model.keyWordsContractor[i].t2)
+                    {
+                @q
+                <text>|</text>
+                    }
+                }
+            }
+        </p>
+        <br />
+        @Html.ActionLink("Edytuj", "Edit", new { id = item.id_firmy }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.id_firmy }) |
+            @Html.ActionLink("Usuń", "Delete", new { id = item.id_firmy })
+    </p>
+}
+
+@foreach (var item in Model.foundries)
+{
+    <p>
+        @Html.Partial("../Odlewnia/OdlewniePartial", item)
+        <p>
+            <b>Tagi:</b>
+            @for (int i = 0; i < Model.keyWordsFoundry.Count; i++)
+            {
+                if (item.id_odlewni == Model.keyWordsFoundry[i].t1)
+                {
+                    foreach (var q in Model.keyWordsFoundry[i].t2)
+                    {
+                @q
+                <text>|</text>
+                    }
+                }
+            }
+        </p>
+        <br />
+        @Html.ActionLink("Edytuj", "Edit", new { id = item.id_odlewni }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.id_odlewni }) |
+            @Html.ActionLink("Usuń", "Delete", new { id = item.id_odlewni })
+    </p>
+}
+
+@foreach (var item in Model.patents)
+{
+    <p>
+        @Html.Partial("../Patenty/PatentyPartial", item)
+        <p>
+            <b>Tagi:</b>
+            @for (int i = 0; i < Model.keyWordsPatent.Count; i++)
+            {
+                if (item.id_patentu == Model.keyWordsPatent[i].t1)
+                {
+                    foreach (var q in Model.keyWordsPatent[i].t2)
+                    {
+                @q
+                <text>|</text>
+                    }
+                }
+            }
+        </p>
+        <br />
+        @Html.ActionLink("Edytuj", "Edit", new { id = item.id_patentu }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.id_patentu }) |
+            @Html.ActionLink("Usuń", "Delete", new { id = item.id_patentu })
+    </p>
+}
+
+@foreach (var item in Model.publications)
+{
+    <p>
+        @Html.Partial("../Publikacje/PublikacjePartial", item)
+        <p>
+            <b>Tagi:</b>
+            @for (int i = 0; i < Model.keyWordsPublication.Count; i++)
+            {
+                if (item.id_publikacji == Model.keyWordsPublication[i].t1)
+                {
+                    foreach (var q in Model.keyWordsPublication[i].t2)
+                    {
+                @q
+                <text>|</text>
+                    }
+                }
+            }
+        </p>
+        <br />
+        @Html.ActionLink("Edytuj", "Edit", new { id = item.id_publikacji }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.id_publikacji }) |
+            @Html.ActionLink("Usuń", "Delete", new { id = item.id_publikacji })
+    </p>
+}

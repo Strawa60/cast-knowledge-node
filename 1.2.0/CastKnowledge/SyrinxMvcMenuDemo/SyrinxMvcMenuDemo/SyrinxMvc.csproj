@@ -363,6 +363,7 @@
     <Content Include="Views\Patenty\PatentyPartial.cshtml" />
     <Content Include="Views\Ontologia\Index.cshtml" />
     <Content Include="Views\Ontologia\JSFunctions.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

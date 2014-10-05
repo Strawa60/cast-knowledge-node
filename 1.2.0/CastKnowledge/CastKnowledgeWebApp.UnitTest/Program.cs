@@ -17,7 +17,13 @@ namespace CastKnowledgeWebApp.UnitTest
             //OwlCollection owlColl = new OwlCollection();
             //owlColl=owlColl.CreateOwlCollection();
             HashSet<Dostawca> asd = new HashSet<Dostawca>();
-            Search aaa = new Search("stop");
+            Search aaa = new Search("beton");
+
+            HashSet<int> asad = new HashSet<int>();
+
+            asad.Add(1);
+            asad.Add(2);
+            asad.Add(1);
 
 
             Console.WriteLine();
