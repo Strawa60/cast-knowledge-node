@@ -185,6 +185,7 @@
     <Compile Include="Controllers\OntologiaController.cs" />
     <Compile Include="Controllers\PatentyController.cs" />
     <Compile Include="Controllers\PublikacjeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="DbSaveData\ExcelParser.cs" />
     <Compile Include="DbSaveData\InsertDataToDB.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Models\PatentyWrapper.cs" />
     <Compile Include="Models\PublikacjeListWrapper.cs" />
     <Compile Include="Models\PublikacjeWrapper.cs" />
+    <Compile Include="Models\SearchResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
